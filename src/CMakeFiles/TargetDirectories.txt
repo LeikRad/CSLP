@@ -1,3 +1,0 @@
-/home/leikrad/Projects/Uni/CSLP/CSLP/src/CMakeFiles/main.out.dir
-/home/leikrad/Projects/Uni/CSLP/CSLP/src/CMakeFiles/edit_cache.dir
-/home/leikrad/Projects/Uni/CSLP/CSLP/src/CMakeFiles/rebuild_cache.dir
