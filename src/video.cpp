@@ -3,39 +3,45 @@
 
 using namespace cv;
 
-int video()
-{
-    VideoCapture cap("video.mp4");
-    if (!cap.isOpened())
-    {
+int main() {
+    // Open the video file (replace "video.mp4" with your video file)
+    VideoCapture cap("../videos/video.mp4");
+
+    if (!cap.isOpened()) {
         std::cerr << "Error: Could not open video file." << std::endl;
         return -1;
     }
-    Mat frame; // Your video frame in RGB format
-    Mat yuvFrame;
 
-    cvtColor(frame, yuvFrame, COLOR_BGR2YUV);
+    namedWindow("YUV Video", WINDOW_NORMAL);
+    namedWindow("RGB Video", WINDOW_NORMAL);
 
-    imshow("YUV Video", yuvFrame);
+    while (true) {
+        Mat frame; // RGB frame
+        Mat yuvFrame; // YUV frame
 
-    while (true)
-    {
+        // Read a frame from the video
         cap >> frame;
-        if (frame.empty())
-        {
+
+        // Check for end of video
+        if (frame.empty()) {
             break;
         }
-        // Perform RGB to YUV conversion if needed
+
+        // Convert RGB to YUV
+        cvtColor(frame, yuvFrame, COLOR_BGR2YUV);
+
         // Display frames
-        imshow("Video Player", frame);
+        imshow("RGB Video", frame);
+        imshow("YUV Video", yuvFrame);
 
         char key = waitKey(30);
-        if (key == 27)
-        { // Escape key to exit
+        if (key == 27) { // Exit when the Esc key is pressed
             break;
         }
     }
 
     cap.release();
     destroyAllWindows();
+
+    return 0;
 }
