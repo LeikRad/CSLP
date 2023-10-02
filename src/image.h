@@ -1,5 +1,10 @@
 #include <iostream>
-using namespace std;
+struct Pixel
+{
+    u_char r;
+    u_char g;
+    u_char b;
+};
 
 class Image
 {
@@ -7,9 +12,12 @@ private:
     int width;
     int height;
     int maxVal;
-    int[] pixels;
+    Pixel *pixels; // Pointer to a array (which is a pointer in itself) so pointer to pointer
 
 public:
-    int printNum(void);
-    Image(int width, int height, int maxVal);
+    Image(FILE *pFile);
+    ~Image();
+    int* Metadata();
+    Pixel* PixelData();
+    void WriteImage(char *filename);
 };
