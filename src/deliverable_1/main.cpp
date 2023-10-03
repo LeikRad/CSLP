@@ -4,16 +4,8 @@ using namespace std;
 
 int main()
 {
-    FILE *file = fopen("../images/bike3.ppm", "rb");
 
-    if (!file)
-    {
-        std::cerr << "Failed to open the file." << std::endl;
-        return 1;
-    }
-    Image img(file);
-
-    fclose(file);
+    Image img("../images/bike3.ppm");
 
     // file = fopen("../images/airplane.ppm", "rb");
 
@@ -24,7 +16,7 @@ int main()
     // }
 
     // Image img2(file);
-    
+
     // fclose(file);
 
     img.WriteImage("../images/airplane2.ppm");
