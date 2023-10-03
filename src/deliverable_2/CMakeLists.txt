@@ -2,8 +2,9 @@ cmake_minimum_required ( VERSION 3.22.1 )
 project( main VERSION 0.0.1 )
 
 #Find opencv package
-find_package(OpenCV REQUIRED PATHS /usr/local/share/OpenCV NO_DEFAULT_PATH) # manual specification of the OpenCVConfig.cmake path is necessary since otherwise, cmake assigns /opt/local a higher priority and ocv2.4 will be used
-include_directories( ${OpenCV_INCLUDE_DIRS} )
+# find_package( OpenCV REQUIRED )  
+
+# include_directories( ${OpenCV_INCLUDE_DIRS} )
 
 add_executable( main.out main.cpp BitStream.cpp  )
-target_link_libraries( main.out ${OpenCV_LIBS} )
+target_link_libraries( main.out )

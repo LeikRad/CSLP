@@ -3,9 +3,12 @@
 #include <fstream>
 #include <cmath>
 
-BitStream::BitStream(char *FileName, int M = 8, char *OutputFileName = "golomb.bin")
+BitStream::BitStream(char *FileName, char *OutputFileName = "golomb.bin")
 {
     FILE *pFile = fopen(FileName, "rb");
+    std::vector<int> readbuffer;
+    pos = -1;
+    byte = 0;
 
     if (!pFile)
     {
@@ -13,70 +16,50 @@ BitStream::BitStream(char *FileName, int M = 8, char *OutputFileName = "golomb.b
     }
 
     this->pFile = pFile;
-    this->M = M;
-    this->buffer = std::vector<u_char>();
+    // this->M = M;
+    // this->buffer = std::vector<u_char>();
     this->out = std::ofstream(OutputFileName);
 };
 
 BitStream::~BitStream()
 {
     fclose(pFile);
+    out.close();
 };
 
 int BitStream::ReadBit()
 {
-    u_char byte;
-    fread(&byte, sizeof(u_char), 1, pFile);
-    buffer.push_back(byte);
-    return 0;
+    if (pos < 0)
+    {
+        fread(&byte, sizeof(u_char), 1, pFile);
+        pos = 7;
+    }
+    return (byte >> pos--) % 2;
 };
 
-int BitStream::ReadByte(int n_bits)
+int* BitStream::ReadBits(int n_bits)
 {
+    int buffer[n_bits];
+
     for (int i = 0; i < n_bits; i++)
     {
-        ReadBit();
+        buffer[i] = ReadBit();
     }
-    return 0;
+    return buffer;
 };
 
 // https://en.wikipedia.org/wiki/Golomb_coding
-void BitStream::WriteBit()
+void BitStream::WriteBit(int bit)
 {
-    u_char byte = buffer[0];
-    u_char q = byte / M;
-    u_char r = byte % M;
-
-    for (int i = 0; i < q; i++)
-    {
-        out << 1;
-    }
-
-    out << 0;
-
-    u_char b = log2(M);
-
-    if (r < pow(2, b + 1))
-    {
-        for (int i = b - 1; i >= 0; i--)
-        {
-            out << (r >> i) % 2;
-        }
-    }
-    else
-    {
-        r += pow(2, b + 1) - M;
-        for (int i = b; i >= 0; i--)
-        {
-            out << (r >> i) % 2;
-        }
-    }
+    out << bit;
 };
 
-void BitStream::WriteBits(int n_bits)
+void BitStream::WriteBits(int *bits)
 {
-    for (int i = 0; i < n_bits; i++)
+    int size = sizeof(bits)/sizeof(int);
+
+    for (int i = 0; i < size; i++)
     {
-        WriteBit();
+        WriteBit(bits[i]);
     }
 };
