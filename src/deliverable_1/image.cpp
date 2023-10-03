@@ -21,7 +21,7 @@ Image::Image(char *FileName)
 
     int width, height, maxVal;
 
-    fscanf(pFile, "%d %d %d", &width, &height, &maxVal);
+    fscanf(pFile, "%d %d %d\n", &width, &height, &maxVal);
     this->width = width;
     this->height = height;
     this->maxVal = maxVal;
@@ -52,11 +52,11 @@ void Image::WriteImage(char *FileName)
     std::ofstream out(FileName);
     out << "P6\n"
         << width << " " << height << "\n"
-        << maxVal;
+        << maxVal << std::endl;
 
     for (int i = 0; i < width * height; i++)
     {
-        out << pixels[i].r << pixels[i].g << pixels[i].b;
+        out << pixels[i].b << pixels[i].b << pixels[i].b;
     }
 }
 
