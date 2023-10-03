@@ -44,6 +44,9 @@ int BitStream::ReadByte(int n_bits)
 void BitStream::WriteBit()
 {
     u_char byte = buffer[0];
+    // remove the first element
+    buffer.erase(buffer.begin());
+
     u_char q = byte / M;
     u_char r = byte % M;
 
@@ -54,11 +57,11 @@ void BitStream::WriteBit()
 
     out << 0;
 
-    u_char b = log2(M);
+    u_char b = ceil(log2(M));
 
     if (r < pow(2, b + 1))
     {
-        for (int i = b - 1; i >= 0; i--)
+        for (int i = b; i >= 0; i--)
         {
             out << (r >> i) % 2;
         }
@@ -66,7 +69,7 @@ void BitStream::WriteBit()
     else
     {
         r += pow(2, b + 1) - M;
-        for (int i = b; i >= 0; i--)
+        for (int i = b + 1; i >= 0; i--)
         {
             out << (r >> i) % 2;
         }
