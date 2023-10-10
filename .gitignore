@@ -48,5 +48,7 @@ compile_commands.json
 CTestTestfile.cmake
 _deps
 
-#Images
-images
+#Images/videos
+static
+
+Makefile

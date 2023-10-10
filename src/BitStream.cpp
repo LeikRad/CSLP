@@ -37,7 +37,7 @@ int BitStream::ReadBit()
     return (byte >> pos--) % 2;
 };
 
-int* BitStream::ReadBits(int n_bits)
+int *BitStream::ReadBits(int n_bits)
 {
     int buffer[n_bits];
 
@@ -56,7 +56,7 @@ void BitStream::WriteBit(int bit)
 
 void BitStream::WriteBits(int *bits)
 {
-    int size = sizeof(bits)/sizeof(int);
+    int size = sizeof(bits) / sizeof(int);
 
     for (int i = 0; i < size; i++)
     {
