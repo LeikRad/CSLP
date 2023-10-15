@@ -3,7 +3,7 @@
 #include <fstream>
 #include <cmath>
 
-BitStream::BitStream(char *FileName, char *OutputFileName = "golomb.bin")
+BitStream::BitStream(const char *FileName, const char *OutputFileName = "golomb.bin")
 {
     FILE *pFile = fopen(FileName, "rb");
     std::vector<int> readbuffer;

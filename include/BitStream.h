@@ -11,7 +11,7 @@ private:
     u_char byte;
 
 public:
-    BitStream(char *FileName, char *OutputFileName);
+    BitStream(const char *FileName, const char *OutputFileName);
     ~BitStream();
     int ReadBit();
     int* ReadBits(int n_bits);
