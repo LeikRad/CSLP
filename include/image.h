@@ -20,4 +20,5 @@ public:
     int *Metadata();
     Pixel *PixelData();
     void WriteImage(char *FileName);
+    void WriteImageWaterMark(char *FileName);
 };

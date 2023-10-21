@@ -17,6 +17,7 @@ int main()
     // Image img2(file);
     // fclose(file);
     img.WriteImage("../../images/bike3Copy.ppm");
+    img.WriteImageWaterMark("../../images/bike3CopyWaterMark.ppm");
 
     return 0;
 }
