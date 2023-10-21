@@ -1,19 +1,27 @@
 #include <fstream>
 #include <vector>
 
+struct WriteBitReturn
+{
+    int *bits;
+    int size;
+};
 class BitStream
 {
 private:
     std::ifstream in;
     std::ofstream out;
-    short pos;
-    u_char byte;
+    short read_pos;
+    short write_pos;
+    u_char read_buffer;
+    u_char write_buffer;
 
 public:
     BitStream(const char *FileName, const char *OutputFileName);
     ~BitStream();
     int ReadBit();
-    int *ReadBits(int n_bits);
+    WriteBitReturn ReadBits(int n_bits);
     void WriteBit(int bit);
-    void WriteBits(int *bits);
+    void WriteBits(int *bits, int size);
+    void Flush();
 };

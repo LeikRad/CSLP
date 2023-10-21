@@ -12,22 +12,27 @@ int main(int argc, char *argv[])
         bs->WriteBit(bit);
     }
 
-    // delete bs;
     delete bs;
+    // delete bs;
 
-    bs = new BitStream("test.txt", "out2.bin");
+    bs = new BitStream("out.bin", "out2.bin");
 
     int *bits;
 
     std::cout << std::endl;
-    while (true)
+    int control = 0;
+    while (control == 0)
     {
-        bits = bs->ReadBits(1);
-        if (bits == NULL)
+        auto [bits, size] = bs->ReadBits(32);
+        if (size != 32)
         {
-            break;
+            control = 1;
+            bs->Flush();
         }
-        int size = sizeof(bits) / sizeof(int);
-        std::cout << size << std::endl;
+        for (int i = 0; i < size; i++)
+        {
+            std::cout << bits[i];
+        }
+        bs->WriteBits(bits, size);
     }
 }
