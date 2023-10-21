@@ -11,7 +11,7 @@ set(CMAKE_BINARY_DIR ${CMAKE_SOURCE_DIR}/build)
 
 # Deliverable 1
 ## 1.
-add_executable( ImageExample.out src/ImageExample.cpp src/image.cpp)
+add_executable( ImageExample.out src/ImageExample.cpp src/Image.cpp)
 set_target_properties( ImageExample.out PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/Deliverable_1")
 
 ## 2.
@@ -26,5 +26,5 @@ set_target_properties( BitStreamExample.out PROPERTIES RUNTIME_OUTPUT_DIRECTORY 
 
 # Deliverable 3
 ## 1.
-add_executable( GolombExample.out src/GolombExample.cpp src/Golomb.cpp  )
-set_target_properties( GolombExample.out PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/Deliverable_3")
+# add_executable( GolombExample.out src/GolombExample.cpp src/Golomb.cpp  )
+# set_target_properties( GolombExample.out PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/Deliverable_3")

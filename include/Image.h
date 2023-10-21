@@ -15,7 +15,7 @@ private:
     Pixel *pixels; // Pointer to a array (which is a pointer in itself) so pointer to pointer
 
 public:
-    Image(char *FileName);
+    Image(const char *FileName);
     ~Image();
     int *Metadata();
     Pixel *PixelData();
