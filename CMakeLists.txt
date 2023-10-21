@@ -11,8 +11,12 @@ set(CMAKE_BINARY_DIR ${CMAKE_SOURCE_DIR}/build)
 
 # Deliverable 1
 ## 1.
+<<<<<<< HEAD
 add_executable( ImageExample.out src/ImageExample.cpp src/image.cpp)
 target_link_libraries( ImageExample.out ${OpenCV_LIBS} )
+=======
+add_executable( ImageExample.out src/ImageExample.cpp src/Image.cpp)
+>>>>>>> d7f44dd96a483cd786565148e881b7e06c4e79a2
 set_target_properties( ImageExample.out PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/Deliverable_1")
 
 ## 2.

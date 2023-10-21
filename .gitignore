@@ -52,3 +52,5 @@ _deps
 static
 
 Makefile
+
+build/*
