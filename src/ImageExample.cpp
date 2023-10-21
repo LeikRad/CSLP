@@ -9,8 +9,7 @@ int main()
 
     img.WriteImage("../../static/images/bike3Copy.ppm");
 
-    // //testing water mark
-    img.WriteImageWaterMark("../../static/images/bike3WaterMark.ppm");
+    
 
     // //testing YUV
     img.RGBtoYUV();
@@ -24,9 +23,6 @@ int main()
 
     // //testing histogram
     // img.CalculateAndDisplayHistograms();
-
-    
-
     // testing grayscale
     Image img4("../../static/images/bike3.ppm");
     img4.ConvertToGrayscale();

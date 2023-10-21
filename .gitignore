@@ -49,3 +49,4 @@ CTestTestfile.cmake
 _deps
 
 #Images/videos
+./static/images/*
