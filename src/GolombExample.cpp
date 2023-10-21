@@ -2,32 +2,37 @@
 #include "Golomb.h"
 #include <iostream>
 
-int main() {
-    Golomb encoder(8, "encoded.bin"); // Initialize Golomb encoder with M=4
+int main()
+{
+    // write to encoded.bin encoded values, read from encoded.bin and decode
+    Golomb codec(8, "encoded.bin", "encoded.bin"); // Initialize Golomb encoder with M=4
 
-    int num1 = 69;
-
-    encoder.Encode(num1);
-    encoder.Close();
+    int n = -50;
+    while (n != 51)
+    {
+        codec.Encode(n++);
+    }
 
     // Print the encoded values in binary
     std::ifstream encodedFile("encoded.bin", std::ios::binary);
-    if (encodedFile.is_open()) {
+    if (encodedFile.is_open())
+    {
         char bit;
         std::cout << "Encoded values in binary: ";
-        while (encodedFile.get(bit)) {
+        while (encodedFile.get(bit))
+        {
             std::cout << bit;
         }
         std::cout << std::endl;
         encodedFile.close();
     }
 
-    Golomb decoder(8, "encoded.bin"); // Initialize Golomb decoder with M=4
-    int decoded1 = decoder.Decode();
-    int decoded2 = decoder.Decode();
-    decoder.Close();
+    n = -50;
+    while (n != 51)
+    {
+        std::cout << "Decode: " << codec.Decode() << std::endl;
+        n++;
+    }
 
-    std::cout << "Decoded values: " << decoded1 << " and " << decoded2 << std::endl;
-
-    return 0;
+    // return 0;
 }

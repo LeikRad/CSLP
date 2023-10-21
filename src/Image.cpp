@@ -79,6 +79,62 @@ Image::~Image()
     delete[] pixels;
 }
 
+void Image::WriteImageWaterMark(const char *FileName)
+{
+    // Crie uma cópia da matriz de pixels original para aplicar a marca d'água
+    Pixel *watermarkedPixels = new Pixel[width * height];
+    std::copy(pixels, pixels + width * height, watermarkedPixels);
+
+    // faz um ciclo for para percorrer os últimos 10 pixels da altura e largura
+    for (int i = height - 200; i < height; i++)
+    {
+        for (int j = width - 200; j < width; j++)
+        {
+            // altera os pixels para vermelho
+            watermarkedPixels[i * width + j].r = 0;
+            watermarkedPixels[i * width + j].g = 0;
+            watermarkedPixels[i * width + j].b = 255;
+        }
+    }
+
+    for (int i = height - 200; i < height; i++)
+    {
+        for (int j = width - 350; j < width - 200; j++)
+        {
+            // altera os pixels para verde
+            watermarkedPixels[i * width + j].r = 0;
+            watermarkedPixels[i * width + j].g = 255;
+            watermarkedPixels[i * width + j].b = 0;
+        }
+    }
+
+    // pinte um quadrado amarelo no meio das duas cores
+    for (int i = height - 130; i < height - 70; i++)
+    {
+        for (int j = width - 230; j < width - 170; j++)
+        {
+            // altera os pixels para amarelo
+            watermarkedPixels[i * width + j].r = 0;
+            watermarkedPixels[i * width + j].g = 255;
+            watermarkedPixels[i * width + j].b = 255;
+        }
+    }
+
+    // Abra o arquivo e escreva a imagem com a marca d'água
+    std::ofstream out(FileName);
+    out << "P6\n"
+        << width << " " << height << "\n"
+        << maxVal << std::endl;
+
+    for (int i = 0; i < width * height; i++)
+    {
+        out << watermarkedPixels[i].r << watermarkedPixels[i].g << watermarkedPixels[i].b;
+    }
+
+    // Libere a memória alocada para a cópia dos pixels com marca d'água
+    delete[] watermarkedPixels;
+}
+
 void Image::RGBtoYUV()
 {
 
@@ -271,6 +327,7 @@ void Image::CalculateAndDisplayHistograms()
     waitKey(0);
 }
 
+//! In this modified function, we first create a Mat object from the pixels array and convert it to the HSV color space using the cvtColor function. We then split the HSV channels into separate Mat objects and calculate the histogram of the V channel using the calcHist function. We then apply histogram equalization to the V channel using the equalizeHist function. We then merge the channels back into the HSV image using the merge function and convert it back to the BGR color space using the cvtColor function. Finally, we copy the modified pixels back to the pixels array using the memcpy function and display the histogram using the imshow function.
 void Image::ApplyHistogramEqualization()
 {
     Mat src(height, width, CV_8UC3, pixels);
@@ -325,5 +382,138 @@ void Image::ConvertToGrayscale()
         pixels[i].r = gray;
         pixels[i].g = gray;
         pixels[i].b = gray;
+    }
+}
+//! GaussianFilter is a filter commonly used in image processing for smoothing, reducing noise, and computing derivatives of an image. It is a convolution-based filter that uses a Gaussian matrix as its underlying kernel.
+//! In this implementation, we first create a Gaussian kernel with the specified kernelSize and sigma values. We then normalize the kernel so that the sum of all values is equal to 1. We then apply the Gaussian filter to the image by convolving the kernel with each pixel in the image. We use a temporary buffer to store the original pixel values so that we can apply the filter in-place. Note that this implementation assumes that the pixels array contains BGR color values.
+void Image::GaussianFilter(int kernelSize, double sigma)
+{
+    // Create the Gaussian kernel
+    double kernel[kernelSize][kernelSize];
+    double sum = 0.0;
+    int radius = kernelSize / 2;
+    for (int i = -radius; i <= radius; i++)
+    {
+        for (int j = -radius; j <= radius; j++)
+        {
+            double value = exp(-(i * i + j * j) / (2 * sigma * sigma));
+            kernel[i + radius][j + radius] = value;
+            sum += value;
+        }
+    }
+    // Normalize the kernel
+    for (int i = 0; i < kernelSize; i++)
+    {
+        for (int j = 0; j < kernelSize; j++)
+        {
+            kernel[i][j] /= sum;
+        }
+    }
+    // Apply the Gaussian filter to the image
+    Pixel *temp = new Pixel[width * height];
+    memcpy(temp, pixels, width * height * sizeof(Pixel));
+    for (int y = 0; y < height; y++)
+    {
+        for (int x = 0; x < width; x++)
+        {
+            double r = 0.0, g = 0.0, b = 0.0;
+            for (int i = -radius; i <= radius; i++)
+            {
+                for (int j = -radius; j <= radius; j++)
+                {
+                    int px = x + j;
+                    int py = y + i;
+                    if (px < 0)
+                        px = 0;
+                    if (px >= width)
+                        px = width - 1;
+                    if (py < 0)
+                        py = 0;
+                    if (py >= height)
+                        py = height - 1;
+                    Pixel p = temp[py * width + px];
+                    double value = kernel[i + radius][j + radius];
+                    r += p.r * value;
+                    g += p.g * value;
+                    b += p.b * value;
+                }
+            }
+            pixels[y * width + x].r = (u_char)r;
+            pixels[y * width + x].g = (u_char)g;
+            pixels[y * width + x].b = (u_char)b;
+        }
+    }
+    delete[] temp;
+}
+
+//! In this implementation, we first create a blur kernel with the specified kernelSize. We then apply the blur filter to the image by convolving the kernel with each pixel in the image. We use a temporary buffer to store the original pixel values so that we can apply the filter in-place. Note that this implementation assumes that the pixels array contains BGR color values.
+void Image::BlurFilter(int kernelSize)
+{
+    // Create the blur kernel
+    double kernel[kernelSize][kernelSize];
+    double value = 1.0 / (kernelSize * kernelSize);
+    for (int i = 0; i < kernelSize; i++)
+    {
+        for (int j = 0; j < kernelSize; j++)
+        {
+            kernel[i][j] = value;
+        }
+    }
+    // Apply the blur filter to the image
+    Pixel *temp = new Pixel[width * height];
+    memcpy(temp, pixels, width * height * sizeof(Pixel));
+    int radius = kernelSize / 2;
+    for (int y = 0; y < height; y++)
+    {
+        for (int x = 0; x < width; x++)
+        {
+            double r = 0.0, g = 0.0, b = 0.0;
+            for (int i = -radius; i <= radius; i++)
+            {
+                for (int j = -radius; j <= radius; j++)
+                {
+                    int px = x + j;
+                    int py = y + i;
+                    if (px < 0)
+                        px = 0;
+                    if (px >= width)
+                        px = width - 1;
+                    if (py < 0)
+                        py = 0;
+                    if (py >= height)
+                        py = height - 1;
+                    Pixel p = temp[py * width + px];
+                    double value = kernel[i + radius][j + radius];
+                    r += p.r * value;
+                    g += p.g * value;
+                    b += p.b * value;
+                }
+            }
+            pixels[y * width + x].r = (u_char)r;
+            pixels[y * width + x].g = (u_char)g;
+            pixels[y * width + x].b = (u_char)b;
+        }
+    }
+    delete[] temp;
+}
+
+//! Image thresholding is a type of image segmentation that divides the foreground from the background in an image. In this technique, the pixel values are assigned corresponding to the provided threshold values. In computer vision, thresholding is done in grayscale images.
+void Image::ThresholdSegmentation(int threshold)
+{
+    for (int i = 0; i < width * height; i++)
+    {
+        int gray = (pixels[i].r + pixels[i].g + pixels[i].b) / 3;
+        if (gray < threshold)
+        {
+            pixels[i].r = 0;
+            pixels[i].g = 0;
+            pixels[i].b = 0;
+        }
+        else
+        {
+            pixels[i].r = 255;
+            pixels[i].g = 255;
+            pixels[i].b = 255;
+        }
     }
 }

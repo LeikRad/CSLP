@@ -27,5 +27,5 @@ set_target_properties( BitStreamExample.out PROPERTIES RUNTIME_OUTPUT_DIRECTORY 
 
 # Deliverable 3
 ## 1.
-# add_executable( GolombExample.out src/GolombExample.cpp src/Golomb.cpp  )
-# set_target_properties( GolombExample.out PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/Deliverable_3")
+add_executable( GolombExample.out src/GolombExample.cpp src/Golomb.cpp src/BitStream.cpp  )
+set_target_properties( GolombExample.out PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/Deliverable_3")

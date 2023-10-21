@@ -27,4 +27,7 @@ public:
     void CalculateAndDisplayHistograms();
     void ApplyHistogramEqualization();
     void ConvertToGrayscale();
+    void GaussianFilter(int kernelSize, double sigma);
+    void BlurFilter(int kernelSize);
+    void ThresholdSegmentation(int threshold);
 };
