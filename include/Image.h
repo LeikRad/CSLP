@@ -20,5 +20,11 @@ public:
     int *Metadata();
     Pixel *PixelData();
     void WriteImage(char *FileName);
-    void WriteImageWaterMark(char *FileName);
+    void WriteImageWaterMark(Image &watermarkImage);
+    void DisplayImage();
+    void RGBtoYUV();
+    void YUVtoRGB();
+    void CalculateAndDisplayHistograms();
+    void ApplyHistogramEqualization();
+    void ConvertToGrayscale();
 };

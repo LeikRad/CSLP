@@ -1,29 +1,29 @@
 #include "BitStream.h"
 #include <iostream>
 #include <fstream>
-#include <cmath>
+#include <filesystem>
 
-BitStream::BitStream(const char *FileName, const char *OutputFileName = "golomb.bin")
+BitStream::BitStream(const char *FileName, const char *OutputFileName = "out.bin")
 {
-    FILE *pFile = fopen(FileName, "rb");
-    std::vector<int> readbuffer;
+    this->in = std::ifstream(FileName, std::ios::binary);
     pos = -1;
     byte = 0;
 
-    if (!pFile)
+    if (!in)
     {
         throw std::runtime_error("Failed to open the file.");
     }
 
-    this->pFile = pFile;
-    // this->M = M;
-    // this->buffer = std::vector<u_char>();
     this->out = std::ofstream(OutputFileName);
+
+    // set in, out to first position
+    in.seekg(0, std::ios::beg);
+    out.seekp(0, std::ios::beg);
 };
 
 BitStream::~BitStream()
 {
-    fclose(pFile);
+    in.close();
     out.close();
 };
 
@@ -31,7 +31,11 @@ int BitStream::ReadBit()
 {
     if (pos < 0)
     {
-        fread(&byte, sizeof(u_char), 1, pFile);
+        in.read((char *)&byte, sizeof(u_char));
+        if (in.eof())
+        {
+            return -1;
+        }
         pos = 7;
     }
     return (byte >> pos--) % 2;
@@ -39,18 +43,21 @@ int BitStream::ReadBit()
 
 int *BitStream::ReadBits(int n_bits)
 {
-    int buffer[n_bits];
-
+    int *bits = new int[n_bits];
     for (int i = 0; i < n_bits; i++)
     {
-        buffer[i] = ReadBit();
+        bits[i] = ReadBit();
     }
-    return buffer;
+    return bits;
 };
 
-// https://en.wikipedia.org/wiki/Golomb_coding
 void BitStream::WriteBit(int bit)
 {
+    if (bit != 0 && bit != 1)
+    {
+        std::cerr << "BitStream::WriteBit: bit must be 0 or 1, input will be ignored: " << bit << std::endl;
+        return;
+    }
     out << bit;
 };
 
