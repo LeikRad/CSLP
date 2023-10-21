@@ -1,12 +1,12 @@
 #include "Golomb.h"
+#include "BitStream.h"
 #include <iostream>
 #include <fstream>
 #include <cmath>
-#include "BitStream.h"
 
-Golomb::Golomb(int M, const char *OutputFileName) : M(M)
+Golomb::Golomb(int M, const char *InputFileName, const char *OutputFileName) : M(M)
 {
-    out.open(OutputFileName, std::ios::binary);
+    this->bs = new BitStream(InputFileName, OutputFileName);
 }
 
 Golomb::~Golomb()
@@ -16,28 +16,24 @@ Golomb::~Golomb()
 
 void Golomb::Close()
 {
-    if (out.is_open())
-    {
-        out.close();
-    }
-    if (in.is_open())
-    {
-        in.close();
-    }
+    bs->Flush();
+    delete bs;
 }
 
 void Golomb::Encode(int num)
 {
-    // u_char byte = buffer[0];
+    num = map(num);
+    // Encode non-negative numbers using regular Golomb encoding
     u_char q = num / M;
     u_char r = num % M;
 
     for (int i = 0; i < q; i++)
     {
-        out << 1;
+        std::cout << "1";
+        bs->WriteBit(1);
     }
-
-    out << 0;
+    std::cout << "0";
+    bs->WriteBit(0);
 
     u_char b = log2(M);
 
@@ -45,7 +41,8 @@ void Golomb::Encode(int num)
     {
         for (int i = b - 1; i >= 0; i--)
         {
-            out << (r >> i) % 2;
+            std::cout << (r >> i) % 2;
+            bs->WriteBit((r >> i) % 2);
         }
     }
     else
@@ -53,43 +50,59 @@ void Golomb::Encode(int num)
         r += pow(2, b + 1) - M;
         for (int i = b; i >= 0; i--)
         {
-            out << (r >> i) % 2;
+            std::cout << (r >> i) % 2;
+            bs->WriteBit((r >> i) % 2);
         }
     }
 };
 
 int Golomb::Decode()
 {
-    BitStream bs = BitStream("test.txt", "out.txt");
     int q = 0;
 
     // Read quotient bits
-    while (bs.ReadBit() == 1)
+    while (bs->ReadBit() == 1)
     {
         q++;
     }
 
-    int b = static_cast<int>(log2(M));
+    u_char b = log2(M);
 
     int r = 0;
     // Read the rest of the bits as remainder
     for (int i = b - 1; i >= 0; i--)
     {
-        r = (r << 1) | bs.ReadBit();
+        r = (r << 1) | bs->ReadBit();
     }
-
     // Combine quotient and remainder to decode the number
     int num = (q * M) + r;
 
     // Adjust for negative numbers
-    if (num % 2 == 1)
+    num = reverse_map(num);
+
+    return num;
+}
+
+int Golomb::map(int num)
+{
+    if (num >= 0)
     {
-        num = -(num + 1) / 2;
+        return 2 * num;
     }
     else
     {
-        num = num / 2;
+        return -2 * num - 1;
     }
+}
 
-    return num;
+int Golomb::reverse_map(int num)
+{
+    if (num % 2 == 0)
+    {
+        return num / 2;
+    }
+    else
+    {
+        return -(num + 1) / 2;
+    }
 }
