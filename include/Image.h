@@ -20,9 +20,13 @@ public:
     int *Metadata();
     Pixel *PixelData();
     void WriteImage(const char *FileName);
+    void WriteImageWaterMark(const char *FileName);
     void RGBtoYUV();
     void YUVtoRGB();
     void CalculateAndDisplayHistograms();
     void ApplyHistogramEqualization();
     void ConvertToGrayscale();
+    void GaussianFilter(int kernelSize, double sigma);
+    void BlurFilter(int kernelSize);
+    void ThresholdSegmentation(int threshold);
 };
