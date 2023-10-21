@@ -1,14 +1,11 @@
 #include "Image.h"
 #include <fstream>
 #include <iostream>
-<<<<<<< HEAD:src/image.cpp
 #include <opencv2/opencv.hpp>
 #include <vector>
 
 using namespace cv;
 
-Image::Image(const char *FileName)
-=======
 /**
  * @brief Construct a new Image::Image object from a ppm (P6) file
  *
@@ -20,7 +17,6 @@ Image::Image(const char *FileName)
  * @throw std::runtime_error if the file is not a ppm file
  */
 Image::Image(const char *FilePath)
->>>>>>> d7f44dd96a483cd786565148e881b7e06c4e79a2:src/Image.cpp
 {
     std::ifstream in(FilePath);
 
@@ -84,7 +80,8 @@ Image::~Image()
     delete[] pixels;
 }
 
-void Image::RGBtoYUV() {
+void Image::RGBtoYUV()
+{
 
     double Wr = 0.299;
     double Wb = 0.114;
@@ -92,7 +89,8 @@ void Image::RGBtoYUV() {
     double Umax = 0.436;
     double Vmax = 0.615;
 
-    for (int i = 0; i < width * height; i++) {
+    for (int i = 0; i < width * height; i++)
+    {
         double r = pixels[i].r / 255.0;
         double g = pixels[i].g / 255.0;
         double b = pixels[i].b / 255.0;
@@ -112,14 +110,16 @@ void Image::RGBtoYUV() {
 // there is some noise here //
 //////////////////////////////
 
-void Image::YUVtoRGB() {
+void Image::YUVtoRGB()
+{
     double Wr = 0.299;
     double Wb = 0.114;
     double Wg = 1 - Wr - Wb;
     double Umax = 0.436;
     double Vmax = 0.615;
 
-    for (int i = 0; i < width * height; i++) {
+    for (int i = 0; i < width * height; i++)
+    {
         double y = pixels[i].r / 255.0;
         double u = (pixels[i].g / 255.0) - 0.5;
         double v = (pixels[i].b / 255.0) - 0.5;
@@ -139,17 +139,19 @@ void Image::YUVtoRGB() {
         pixels[i].b = (u_char)(b * 255);
     }
 }
-void Image::CalculateAndDisplayHistograms() {
-    int histSize = 256;  // Number of bins
-    float range[] = {0, 256};  // Range of pixel values
-    const float* histRange = {range};
+void Image::CalculateAndDisplayHistograms()
+{
+    int histSize = 256;       // Number of bins
+    float range[] = {0, 256}; // Range of pixel values
+    const float *histRange = {range};
 
     Mat histR(histSize, 1, CV_32F, Scalar(0));
     Mat histG(histSize, 1, CV_32F, Scalar(0));
     Mat histB(histSize, 1, CV_32F, Scalar(0));
 
     // Calculate histograms for R, G, and B channels
-    for (int i = 0; i < width * height; i++) {
+    for (int i = 0; i < width * height; i++)
+    {
         int r = pixels[i].r;
         int g = pixels[i].g;
         int b = pixels[i].b;
@@ -169,13 +171,15 @@ void Image::CalculateAndDisplayHistograms() {
     int plotHeight = 400;
     Mat plot(plotHeight, plotWidth, CV_8UC3, Scalar(255, 255, 255));
 
-    int binWidth = cvRound((double) plotWidth / histSize);
+    int binWidth = cvRound((double)plotWidth / histSize);
 
     // Draw grid lines
-    for (int i = 0; i < plotHeight; i += 20) {
+    for (int i = 0; i < plotHeight; i += 20)
+    {
         line(plot, Point(0, i), Point(plotWidth, i), Scalar(200, 200, 200), 1, LINE_AA);
     }
-    for (int i = 0; i < plotWidth; i += 32) {
+    for (int i = 0; i < plotWidth; i += 32)
+    {
         line(plot, Point(i, 0), Point(i, plotHeight), Scalar(200, 200, 200), 1, LINE_AA);
     }
 
@@ -192,14 +196,16 @@ void Image::CalculateAndDisplayHistograms() {
     // }
 
     // Draw tick marks and labels on y axis
-    for (int i = 0; i <= 10; i++) {
+    for (int i = 0; i <= 10; i++)
+    {
         line(plot, Point(0, plotHeight - 1 - i * plotHeight / 10), Point(5, plotHeight - 1 - i * plotHeight / 10), Scalar(0, 0, 0), 2, LINE_AA);
         char buffer[16];
         sprintf(buffer, "%d%%", i * 10);
         putText(plot, buffer, Point(10, plotHeight - 1 - i * plotHeight / 10), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 0, 0), 1, LINE_AA);
     }
 
-    for (int i = 1; i < histSize; i++) {
+    for (int i = 1; i < histSize; i++)
+    {
         line(plot, Point(binWidth * (i - 1), plotHeight - cvRound(histR.at<float>(i - 1) * plotHeight)),
              Point(binWidth * i, plotHeight - cvRound(histR.at<float>(i) * plotHeight)), Scalar(0, 0, 255), 2, LINE_AA);
         line(plot, Point(binWidth * (i - 1), plotHeight - cvRound(histG.at<float>(i - 1) * plotHeight)),
@@ -213,12 +219,12 @@ void Image::CalculateAndDisplayHistograms() {
     // putText(plot, "Frequency", Point(10, plotHeight / 2), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 0, 0), 1, LINE_AA);
     putText(plot, "Frequency (%) / Pixel Value", Point(plotWidth / 2, 20), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 0, 0), 1, LINE_AA);
 
-
     imshow("Histogram", plot);
     waitKey(0);
 }
 
-void Image::ApplyHistogramEqualization() {
+void Image::ApplyHistogramEqualization()
+{
     Mat src(height, width, CV_8UC3, pixels);
     Mat hsv;
     cvtColor(src, hsv, COLOR_BGR2HSV);
@@ -230,7 +236,7 @@ void Image::ApplyHistogramEqualization() {
     // Calculate the histogram of the V channel
     int histSize = 256;
     float range[] = {0, 256};
-    const float* histRange = {range};
+    const float *histRange = {range};
     Mat hist;
     calcHist(&channels[2], 1, 0, Mat(), hist, 1, &histSize, &histRange, true, false);
 
@@ -252,9 +258,10 @@ void Image::ApplyHistogramEqualization() {
     int plotWidth = 512;
     int plotHeight = 256;
     Mat plot(plotHeight, plotWidth, CV_8UC3, Scalar(255, 255, 255));
-    int binWidth = cvRound((double) plotWidth / histSize);
+    int binWidth = cvRound((double)plotWidth / histSize);
     normalize(hist, hist, 0, plotHeight, NORM_MINMAX, -1, Mat());
-    for (int i = 1; i < histSize; i++) {
+    for (int i = 1; i < histSize; i++)
+    {
         line(plot, Point(binWidth * (i - 1), plotHeight - cvRound(hist.at<float>(i - 1))),
              Point(binWidth * i, plotHeight - cvRound(hist.at<float>(i))), Scalar(0, 0, 0), 2, LINE_AA);
     }
@@ -262,9 +269,10 @@ void Image::ApplyHistogramEqualization() {
     waitKey(0);
 }
 
-
-void Image::ConvertToGrayscale() {
-    for (int i = 0; i < width * height; i++) {
+void Image::ConvertToGrayscale()
+{
+    for (int i = 0; i < width * height; i++)
+    {
         int gray = (int)(0.299 * pixels[i].r + 0.587 * pixels[i].g + 0.114 * pixels[i].b);
         pixels[i].r = gray;
         pixels[i].g = gray;
