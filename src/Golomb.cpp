@@ -45,16 +45,15 @@ void Golomb::Close()
 }
 
 /**
- * @brief Encodes a non-negative integer using Golomb encoding
+ * @brief Encodes a integer using Golomb encoding
  *
  * The function maps the input number to a new number using the map function, and then encodes the new number using Golomb encoding.
  *
- * @param num The non-negative integer to be encoded
+ * @param num The integer to be encoded
  */
 void Golomb::Encode(int num)
 {
     num = map(num);
-    // Encode non-negative numbers using regular Golomb encoding
     u_char q = num / M;
     u_char r = num % M;
 
@@ -88,11 +87,11 @@ void Golomb::Encode(int num)
 };
 
 /**
- * @brief Decodes a non-negative integer using Golomb decoding
+ * @brief Decodes a integer using Golomb decoding
  *
- * The function decodes a non-negative integer using Golomb decoding and the current divisor M.
+ * The function decodes a integer using Golomb decoding and the current divisor M.
  *
- * @return int The decoded non-negative integer
+ * @return int The decoded integer
  */
 int Golomb::Decode()
 {
@@ -122,12 +121,12 @@ int Golomb::Decode()
 }
 
 /**
- * @brief Maps a non-negative integer to a new non-negative integer
+ * @brief Maps a integer to a new integer
  *
- * The function maps a non-negative integer to a new non-negative integer using the formula (2 * num + 1) / (2 * M).
+ * The function maps a integer to a new integer using the formula (2 * num + 1) / (2 * M).
  *
- * @param num The non-negative integer to be mapped
- * @return int The mapped non-negative integer
+ * @param num The integer to be mapped
+ * @return int The mapped integer
  */
 int Golomb::map(int num)
 {
@@ -142,12 +141,12 @@ int Golomb::map(int num)
 }
 
 /**
- * @brief Unmaps a non-negative integer to its original value
+ * @brief Unmaps a integer to its original value
  *
- * The function unmaps a non-negative integer to its original value using the formula q * M + r.
+ * The function unmaps a integer to its original value using the formula q * M + r.
  *
- * @param num The non-negative integer to be unmapped
- * @return int The unmapped non-negative integer
+ * @param num The integer to be unmapped
+ * @return int The unmapped integer
  */
 int Golomb::reverse_map(int num)
 {

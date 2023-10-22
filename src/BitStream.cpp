@@ -21,7 +21,7 @@
  *
  * @throw std::runtime_error if the file fails to open
  */
-BitStream::BitStream(const char *FileName, const char *OutputFileName = "out.bin")
+BitStream::BitStream(const char *FileName, const char *OutputFileName)
 {
     this->in = std::ifstream(FileName, std::ios::binary);
     read_pos = -1;
