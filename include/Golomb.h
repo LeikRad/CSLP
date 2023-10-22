@@ -8,14 +8,14 @@
 class BitStream;
 
 /**
- * @brief A class for encoding and decoding non-negative integers using Golomb coding
+ * @brief A class for encoding and decoding integers using Golomb coding
  *
- * The Golomb class provides methods for encoding and decoding non-negative integers using Golomb coding with a specified divisor M. The class uses a BitStream object to read from and write to an input/output file.
+ * The Golomb class provides methods for encoding and decoding integers using Golomb coding with a specified divisor M. The class uses a BitStream object to read from and write to an input/output file.
  */
 class Golomb
 {
 private:
-    int M; /**< The divisor used for Golomb encoding/decoding */
+    int M;         /**< The divisor used for Golomb encoding/decoding */
     BitStream *bs; /**< A pointer to the BitStream object used for input/output */
 
 public:
@@ -38,20 +38,20 @@ public:
     ~Golomb();
 
     /**
-     * @brief Encodes a non-negative integer using Golomb encoding
+     * @brief Encodes a integer using Golomb encoding
      *
      * The function maps the input number to a new number using the map function, and then encodes the new number using Golomb encoding.
      *
-     * @param num The non-negative integer to be encoded
+     * @param num The integer to be encoded
      */
     void Encode(int num);
 
     /**
-     * @brief Decodes a non-negative integer using Golomb decoding
+     * @brief Decodes a integer using Golomb decoding
      *
-     * The function decodes a non-negative integer using Golomb decoding and the current divisor M.
+     * The function decodes a integer using Golomb decoding and the current divisor M.
      *
-     * @return int The decoded non-negative integer
+     * @return int The decoded integer
      */
     int Decode();
 
@@ -63,22 +63,22 @@ public:
     void Close();
 
     /**
-     * @brief Maps a non-negative integer to a new non-negative integer
+     * @brief Maps a integer to a new integer
      *
-     * The function maps a non-negative integer to a new non-negative integer using the formula (2 * num + 1) / (2 * M).
+     * The function maps a integer to a new integer using the formula (2 * num + 1) / (2 * M).
      *
-     * @param num The non-negative integer to be mapped
-     * @return int The mapped non-negative integer
+     * @param num The integer to be mapped
+     * @return int The mapped integer
      */
     int map(int num);
 
     /**
-     * @brief Unmaps a non-negative integer to its original value
+     * @brief Unmaps a integer to its original value
      *
-     * The function unmaps a non-negative integer to its original value using the formula q * M + r.
+     * The function unmaps a integer to its original value using the formula q * M + r.
      *
-     * @param num The non-negative integer to be unmapped
-     * @return int The unmapped non-negative integer
+     * @param num The integer to be unmapped
+     * @return int The unmapped integer
      */
     int reverse_map(int num);
 };
