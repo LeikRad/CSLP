@@ -1,3 +1,12 @@
+/**
+ * @file Image.cpp
+ * @brief Implementation file for the Image class
+ *
+ * This implementation file defines the methods of the Image class, which represents a digital image.
+ * The class provides methods for reading and writing image files, applying various image processing operations,
+ * and displaying the image on the screen.
+ */
+
 #include "Image.h"
 #include <fstream>
 #include <iostream>
@@ -51,16 +60,38 @@ Image::Image(const char *FileName)
     fclose(pFile);
 };
 
+/**
+ * @brief Get the metadata of the image
+ *
+ * The function returns an array of integers containing the width, height, and maximum pixel value of the image.
+ *
+ * @return An array of integers containing the width, height, and maximum pixel value of the image
+ */
 int *Image::Metadata()
 {
     return new int[3]{width, height, maxVal};
 };
 
+/**
+ * @brief Get the pixel data of the image
+ *
+ * The function returns a pointer to an array of `Pixel` objects containing the pixel data of the image.
+ *
+ * @return A pointer to an array of `Pixel` objects containing the pixel data of the image
+ */
 Pixel *Image::PixelData()
 {
     return pixels;
 };
 
+/**
+ * @brief Write the image to a ppm (P6) file
+ *
+ * The function writes the pixel data of the image to a ppm file with the specified file name.
+ *
+ * @param FileName Path to the output file
+ * @throw std::runtime_error if the file cannot be opened
+ */
 void Image::WriteImage(const char *FileName)
 {
     std::ofstream out(FileName);
@@ -74,11 +105,22 @@ void Image::WriteImage(const char *FileName)
     }
 }
 
+/**
+ * @brief Destroy the Image object and free the memory used by the pixel data
+ *
+ * The destructor frees the memory used by the pixel data of the image.
+ */
 Image::~Image()
 {
     delete[] pixels;
 }
 
+/**
+ * @brief Convert the image from RGB color space to YUV color space
+ *
+ * The function converts the pixel data of the image from RGB color space to YUV color space.
+ * The conversion formula used is based on the ITU-R BT.601 standard.
+ */
 void Image::RGBtoYUV()
 {
 
@@ -105,10 +147,12 @@ void Image::RGBtoYUV()
     }
 }
 
-//////////////////////////////
-// there is some noise here //
-//////////////////////////////
-
+/**
+ * @brief Convert the image from YUV color space to RGB color space
+ *
+ * The function converts the pixel data of the image from YUV color space to RGB color space.
+ * The conversion formula used is based on the ITU-R BT.601 standard.
+ */
 void Image::YUVtoRGB()
 {
     double Wr = 0.299;
@@ -139,6 +183,14 @@ void Image::YUVtoRGB()
     }
 }
 
+/**
+ * @brief Write the image with a watermark to a window
+ *
+ * The function overlays the specified watermark image onto the original image and displays the result in a window.
+ *
+ * @param watermarkImage The watermark image to be overlaid onto the original image
+ * @throw std::runtime_error if the watermark image dimensions are larger than the original image
+ */
 void Image::WriteImageWaterMark(Image &watermarkImage)
 {
     // Verifique se a imagem da marca d'água é menor que a imagem original
@@ -187,6 +239,13 @@ void Image::WriteImageWaterMark(Image &watermarkImage)
     delete[] watermarkedPixels;
 }
 
+/**
+ * @brief Calculate and display histograms for the R, G, and B channels of the image
+ *
+ * The function calculates histograms for the R, G, and B channels of the image and displays them in a window.
+ * The histograms are normalized to fit within the display area, and a grid and axes are drawn to aid in interpretation.
+ * The function uses OpenCV's `Mat` class to create and display the histogram plot.
+ */
 void Image::CalculateAndDisplayHistograms()
 {
     int histSize = 256;       // Number of bins
@@ -271,7 +330,15 @@ void Image::CalculateAndDisplayHistograms()
     waitKey(0);
 }
 
-//! In this modified function, we first create a Mat object from the pixels array and convert it to the HSV color space using the cvtColor function. We then split the HSV channels into separate Mat objects and calculate the histogram of the V channel using the calcHist function. We then apply histogram equalization to the V channel using the equalizeHist function. We then merge the channels back into the HSV image using the merge function and convert it back to the BGR color space using the cvtColor function. Finally, we copy the modified pixels back to the pixels array using the memcpy function and display the histogram using the imshow function.
+/**
+ * @brief Apply histogram equalization to the V channel of the image in the HSV color space
+ *
+ * The function first creates a `Mat` object from the `pixels` array and converts it to the HSV color space using the `cvtColor` function.
+ * It then splits the HSV channels into separate `Mat` objects and calculates the histogram of the V channel using the `calcHist` function.
+ * The function applies histogram equalization to the V channel using the `equalizeHist` function.
+ * It then merges the channels back into the HSV image using the `merge` function and converts it back to the BGR color space using the `cvtColor` function.
+ * Finally, the function copies the modified pixels back to the `pixels` array using the `memcpy` function and displays the histogram using the `imshow` function.
+ */
 void Image::ApplyHistogramEqualization()
 {
     Mat src(height, width, CV_8UC3, pixels);
@@ -328,8 +395,20 @@ void Image::ConvertToGrayscale()
         pixels[i].b = gray;
     }
 }
-//! GaussianFilter is a filter commonly used in image processing for smoothing, reducing noise, and computing derivatives of an image. It is a convolution-based filter that uses a Gaussian matrix as its underlying kernel.
-//! In this implementation, we first create a Gaussian kernel with the specified kernelSize and sigma values. We then normalize the kernel so that the sum of all values is equal to 1. We then apply the Gaussian filter to the image by convolving the kernel with each pixel in the image. We use a temporary buffer to store the original pixel values so that we can apply the filter in-place. Note that this implementation assumes that the pixels array contains BGR color values.
+
+/**
+ * @brief Apply a Gaussian filter to the image
+ *
+ * The function applies a Gaussian filter to the image using the specified kernel size and sigma value.
+ * The Gaussian kernel is created using the specified kernel size and sigma value, and is normalized to sum to 1.
+ * The function then applies the Gaussian filter to the image by convolving the kernel with each pixel in the image.
+ * The function uses a temporary buffer to store the original pixel values during the convolution process.
+ *
+ * @param kernelSize The size of the Gaussian kernel (must be odd)
+ * @param sigma The standard deviation of the Gaussian distribution
+ *
+ * @throw std::invalid_argument if kernelSize is even or less than 3, or if sigma is less than or equal to 0
+ */
 void Image::GaussianFilter(int kernelSize, double sigma)
 {
     // Create the Gaussian kernel
@@ -390,7 +469,18 @@ void Image::GaussianFilter(int kernelSize, double sigma)
     delete[] temp;
 }
 
-//! In this implementation, we first create a blur kernel with the specified kernelSize. We then apply the blur filter to the image by convolving the kernel with each pixel in the image. We use a temporary buffer to store the original pixel values so that we can apply the filter in-place. Note that this implementation assumes that the pixels array contains BGR color values.
+/**
+ * @brief Apply a blur filter to the image
+ *
+ * The function applies a blur filter to the image using the specified kernel size.
+ * The blur kernel is created using the specified kernel size and is normalized to sum to 1.
+ * The function then applies the blur filter to the image by convolving the kernel with each pixel in the image.
+ * The function uses a temporary buffer to store the original pixel values during the convolution process.
+ *
+ * @param kernelSize The size of the blur kernel (must be odd)
+ *
+ * @throw std::invalid_argument if kernelSize is even or less than 3
+ */
 void Image::BlurFilter(int kernelSize)
 {
     // Create the blur kernel
@@ -441,7 +531,16 @@ void Image::BlurFilter(int kernelSize)
     delete[] temp;
 }
 
-//! Image thresholding is a type of image segmentation that divides the foreground from the background in an image. In this technique, the pixel values are assigned corresponding to the provided threshold values. In computer vision, thresholding is done in grayscale images.
+/**
+ * @brief Apply threshold segmentation to the image
+ *
+ * The function applies threshold segmentation to the image using the specified threshold value.
+ * The function converts each pixel to grayscale by taking the average of its red, green, and blue values.
+ * If the grayscale value of a pixel is less than the threshold value, the pixel is set to black (0, 0, 0).
+ * Otherwise, the pixel is set to white (255, 255, 255).
+ *
+ * @param threshold The threshold value for segmentation
+ */
 void Image::ThresholdSegmentation(int threshold)
 {
     for (int i = 0; i < width * height; i++)
