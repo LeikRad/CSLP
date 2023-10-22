@@ -268,7 +268,7 @@ void Image::CalculateAndDisplayHistograms()
     waitKey(0);
 }
 
-// In this function, we first create a Mat object from the pixels array and convert it to the HSV color space using the cvtColor function. We then split the HSV channels into separate Mat objects and calculate the histogram of the V channel using the calcHist function. We then apply histogram equalization to the V channel using the equalizeHist function. We then merge the channels back into the HSV image using the merge function and convert it back to the BGR color space using the cvtColor function. Finally, we copy the modified pixels back to the pixels array using the memcpy function and display the histogram using the imshow function.
+//! In this function, we first create a Mat object from the pixels array and convert it to the HSV color space using the cvtColor function. We then split the HSV channels into separate Mat objects and calculate the histogram of the V channel using the calcHist function. We then apply histogram equalization to the V channel using the equalizeHist function. We then merge the channels back into the HSV image using the merge function and convert it back to the BGR color space using the cvtColor function. Finally, we copy the modified pixels back to the pixels array using the memcpy function and display the histogram using the imshow function.
 void Image::ApplyHistogramEqualization()
 {
     Mat src(height, width, CV_8UC3, pixels);
@@ -326,8 +326,8 @@ void Image::ConvertToGrayscale()
     }
 }
 
-// GaussianFilter is a filter commonly used in image processing for smoothing, reducing noise, and computing derivatives of an image. It is a convolution-based filter that uses a Gaussian matrix as its underlying kernel.
-// In this implementation, we first create a Gaussian kernel with the specified kernelSize and sigma values. We then normalize the kernel so that the sum of all values is equal to 1. We then apply the Gaussian filter to the image by convolving the kernel with each pixel in the image. We use a temporary buffer to store the original pixel values so that we can apply the filter in-place. Note that this implementation assumes that the pixels array contains BGR color values.
+//! GaussianFilter is a filter commonly used in image processing for smoothing, reducing noise, and computing derivatives of an image. It is a convolution-based filter that uses a Gaussian matrix as its underlying kernel.
+//! In this implementation, we first create a Gaussian kernel with the specified kernelSize and sigma values. We then normalize the kernel so that the sum of all values is equal to 1. We then apply the Gaussian filter to the image by convolving the kernel with each pixel in the image. We use a temporary buffer to store the original pixel values so that we can apply the filter in-place. Note that this implementation assumes that the pixels array contains BGR color values.
 void Image::GaussianFilter(int kernelSize, double sigma)
 {
     // Create the Gaussian kernel
@@ -388,7 +388,7 @@ void Image::GaussianFilter(int kernelSize, double sigma)
     delete[] temp;
 }
 
-// In this implementation, we first create a blur kernel with the specified kernelSize. We then apply the blur filter to the image by convolving the kernel with each pixel in the image. We use a temporary buffer to store the original pixel values so that we can apply the filter in-place. Note that this implementation assumes that the pixels array contains BGR color values.
+//! In this implementation, we first create a blur kernel with the specified kernelSize. We then apply the blur filter to the image by convolving the kernel with each pixel in the image. We use a temporary buffer to store the original pixel values so that we can apply the filter in-place.
 void Image::BlurFilter(int kernelSize)
 {
     // Create the blur kernel
@@ -439,7 +439,7 @@ void Image::BlurFilter(int kernelSize)
     delete[] temp;
 }
 
-// Image thresholding is a type of image segmentation that divides the foreground from the background in an image. In this technique, the pixel values are assigned corresponding to the provided threshold values. In computer vision, thresholding is done in grayscale images.
+//! Image thresholding is a type of image segmentation that divides the foreground from the background in an image. In this technique, the pixel values are assigned corresponding to the provided threshold values. In computer vision, thresholding is done in grayscale images.
 void Image::ThresholdSegmentation(int threshold)
 {
     for (int i = 0; i < width * height; i++)

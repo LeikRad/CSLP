@@ -60,29 +60,13 @@ The {\ttfamily \doxylink{classImage}{Image}} class represents a digital image, w
 
 Construct a new \doxylink{classImage}{Image} object from a file. 
 
-Construct a new \doxylink{classImage_a199300f493ceee764bad108dc57ebe81}{Image\+::\+Image} object from a ppm (P6) file.
-
 The constructor reads an image file from disk and creates a new {\ttfamily \doxylink{classImage}{Image}} object from it.
 
 
 \begin{DoxyParams}{Parameters}
-{\em File\+Name} & The name of the image file to read\\
+{\em File\+Name} & The name of the image file to read \\
 \hline
 \end{DoxyParams}
-The constructor reads the ppm file and stores the pixel data in the object
-
-
-\begin{DoxyParams}{Parameters}
-{\em File\+Path} & Path to the image file \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyExceptions}{Exceptions}
-{\em std\+::runtime\+\_\+error} & if the file cannot be opened \\
-\hline
-{\em std\+::runtime\+\_\+error} & if the file is not a ppm file \\
-\hline
-\end{DoxyExceptions}
 \Hypertarget{classImage_a0294f63700543e11c0f0da85601c7ae5}\label{classImage_a0294f63700543e11c0f0da85601c7ae5} 
 \index{Image@{Image}!````~Image@{\texorpdfstring{$\sim$}{\string~}Image}}
 \index{````~Image@{\texorpdfstring{$\sim$}{\string~}Image}!Image@{Image}}
@@ -106,9 +90,7 @@ The destructor frees the memory used by the pixel data of the image.
 
 Apply histogram equalization to the V channel of the image in the HSV color space. 
 
-The {\ttfamily Apply\+Histogram\+Equalization} method applies histogram equalization to the V channel of the image in the HSV color space.
-
-The function first creates a {\ttfamily Mat} object from the {\ttfamily pixels} array and converts it to the HSV color space using the {\ttfamily cvt\+Color} function. It then splits the HSV channels into separate {\ttfamily Mat} objects and calculates the histogram of the V channel using the {\ttfamily calc\+Hist} function. The function applies histogram equalization to the V channel using the {\ttfamily equalize\+Hist} function. It then merges the channels back into the HSV image using the {\ttfamily merge} function and converts it back to the BGR color space using the {\ttfamily cvt\+Color} function. Finally, the function copies the modified pixels back to the {\ttfamily pixels} array using the {\ttfamily memcpy} function and displays the histogram using the {\ttfamily imshow} function. \Hypertarget{classImage_a88a6c522d11c4e782d36e5861d1c35f5}\label{classImage_a88a6c522d11c4e782d36e5861d1c35f5} 
+The {\ttfamily Apply\+Histogram\+Equalization} method applies histogram equalization to the V channel of the image in the HSV color space. \Hypertarget{classImage_a88a6c522d11c4e782d36e5861d1c35f5}\label{classImage_a88a6c522d11c4e782d36e5861d1c35f5} 
 \index{Image@{Image}!BlurFilter@{BlurFilter}}
 \index{BlurFilter@{BlurFilter}!Image@{Image}}
 \doxysubsubsection{\texorpdfstring{BlurFilter()}{BlurFilter()}}
@@ -118,21 +100,9 @@ The function first creates a {\ttfamily Mat} object from the {\ttfamily pixels} 
 
 Apply a blur filter to the image. 
 
-The {\ttfamily Blur\+Filter} method applies a blur filter to the image using the specified kernel size.
+In this implementation, we first create a blur kernel with the specified kernel\+Size. We then apply the blur filter to the image by convolving the kernel with each pixel in the image. We use a temporary buffer to store the original pixel values so that we can apply the filter in-\/place.
 
-The function applies a blur filter to the image using the specified kernel size. The blur kernel is created using the specified kernel size and is normalized to sum to 1. The function then applies the blur filter to the image by convolving the kernel with each pixel in the image. The function uses a temporary buffer to store the original pixel values during the convolution process.
-
-
-\begin{DoxyParams}{Parameters}
-{\em kernel\+Size} & The size of the blur kernel (must be odd)\\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyExceptions}{Exceptions}
-{\em std\+::invalid\+\_\+argument} & if kernel\+Size is even or less than 3 \\
-\hline
-\end{DoxyExceptions}
-\Hypertarget{classImage_af5a0d91927ef6d932700b6054792f759}\label{classImage_af5a0d91927ef6d932700b6054792f759} 
+The {\ttfamily Blur\+Filter} method applies a blur filter to the image using the specified kernel size. \Hypertarget{classImage_af5a0d91927ef6d932700b6054792f759}\label{classImage_af5a0d91927ef6d932700b6054792f759} 
 \index{Image@{Image}!CalculateAndDisplayHistograms@{CalculateAndDisplayHistograms}}
 \index{CalculateAndDisplayHistograms@{CalculateAndDisplayHistograms}!Image@{Image}}
 \doxysubsubsection{\texorpdfstring{CalculateAndDisplayHistograms()}{CalculateAndDisplayHistograms()}}
@@ -142,11 +112,7 @@ The function applies a blur filter to the image using the specified kernel size.
 
 Calculate and display the histograms of the image. 
 
-Calculate and display histograms for the R, G, and B channels of the image.
-
-The {\ttfamily Calculate\+And\+Display\+Histograms} method calculates and displays the histograms of the image using Open\+CV.
-
-The function calculates histograms for the R, G, and B channels of the image and displays them in a window. The histograms are normalized to fit within the display area, and a grid and axes are drawn to aid in interpretation. The function uses Open\+CV\textquotesingle{}s {\ttfamily Mat} class to create and display the histogram plot. \Hypertarget{classImage_a0bb0405618ac66a6dc7966d1c9c7cc47}\label{classImage_a0bb0405618ac66a6dc7966d1c9c7cc47} 
+The {\ttfamily Calculate\+And\+Display\+Histograms} method calculates and displays the histograms of the image using Open\+CV. \Hypertarget{classImage_a0bb0405618ac66a6dc7966d1c9c7cc47}\label{classImage_a0bb0405618ac66a6dc7966d1c9c7cc47} 
 \index{Image@{Image}!ConvertToGrayscale@{ConvertToGrayscale}}
 \index{ConvertToGrayscale@{ConvertToGrayscale}!Image@{Image}}
 \doxysubsubsection{\texorpdfstring{ConvertToGrayscale()}{ConvertToGrayscale()}}
@@ -178,21 +144,7 @@ Apply a Gaussian filter to the image.
 
 The {\ttfamily Gaussian\+Filter} method applies a Gaussian filter to the image using the specified kernel size and sigma value.
 
-The function applies a Gaussian filter to the image using the specified kernel size and sigma value. The Gaussian kernel is created using the specified kernel size and sigma value, and is normalized to sum to 1. The function then applies the Gaussian filter to the image by convolving the kernel with each pixel in the image. The function uses a temporary buffer to store the original pixel values during the convolution process.
-
-
-\begin{DoxyParams}{Parameters}
-{\em kernel\+Size} & The size of the Gaussian kernel (must be odd) \\
-\hline
-{\em sigma} & The standard deviation of the Gaussian distribution\\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyExceptions}{Exceptions}
-{\em std\+::invalid\+\_\+argument} & if kernel\+Size is even or less than 3, or if sigma is less than or equal to 0 \\
-\hline
-\end{DoxyExceptions}
-\Hypertarget{classImage_a7a2e0b96c733ce9950bb3616f2f0f2b5}\label{classImage_a7a2e0b96c733ce9950bb3616f2f0f2b5} 
+Gaussian\+Filter is a filter commonly used in image processing for smoothing, reducing noise, and computing derivatives of an image. It is a convolution-\/based filter that uses a Gaussian matrix as its underlying kernel. In this implementation, we first create a Gaussian kernel with the specified kernel\+Size and sigma values. We then normalize the kernel so that the sum of all values is equal to 1. We then apply the Gaussian filter to the image by convolving the kernel with each pixel in the image. We use a temporary buffer to store the original pixel values so that we can apply the filter in-\/place. Note that this implementation assumes that the pixels array contains BGR color values. \Hypertarget{classImage_a7a2e0b96c733ce9950bb3616f2f0f2b5}\label{classImage_a7a2e0b96c733ce9950bb3616f2f0f2b5} 
 \index{Image@{Image}!Metadata@{Metadata}}
 \index{Metadata@{Metadata}!Image@{Image}}
 \doxysubsubsection{\texorpdfstring{Metadata()}{Metadata()}}
@@ -203,11 +155,6 @@ The function applies a Gaussian filter to the image using the specified kernel s
 Get the metadata of the image. 
 
 The {\ttfamily Metadata} method returns an array of integers containing the width, height, and maximum pixel value of the image.
-
-\begin{DoxyReturn}{Returns}
-An array of integers containing the width, height, and maximum pixel value of the image
-\end{DoxyReturn}
-The function returns an array of integers containing the width, height, and maximum pixel value of the image.
 
 \begin{DoxyReturn}{Returns}
 An array of integers containing the width, height, and maximum pixel value of the image 
@@ -222,17 +169,10 @@ An array of integers containing the width, height, and maximum pixel value of th
 
 Get a pointer to the pixel data of the image. 
 
-Get the pixel data of the image.
-
 The {\ttfamily Pixel\+Data} method returns a pointer to the pixel data of the image.
 
 \begin{DoxyReturn}{Returns}
-A pointer to the pixel data of the image
-\end{DoxyReturn}
-The function returns a pointer to an array of {\ttfamily \doxylink{structPixel}{Pixel}} objects containing the pixel data of the image.
-
-\begin{DoxyReturn}{Returns}
-A pointer to an array of {\ttfamily \doxylink{structPixel}{Pixel}} objects containing the pixel data of the image 
+A pointer to the pixel data of the image 
 \end{DoxyReturn}
 \Hypertarget{classImage_a94bd23e1d767245aefcae0fde6ef2de4}\label{classImage_a94bd23e1d767245aefcae0fde6ef2de4} 
 \index{Image@{Image}!RGBtoYUV@{RGBtoYUV}}
@@ -244,11 +184,7 @@ A pointer to an array of {\ttfamily \doxylink{structPixel}{Pixel}} objects conta
 
 Convert the image from RGB to YUV color space. 
 
-Convert the image from RGB color space to YUV color space.
-
-The {\ttfamily RGBto\+YUV} method converts the image from RGB color space to YUV color space.
-
-The function converts the pixel data of the image from RGB color space to YUV color space. The conversion formula used is based on the ITU-\/R BT.\+601 standard. \Hypertarget{classImage_a5987f1a33b2d5e0c9e1822ef8cb3e0ec}\label{classImage_a5987f1a33b2d5e0c9e1822ef8cb3e0ec} 
+The {\ttfamily RGBto\+YUV} method converts the image from RGB color space to YUV color space. \Hypertarget{classImage_a5987f1a33b2d5e0c9e1822ef8cb3e0ec}\label{classImage_a5987f1a33b2d5e0c9e1822ef8cb3e0ec} 
 \index{Image@{Image}!ThresholdSegmentation@{ThresholdSegmentation}}
 \index{ThresholdSegmentation@{ThresholdSegmentation}!Image@{Image}}
 \doxysubsubsection{\texorpdfstring{ThresholdSegmentation()}{ThresholdSegmentation()}}
@@ -258,16 +194,9 @@ The function converts the pixel data of the image from RGB color space to YUV co
 
 Apply threshold segmentation to the image. 
 
-The {\ttfamily Threshold\+Segmentation} method applies threshold segmentation to the image using the specified threshold value.
+\doxylink{classImage}{Image} thresholding is a type of image segmentation that divides the foreground from the background in an image. In this technique, the pixel values are assigned corresponding to the provided threshold values. In computer vision, thresholding is done in grayscale images.
 
-The function applies threshold segmentation to the image using the specified threshold value. The function converts each pixel to grayscale by taking the average of its red, green, and blue values. If the grayscale value of a pixel is less than the threshold value, the pixel is set to black (0, 0, 0). Otherwise, the pixel is set to white (255, 255, 255).
-
-
-\begin{DoxyParams}{Parameters}
-{\em threshold} & The threshold value for segmentation \\
-\hline
-\end{DoxyParams}
-\Hypertarget{classImage_ac3aed30306e37288a62a5208e20df9a3}\label{classImage_ac3aed30306e37288a62a5208e20df9a3} 
+The {\ttfamily Threshold\+Segmentation} method applies threshold segmentation to the image using the specified threshold value. \Hypertarget{classImage_ac3aed30306e37288a62a5208e20df9a3}\label{classImage_ac3aed30306e37288a62a5208e20df9a3} 
 \index{Image@{Image}!WriteImage@{WriteImage}}
 \index{WriteImage@{WriteImage}!Image@{Image}}
 \doxysubsubsection{\texorpdfstring{WriteImage()}{WriteImage()}}
@@ -277,27 +206,13 @@ The function applies threshold segmentation to the image using the specified thr
 
 Write the image to a file. 
 
-Write the image to a ppm (P6) file.
-
 The {\ttfamily Write\+Image} method writes the image to a file with the specified name.
 
 
 \begin{DoxyParams}{Parameters}
-{\em File\+Name} & The name of the file to write the image to\\
+{\em File\+Name} & The name of the file to write the image to \\
 \hline
 \end{DoxyParams}
-The function writes the pixel data of the image to a ppm file with the specified file name.
-
-
-\begin{DoxyParams}{Parameters}
-{\em File\+Name} & Path to the output file \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyExceptions}{Exceptions}
-{\em std\+::runtime\+\_\+error} & if the file cannot be opened \\
-\hline
-\end{DoxyExceptions}
 \Hypertarget{classImage_ac07481209ed8eb57fed9113895243e62}\label{classImage_ac07481209ed8eb57fed9113895243e62} 
 \index{Image@{Image}!WriteImageWaterMark@{WriteImageWaterMark}}
 \index{WriteImageWaterMark@{WriteImageWaterMark}!Image@{Image}}
@@ -308,27 +223,13 @@ The function writes the pixel data of the image to a ppm file with the specified
 
 Write a watermark image to the image. 
 
-Write the image with a watermark to a window.
-
 The {\ttfamily Write\+Image\+Water\+Mark} method writes a watermark image to the image.
 
 
 \begin{DoxyParams}{Parameters}
-{\em watermark\+Image} & The watermark image to write to the image\\
+{\em watermark\+Image} & The watermark image to write to the image \\
 \hline
 \end{DoxyParams}
-The function overlays the specified watermark image onto the original image and displays the result in a window.
-
-
-\begin{DoxyParams}{Parameters}
-{\em watermark\+Image} & The watermark image to be overlaid onto the original image \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyExceptions}{Exceptions}
-{\em std\+::runtime\+\_\+error} & if the watermark image dimensions are larger than the original image \\
-\hline
-\end{DoxyExceptions}
 \Hypertarget{classImage_ac403389311a1302dea67b365c861f686}\label{classImage_ac403389311a1302dea67b365c861f686} 
 \index{Image@{Image}!YUVtoRGB@{YUVtoRGB}}
 \index{YUVtoRGB@{YUVtoRGB}!Image@{Image}}
@@ -339,13 +240,9 @@ The function overlays the specified watermark image onto the original image and 
 
 Convert the image from YUV to RGB color space. 
 
-Convert the image from YUV color space to RGB color space.
-
-The {\ttfamily YUVto\+RGB} method converts the image from YUV color space to RGB color space.
-
-The function converts the pixel data of the image from YUV color space to RGB color space. The conversion formula used is based on the ITU-\/R BT.\+601 standard. 
+The {\ttfamily YUVto\+RGB} method converts the image from YUV color space to RGB color space. 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
 include/\mbox{\hyperlink{Image_8h}{Image.\+h}}\item 
-src/\mbox{\hyperlink{Image_8cpp}{Image.\+cpp}}\end{DoxyCompactItemize}
+src/Image.\+cpp\end{DoxyCompactItemize}
