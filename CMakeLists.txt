@@ -16,9 +16,13 @@ target_link_libraries( ImageExample.out ${OpenCV_LIBS} )
 set_target_properties( ImageExample.out PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/Deliverable_1")
 
 ## 2.
-add_executable( VideoExample.out src/VideoExample.cpp )
-target_link_libraries( VideoExample.out ${OpenCV_LIBS} )
-set_target_properties( VideoExample.out PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/Deliverable_1")
+add_executable( Video_Ex2.out src/Video_Ex2.cpp )
+target_link_libraries( Video_Ex2.out ${OpenCV_LIBS} )
+set_target_properties( Video_Ex2.out PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/Deliverable_1")
+
+add_executable( Video_Ex3.out src/Video_Ex3.cpp )
+target_link_libraries( Video_Ex3.out ${OpenCV_LIBS} )
+set_target_properties( Video_Ex3.out PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/Deliverable_1")
 
 # Deliverable 2
 ## 1.
