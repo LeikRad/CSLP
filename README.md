@@ -31,16 +31,94 @@ The way to run each deliverable varies. The instructions for each deliverable ar
 
 ### Deliverable 1
 
-#### Ima
+#### Image
 
 To run 1.1, you can run the following command in the root directory of the project:
 
 ```bash
-cd build/deliverable1
+cd build/Deliverable_1
 ```
 
 ```bash
 ./ImageExample.out
 ```
 
-This will generat
+This will generate a copy of the image that is hardcoded in the code. (If not changed, it will be the image "bike3.ppm")
+Note: The ImageExample has commented code that showcases other functions like colorspace conversion(YUV, Gray), histogram equalization, etc. You can uncomment them to see the results.
+
+#### Video
+
+To run 1.2, you can run the following command in the root directory of the project:
+
+```bash
+cd build/Deliverable_1
+```
+
+```bash
+./Video_Ex2.out
+```
+
+This will open 4 windows, RGB, YUV 4:2:0, YUV 4:2:2 and YUV 4:4:4. The video that is hardcoded in the code will be shown in each window with the respective colorspace conversion.
+
+---
+
+To run 1.3, you can run the following command in the root directory of the project:
+
+```bash
+cd build/Deliverable_1
+```
+
+```bash
+./Video_Ex3.out
+```
+
+This will open a video player with some functionalities. The video that is hardcoded in the code will be shown in the video player.
+
+The video player has the following functionalities:
+
+- Pressing w will add a watermark to the video (hardcoded);
+- Pressing y will convert the video to YUV 4:4:4;
+- Pressing h will show the histogram of the video;
+- Pressing g will show the grayscale version of the video;
+- Pressing e will apply histogram equalization to the video;
+- Pressing b will apply a Gaussian blur filter to the video;
+- Pressing f will apply a blur filter to the video;
+- Pressing t will apply a threshold to the video;
+- Pressing esc will close the video player;
+
+The functionalities are processed in a determined order, which is the order that they are listed above.
+For example, it's impossible to apply a gaussian blur filter before applying a grayscale filter.
+
+### Deliverable 2
+
+To run the deliverable 2 example, you can run the following command in the root directory of the project:
+
+Requirements:
+This example requires the existance of a Test.txt file inside the Deliverable_2 folder. This file should contain text. (You may change the example code to read from a different file)
+
+```bash
+cd build/Deliverable_2
+```
+
+```bash
+./BitStreamExample.out
+```
+
+This will read the Test.txt file and write the contents in binary to a new file called out.bin (Making use of the readBit() and writeBit() functions). It will after read the out.bin file and write the contents to a new file called out2.bin (Making use of the readBits() and writeBits()).
+
+### Deliverable 3
+
+To run the deliverable 3 example, you can run the following command in the root directory of the project:
+
+Requirements:
+This requires the existance of an empty encoded.bin file inside the Deliverable_3 folder.
+
+```bash
+cd build/Deliverable_3
+```
+
+```bash
+./GolombExample.out
+```
+
+This will encode the numbers in the following range -50, 50 (inclusive) and write them to the encoded.bin file. After that, it will read the encoded.bin file and decode the numbers, writing them to the terminal.
