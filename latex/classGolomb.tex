@@ -1,0 +1,158 @@
+\doxysection{Golomb Class Reference}
+\hypertarget{classGolomb}{}\label{classGolomb}\index{Golomb@{Golomb}}
+
+
+A class for encoding and decoding non-\/negative integers using \doxylink{classGolomb}{Golomb} coding.  
+
+
+
+
+{\ttfamily \#include $<$Golomb.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classGolomb_a6a117c31b6f0a59b9d57409280b57ad5}{Golomb}} (int M, const char \texorpdfstring{$\ast$}{*}Input\+File\+Name, const char \texorpdfstring{$\ast$}{*}Output\+File\+Name)
+\begin{DoxyCompactList}\small\item\em Constructs a new \doxylink{classGolomb}{Golomb} encoder/decoder with the specified divisor and input/output file names. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classGolomb_a3695ea307f313060e2d2f7d32fc5fad9}{\texorpdfstring{$\sim$}{\string~}\+Golomb}} ()
+\begin{DoxyCompactList}\small\item\em Destroys the \doxylink{classGolomb}{Golomb} encoder/decoder and closes the input/output file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classGolomb_ab03a67627640a5e3ba1aab15e8a68150}{Encode}} (int num)
+\begin{DoxyCompactList}\small\item\em Encodes a non-\/negative integer using \doxylink{classGolomb}{Golomb} encoding. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classGolomb_aa497145114d0133f1942ade9f2c63c1a}{Decode}} ()
+\begin{DoxyCompactList}\small\item\em Decodes a non-\/negative integer using \doxylink{classGolomb}{Golomb} decoding. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classGolomb_a6b46e2221ea438af94b750dc3270e486}{Close}} ()
+\begin{DoxyCompactList}\small\item\em Closes the input/output file and frees the \doxylink{classBitStream}{Bit\+Stream} object. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classGolomb_adbb971af2bca46f6c4581bfe2c22a915}{map}} (int num)
+\begin{DoxyCompactList}\small\item\em Maps a non-\/negative integer to a new non-\/negative integer. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classGolomb_ad0b040dfecd146b723491a33d001b51e}{reverse\+\_\+map}} (int num)
+\begin{DoxyCompactList}\small\item\em Unmaps a non-\/negative integer to its original value. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A class for encoding and decoding non-\/negative integers using \doxylink{classGolomb}{Golomb} coding. 
+
+The \doxylink{classGolomb}{Golomb} class provides methods for encoding and decoding non-\/negative integers using \doxylink{classGolomb}{Golomb} coding with a specified divisor M. The class uses a \doxylink{classBitStream}{Bit\+Stream} object to read from and write to an input/output file. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classGolomb_a6a117c31b6f0a59b9d57409280b57ad5}\label{classGolomb_a6a117c31b6f0a59b9d57409280b57ad5} 
+\index{Golomb@{Golomb}!Golomb@{Golomb}}
+\index{Golomb@{Golomb}!Golomb@{Golomb}}
+\doxysubsubsection{\texorpdfstring{Golomb()}{Golomb()}}
+{\footnotesize\ttfamily Golomb\+::\+Golomb (\begin{DoxyParamCaption}\item[{int}]{M,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{Input\+File\+Name,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{Output\+File\+Name }\end{DoxyParamCaption})}
+
+
+
+Constructs a new \doxylink{classGolomb}{Golomb} encoder/decoder with the specified divisor and input/output file names. 
+
+The constructor initializes a new \doxylink{classBitStream}{Bit\+Stream} object with the specified input and output file names.
+
+
+\begin{DoxyParams}{Parameters}
+{\em M} & The divisor used for \doxylink{classGolomb}{Golomb} encoding/decoding \\
+\hline
+{\em Input\+File\+Name} & The name of the input file \\
+\hline
+{\em Output\+File\+Name} & The name of the output file \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classGolomb_a3695ea307f313060e2d2f7d32fc5fad9}\label{classGolomb_a3695ea307f313060e2d2f7d32fc5fad9} 
+\index{Golomb@{Golomb}!````~Golomb@{\texorpdfstring{$\sim$}{\string~}Golomb}}
+\index{````~Golomb@{\texorpdfstring{$\sim$}{\string~}Golomb}!Golomb@{Golomb}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Golomb()}{\string~Golomb()}}
+{\footnotesize\ttfamily Golomb\+::\texorpdfstring{$\sim$}{\string~}\+Golomb (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destroys the \doxylink{classGolomb}{Golomb} encoder/decoder and closes the input/output file. 
+
+The destructor flushes the \doxylink{classBitStream}{Bit\+Stream} buffer and deletes the \doxylink{classBitStream}{Bit\+Stream} object. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classGolomb_a6b46e2221ea438af94b750dc3270e486}\label{classGolomb_a6b46e2221ea438af94b750dc3270e486} 
+\index{Golomb@{Golomb}!Close@{Close}}
+\index{Close@{Close}!Golomb@{Golomb}}
+\doxysubsubsection{\texorpdfstring{Close()}{Close()}}
+{\footnotesize\ttfamily void Golomb\+::\+Close (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Closes the input/output file and frees the \doxylink{classBitStream}{Bit\+Stream} object. 
+
+The function flushes the \doxylink{classBitStream}{Bit\+Stream} buffer and deletes the \doxylink{classBitStream}{Bit\+Stream} object. \Hypertarget{classGolomb_aa497145114d0133f1942ade9f2c63c1a}\label{classGolomb_aa497145114d0133f1942ade9f2c63c1a} 
+\index{Golomb@{Golomb}!Decode@{Decode}}
+\index{Decode@{Decode}!Golomb@{Golomb}}
+\doxysubsubsection{\texorpdfstring{Decode()}{Decode()}}
+{\footnotesize\ttfamily int Golomb\+::\+Decode (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Decodes a non-\/negative integer using \doxylink{classGolomb}{Golomb} decoding. 
+
+The function decodes a non-\/negative integer using \doxylink{classGolomb}{Golomb} decoding and the current divisor M.
+
+\begin{DoxyReturn}{Returns}
+int The decoded non-\/negative integer 
+\end{DoxyReturn}
+\Hypertarget{classGolomb_ab03a67627640a5e3ba1aab15e8a68150}\label{classGolomb_ab03a67627640a5e3ba1aab15e8a68150} 
+\index{Golomb@{Golomb}!Encode@{Encode}}
+\index{Encode@{Encode}!Golomb@{Golomb}}
+\doxysubsubsection{\texorpdfstring{Encode()}{Encode()}}
+{\footnotesize\ttfamily void Golomb\+::\+Encode (\begin{DoxyParamCaption}\item[{int}]{num }\end{DoxyParamCaption})}
+
+
+
+Encodes a non-\/negative integer using \doxylink{classGolomb}{Golomb} encoding. 
+
+The function maps the input number to a new number using the map function, and then encodes the new number using \doxylink{classGolomb}{Golomb} encoding.
+
+
+\begin{DoxyParams}{Parameters}
+{\em num} & The non-\/negative integer to be encoded \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classGolomb_adbb971af2bca46f6c4581bfe2c22a915}\label{classGolomb_adbb971af2bca46f6c4581bfe2c22a915} 
+\index{Golomb@{Golomb}!map@{map}}
+\index{map@{map}!Golomb@{Golomb}}
+\doxysubsubsection{\texorpdfstring{map()}{map()}}
+{\footnotesize\ttfamily int Golomb\+::map (\begin{DoxyParamCaption}\item[{int}]{num }\end{DoxyParamCaption})}
+
+
+
+Maps a non-\/negative integer to a new non-\/negative integer. 
+
+The function maps a non-\/negative integer to a new non-\/negative integer using the formula (2 \texorpdfstring{$\ast$}{*} num + 1) / (2 \texorpdfstring{$\ast$}{*} M).
+
+
+\begin{DoxyParams}{Parameters}
+{\em num} & The non-\/negative integer to be mapped \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int The mapped non-\/negative integer 
+\end{DoxyReturn}
+\Hypertarget{classGolomb_ad0b040dfecd146b723491a33d001b51e}\label{classGolomb_ad0b040dfecd146b723491a33d001b51e} 
+\index{Golomb@{Golomb}!reverse\_map@{reverse\_map}}
+\index{reverse\_map@{reverse\_map}!Golomb@{Golomb}}
+\doxysubsubsection{\texorpdfstring{reverse\_map()}{reverse\_map()}}
+{\footnotesize\ttfamily int Golomb\+::reverse\+\_\+map (\begin{DoxyParamCaption}\item[{int}]{num }\end{DoxyParamCaption})}
+
+
+
+Unmaps a non-\/negative integer to its original value. 
+
+The function unmaps a non-\/negative integer to its original value using the formula q \texorpdfstring{$\ast$}{*} M + r.
+
+
+\begin{DoxyParams}{Parameters}
+{\em num} & The non-\/negative integer to be unmapped \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int The unmapped non-\/negative integer 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{Golomb_8h}{Golomb.\+h}}\item 
+src/\mbox{\hyperlink{Golomb_8cpp}{Golomb.\+cpp}}\end{DoxyCompactItemize}

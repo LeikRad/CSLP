@@ -1,0 +1,160 @@
+\doxysection{Bit\+Stream Class Reference}
+\hypertarget{classBitStream}{}\label{classBitStream}\index{BitStream@{BitStream}}
+
+
+A class representing a binary stream of bits.  
+
+
+
+
+{\ttfamily \#include $<$Bit\+Stream.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classBitStream_a9d842e5d476a3869e37d2201892cfc5d}{Bit\+Stream}} (const char \texorpdfstring{$\ast$}{*}File\+Name, const char \texorpdfstring{$\ast$}{*}Output\+File\+Name="{}out.\+bin"{})
+\begin{DoxyCompactList}\small\item\em Construct a new \doxylink{classBitStream}{Bit\+Stream} object from a file. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classBitStream_a63cf0f27c7519417a7984c476a32c9c9}{\texorpdfstring{$\sim$}{\string~}\+Bit\+Stream}} ()
+\begin{DoxyCompactList}\small\item\em Destroy the \doxylink{classBitStream}{Bit\+Stream} object and close the input and output files. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classBitStream_a727b1df2e89b019f464b5c41cd6aaeae}{Read\+Bit}} ()
+\begin{DoxyCompactList}\small\item\em Read a single bit from the input file. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structWriteBitReturn}{Write\+Bit\+Return}} \mbox{\hyperlink{classBitStream_a2adb4e58968e8c1f39e504cace020b69}{Read\+Bits}} (int n\+\_\+bits)
+\begin{DoxyCompactList}\small\item\em Read a specified number of bits from the input file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classBitStream_aa61a8a83b4e4732ba55f83ba2357efac}{Write\+Bit}} (int bit)
+\begin{DoxyCompactList}\small\item\em Write a single bit to the output file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classBitStream_ae732ef29b12259c0c215404d7dc4ec68}{Write\+Bits}} (int \texorpdfstring{$\ast$}{*}bits, int size)
+\begin{DoxyCompactList}\small\item\em Write an array of bits to the output file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classBitStream_a7b2dbc9a7828a767448060818920826a}{Flush}} ()
+\begin{DoxyCompactList}\small\item\em Flush any remaining bits to the output file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A class representing a binary stream of bits. 
+
+The {\ttfamily \doxylink{classBitStream}{Bit\+Stream}} class provides a way to read and write individual bits from a binary file. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classBitStream_a9d842e5d476a3869e37d2201892cfc5d}\label{classBitStream_a9d842e5d476a3869e37d2201892cfc5d} 
+\index{BitStream@{BitStream}!BitStream@{BitStream}}
+\index{BitStream@{BitStream}!BitStream@{BitStream}}
+\doxysubsubsection{\texorpdfstring{BitStream()}{BitStream()}}
+{\footnotesize\ttfamily Bit\+Stream\+::\+Bit\+Stream (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{File\+Name,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{Output\+File\+Name = {\ttfamily "{}out.bin"{}} }\end{DoxyParamCaption})}
+
+
+
+Construct a new \doxylink{classBitStream}{Bit\+Stream} object from a file. 
+
+The constructor reads a binary file from disk and creates a new {\ttfamily \doxylink{classBitStream}{Bit\+Stream}} object from it. The constructor also initializes the read and write buffers and positions.
+
+
+\begin{DoxyParams}{Parameters}
+{\em File\+Name} & The name of the binary file to read \\
+\hline
+{\em Output\+File\+Name} & The name of the binary file to write (default is "{}out.\+bin"{})\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::runtime\+\_\+error} & if the file fails to open \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{classBitStream_a63cf0f27c7519417a7984c476a32c9c9}\label{classBitStream_a63cf0f27c7519417a7984c476a32c9c9} 
+\index{BitStream@{BitStream}!````~BitStream@{\texorpdfstring{$\sim$}{\string~}BitStream}}
+\index{````~BitStream@{\texorpdfstring{$\sim$}{\string~}BitStream}!BitStream@{BitStream}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}BitStream()}{\string~BitStream()}}
+{\footnotesize\ttfamily Bit\+Stream\+::\texorpdfstring{$\sim$}{\string~}\+Bit\+Stream (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destroy the \doxylink{classBitStream}{Bit\+Stream} object and close the input and output files. 
+
+The destructor closes the input and output files used by the {\ttfamily \doxylink{classBitStream}{Bit\+Stream}} object. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classBitStream_a7b2dbc9a7828a767448060818920826a}\label{classBitStream_a7b2dbc9a7828a767448060818920826a} 
+\index{BitStream@{BitStream}!Flush@{Flush}}
+\index{Flush@{Flush}!BitStream@{BitStream}}
+\doxysubsubsection{\texorpdfstring{Flush()}{Flush()}}
+{\footnotesize\ttfamily void Bit\+Stream\+::\+Flush (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Flush any remaining bits to the output file. 
+
+The {\ttfamily Flush} method writes any remaining bits in the write buffer to the output file. If the write buffer is already empty, the method does nothing. \Hypertarget{classBitStream_a727b1df2e89b019f464b5c41cd6aaeae}\label{classBitStream_a727b1df2e89b019f464b5c41cd6aaeae} 
+\index{BitStream@{BitStream}!ReadBit@{ReadBit}}
+\index{ReadBit@{ReadBit}!BitStream@{BitStream}}
+\doxysubsubsection{\texorpdfstring{ReadBit()}{ReadBit()}}
+{\footnotesize\ttfamily int Bit\+Stream\+::\+Read\+Bit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Read a single bit from the input file. 
+
+The {\ttfamily Read\+Bit} method reads a single bit from the input file and returns its value. If the end of the file is reached, the method returns -\/1.
+
+\begin{DoxyReturn}{Returns}
+The value of the next bit in the input file, or -\/1 if the end of the file is reached 
+\end{DoxyReturn}
+\Hypertarget{classBitStream_a2adb4e58968e8c1f39e504cace020b69}\label{classBitStream_a2adb4e58968e8c1f39e504cace020b69} 
+\index{BitStream@{BitStream}!ReadBits@{ReadBits}}
+\index{ReadBits@{ReadBits}!BitStream@{BitStream}}
+\doxysubsubsection{\texorpdfstring{ReadBits()}{ReadBits()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structWriteBitReturn}{Write\+Bit\+Return}} Bit\+Stream\+::\+Read\+Bits (\begin{DoxyParamCaption}\item[{int}]{n\+\_\+bits }\end{DoxyParamCaption})}
+
+
+
+Read a specified number of bits from the input file. 
+
+The {\ttfamily Read\+Bits} method reads a specified number of bits from the input file and returns them as an array of integers. If the end of the file is reached before all bits are read, the method returns the bits that were read.
+
+
+\begin{DoxyParams}{Parameters}
+{\em n\+\_\+bits} & The number of bits to read\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A {\ttfamily \doxylink{structWriteBitReturn}{Write\+Bit\+Return}} struct containing an array of integers representing the bits that were read, and the number of bits that were read 
+\end{DoxyReturn}
+\Hypertarget{classBitStream_aa61a8a83b4e4732ba55f83ba2357efac}\label{classBitStream_aa61a8a83b4e4732ba55f83ba2357efac} 
+\index{BitStream@{BitStream}!WriteBit@{WriteBit}}
+\index{WriteBit@{WriteBit}!BitStream@{BitStream}}
+\doxysubsubsection{\texorpdfstring{WriteBit()}{WriteBit()}}
+{\footnotesize\ttfamily void Bit\+Stream\+::\+Write\+Bit (\begin{DoxyParamCaption}\item[{int}]{bit }\end{DoxyParamCaption})}
+
+
+
+Write a single bit to the output file. 
+
+The {\ttfamily Write\+Bit} method writes a single bit to the output file. If the input bit is not 0 or 1, the method prints an error message and ignores the input.
+
+
+\begin{DoxyParams}{Parameters}
+{\em bit} & The bit to write (must be 0 or 1) \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classBitStream_ae732ef29b12259c0c215404d7dc4ec68}\label{classBitStream_ae732ef29b12259c0c215404d7dc4ec68} 
+\index{BitStream@{BitStream}!WriteBits@{WriteBits}}
+\index{WriteBits@{WriteBits}!BitStream@{BitStream}}
+\doxysubsubsection{\texorpdfstring{WriteBits()}{WriteBits()}}
+{\footnotesize\ttfamily void Bit\+Stream\+::\+Write\+Bits (\begin{DoxyParamCaption}\item[{int \texorpdfstring{$\ast$}{*}}]{bits,  }\item[{int}]{size }\end{DoxyParamCaption})}
+
+
+
+Write an array of bits to the output file. 
+
+The {\ttfamily Write\+Bits} method writes an array of bits to the output file. If any of the input bits are not 0 or 1, the method prints an error message and ignores the input.
+
+
+\begin{DoxyParams}{Parameters}
+{\em bits} & An array of integers representing the bits to write (must be 0 or 1) \\
+\hline
+{\em size} & The number of bits to write \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{BitStream_8h}{Bit\+Stream.\+h}}\item 
+src/\mbox{\hyperlink{BitStream_8cpp}{Bit\+Stream.\+cpp}}\end{DoxyCompactItemize}

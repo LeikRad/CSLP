@@ -10,6 +10,7 @@
 #include <iostream>
 
 /**
+ * @struct Pixel
  * @brief A struct representing a pixel in an image
  *
  * The `Pixel` struct represents a pixel in an image, with separate red, green, and blue color channels.

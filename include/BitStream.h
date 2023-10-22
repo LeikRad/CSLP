@@ -9,6 +9,7 @@
 #include <vector>
 
 /**
+ * @struct WriteBitReturn
  * @brief A struct representing the return value of the `ReadBits` method
  *
  * The `WriteBitReturn` struct contains an array of integers representing the bits that were read, and the number of bits that were read.

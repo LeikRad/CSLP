@@ -7,6 +7,8 @@
  * and displaying the image on the screen.
  */
 
+
+
 #include "Image.h"
 #include <fstream>
 #include <iostream>
