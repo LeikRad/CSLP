@@ -50,6 +50,80 @@ public:
     BitStream(const char *FileName, const char *OutputFileName = "out.bin");
 
     /**
+     * @brief Construct a new Bit Stream object
+     *
+     * The constructor initializes the read and write buffers and positions.
+     * This BitStream can only read from the input file.
+     * If you want to write to a file, use the other constructor or use open_output_file.
+     *
+     * @param Filename
+     * @param mode true if the BitStream should write to the file, false if it should read from the file
+     */
+    BitStream(const char *Filename, bool mode = false);
+
+    /**
+     * @brief Construct a new BitStream object
+     *
+     * The constructor initializes the read and write buffers and positions.
+     * This BitStream cant read or write to a file.
+     * If you want to read or write to a file, use the other constructor or use open_input_file or open_output_file.
+     *
+     */
+    BitStream();
+
+    /**
+     * @brief
+     *
+     * Function to open a file for reading, returns true if the file was opened successfully, false otherwise
+     *
+     * @param FileName
+     * @return true
+     * @return false
+     */
+    bool open_input_file(const char *FileName);
+
+    /**
+     * @brief
+     *
+     * Function to open a file for writing, returns true if the file was opened successfully, false otherwise
+     *
+     * @param OutputFileName
+     * @return true
+     * @return false
+     */
+    bool open_output_file(const char *OutputFileName);
+
+    /**
+     * @brief
+     *
+     * Function to check if the input file is open
+     *
+     * @return true
+     * @return false
+     */
+    bool can_read();
+
+    /**
+     * @brief
+     *
+     * Function to check if the output file is open
+     *
+     * @return true
+     * @return false
+     */
+    bool can_write();
+
+    /**
+     * @brief
+     *
+     * Function to check if the input file is at the end
+     *
+     * @return true
+     * @return false
+     */
+    bool eof();
+
+    /**
      * @brief Destroy the BitStream object and close the input and output files
      *
      * The destructor closes the input and output files used by the `BitStream` object.

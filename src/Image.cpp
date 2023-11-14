@@ -8,7 +8,6 @@
 
 using namespace cv;
 
-
 Image::Image(const char *FileName)
 {
     FILE *pFile = fopen(FileName, "rb");
@@ -44,18 +43,15 @@ Image::Image(const char *FileName)
     fclose(pFile);
 };
 
-
 int *Image::Metadata()
 {
     return new int[3]{width, height, maxVal};
 };
 
-
 Pixel *Image::PixelData()
 {
     return pixels;
 };
-
 
 void Image::WriteImage(const char *FileName)
 {
@@ -70,12 +66,10 @@ void Image::WriteImage(const char *FileName)
     }
 }
 
-
 Image::~Image()
 {
     delete[] pixels;
 }
-
 
 void Image::RGBtoYUV()
 {
@@ -102,7 +96,6 @@ void Image::RGBtoYUV()
         pixels[i].b = (v + 0.5) * 255;
     }
 }
-
 
 void Image::YUVtoRGB()
 {
@@ -133,7 +126,6 @@ void Image::YUVtoRGB()
         pixels[i].b = (u_char)(b * 255);
     }
 }
-
 
 void Image::WriteImageWaterMark(Image &watermarkImage)
 {
@@ -182,7 +174,6 @@ void Image::WriteImageWaterMark(Image &watermarkImage)
     // Libere a memória alocada para a cópia dos pixels com marca d'água
     delete[] watermarkedPixels;
 }
-
 
 void Image::CalculateAndDisplayHistograms()
 {

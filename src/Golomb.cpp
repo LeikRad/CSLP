@@ -5,25 +5,22 @@
 #include <fstream>
 #include <cmath>
 
-
-Golomb::Golomb(int M, const char *InputFileName, const char *OutputFileName) : M(M)
+Golomb::Golomb(const char *InputFileName, const char *OutputFileName, int M) : M(M)
 {
     this->bs = new BitStream(InputFileName, OutputFileName);
+    this->b = ceil(log2(M));
 }
-
 
 Golomb::~Golomb()
 {
     Close();
 }
 
-
 void Golomb::Close()
 {
     bs->Flush();
     delete bs;
 }
-
 
 void Golomb::Encode(int num)
 {
@@ -38,8 +35,6 @@ void Golomb::Encode(int num)
     }
     std::cout << "0";
     bs->WriteBit(0);
-
-    u_char b = log2(M);
 
     if (r < pow(2, b + 1))
     {
@@ -59,7 +54,6 @@ void Golomb::Encode(int num)
         }
     }
 };
-
 
 int Golomb::Decode()
 {
@@ -88,7 +82,6 @@ int Golomb::Decode()
     return num;
 }
 
-
 int Golomb::map(int num)
 {
     if (num >= 0)
@@ -101,7 +94,6 @@ int Golomb::map(int num)
     }
 }
 
-
 int Golomb::reverse_map(int num)
 {
     if (num % 2 == 0)
@@ -112,4 +104,19 @@ int Golomb::reverse_map(int num)
     {
         return -(num + 1) / 2;
     }
+}
+
+void Golomb::setM(int M)
+{
+    if (M <= 0)
+    {
+        return;
+    }
+    this->M = M;
+    this->b = ceil(log2(M));
+}
+
+int Golomb::getM()
+{
+    return M;
 }

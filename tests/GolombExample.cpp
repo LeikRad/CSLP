@@ -5,7 +5,7 @@
 int main()
 {
     // write to encoded.bin encoded values, read from encoded.bin and decode
-    Golomb codec(8, "encoded.bin", "encoded.bin"); // Initialize Golomb encoder with M=4
+    Golomb codec("encoded.bin", "encoded.bin", 8); // Initialize Golomb encoder with M=4
 
     int n = -50;
     while (n != 51)

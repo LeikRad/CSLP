@@ -4,27 +4,27 @@
 #include <fstream>
 #include <filesystem>
 
-BitStream::BitStream(const char *FileName, const char *OutputFileName)
+BitStream::BitStream(const char *FileName, const char *OutputFileName) : BitStream()
 {
-    this->in = std::ifstream(FileName, std::ios::binary);
-    read_pos = -1;
-    read_buffer = 0;
-
-    write_pos = 7;
-    write_buffer = 0;
-
-    if (!in)
-    {
-        throw std::runtime_error("Failed to open the file.");
-    }
-
-    this->out = std::ofstream(OutputFileName, std::ios::binary | std::ios::out);
-
-    // set in, out to first position
-    in.seekg(0, std::ios::beg);
-    out.seekp(0, std::ios::beg);
+    open_input_file(FileName);
+    open_output_file(OutputFileName);
 };
 
+BitStream::BitStream(const char *FileName, bool mode) : BitStream()
+{
+    if (mode)
+    {
+        open_output_file(FileName);
+    }
+    else
+    {
+        open_input_file(FileName);
+    }
+};
+
+BitStream::BitStream() : read_pos(-1), read_buffer(0), write_pos(7), write_buffer(0), in(std::ifstream()), out(std::ofstream())
+{
+}
 
 BitStream::~BitStream()
 {
@@ -32,6 +32,50 @@ BitStream::~BitStream()
     out.close();
 };
 
+bool BitStream::open_input_file(const char *FileName)
+{
+    if (in.is_open())
+    {
+        in.close();
+    }
+    in.open(FileName, std::ios::binary);
+    if (!in)
+    {
+        std::cerr << "BitStream::open_input_file: failed to open file: " << FileName << std::endl;
+        return false;
+    }
+    return true;
+};
+
+bool BitStream::open_output_file(const char *OutputFileName)
+{
+    if (out.is_open())
+    {
+        out.close();
+    }
+    out.open(OutputFileName, std::ios::binary);
+    if (!out)
+    {
+        std::cerr << "BitStream::open_output_file: failed to open file: " << OutputFileName << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool BitStream::can_write()
+{
+    return out.is_open();
+};
+
+bool BitStream::eof()
+{
+    return in.eof();
+};
+
+bool BitStream::can_read()
+{
+    return in.is_open() && !in.eof();
+};
 
 int BitStream::ReadBit()
 {
@@ -46,7 +90,6 @@ int BitStream::ReadBit()
     }
     return (read_buffer >> read_pos--) % 2;
 };
-
 
 WriteBitReturn BitStream::ReadBits(int n_bits)
 {
@@ -68,7 +111,6 @@ WriteBitReturn BitStream::ReadBits(int n_bits)
     return {bits, n_bits};
 };
 
-
 void BitStream::WriteBit(int bit)
 {
     if (bit != 0 && bit != 1)
@@ -87,7 +129,6 @@ void BitStream::WriteBit(int bit)
     }
 };
 
-
 void BitStream::WriteBits(int *bits, int size)
 {
     for (int i = 0; i < size; i++)
@@ -95,7 +136,6 @@ void BitStream::WriteBits(int *bits, int size)
         WriteBit(bits[i]);
     }
 };
-
 
 void BitStream::Flush()
 {
