@@ -4,7 +4,8 @@
  *
  * This header file defines the BitStream class, which provides a way to read and write individual bits from a binary file.
  */
-
+#ifndef BITSTREAM_H
+#define BITSTREAM_H
 #include <fstream>
 #include <vector>
 
@@ -36,6 +37,11 @@ private:
     u_char write_buffer; ///< The write buffer
 
 public:
+    enum Mode
+    {
+        READ,
+        WRITE
+    };
     /**
      * @brief Construct a new BitStream object from a file
      *
@@ -47,7 +53,7 @@ public:
      *
      * @throw std::runtime_error if the file fails to open
      */
-    BitStream(const char *FileName, const char *OutputFileName = "out.bin");
+    BitStream(const char *FileName, const char *OutputFileName);
 
     /**
      * @brief Construct a new Bit Stream object
@@ -59,7 +65,7 @@ public:
      * @param Filename
      * @param mode true if the BitStream should write to the file, false if it should read from the file
      */
-    BitStream(const char *Filename, bool mode = false);
+    BitStream(const char *Filename, Mode mode = READ);
 
     /**
      * @brief Construct a new BitStream object
@@ -124,6 +130,21 @@ public:
     bool eof();
 
     /**
+     * @brief
+     *
+     * Function to close the input file if it's open
+     */
+    void close_input();
+
+    /**
+     * @brief
+     *
+     * Function to close the output file if it's open
+     */
+    void close_output();
+
+    /**
+     *
      * @brief Destroy the BitStream object and close the input and output files
      *
      * The destructor closes the input and output files used by the `BitStream` object.
@@ -181,3 +202,4 @@ public:
      */
     void Flush();
 };
+#endif // BITSTREAM_H

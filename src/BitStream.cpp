@@ -10,9 +10,9 @@ BitStream::BitStream(const char *FileName, const char *OutputFileName) : BitStre
     open_output_file(OutputFileName);
 };
 
-BitStream::BitStream(const char *FileName, bool mode) : BitStream()
+BitStream::BitStream(const char *FileName, BitStream::Mode mode) : BitStream()
 {
-    if (mode)
+    if (mode == BitStream::WRITE)
     {
         open_output_file(FileName);
     }
@@ -76,6 +76,18 @@ bool BitStream::can_read()
 {
     return in.is_open() && !in.eof();
 };
+
+void BitStream::close_input()
+{
+    if (in.is_open())
+        in.close();
+}
+
+void BitStream::close_output()
+{
+    if (out.is_open())
+        out.close();
+}
 
 int BitStream::ReadBit()
 {

@@ -1,11 +1,14 @@
 // write main
 #include "Golomb.h"
+#include "BitStream.h"
 #include <iostream>
 
 int main()
 {
     // write to encoded.bin encoded values, read from encoded.bin and decode
-    Golomb codec("encoded.bin", "encoded.bin", 8); // Initialize Golomb encoder with M=4
+    BitStream bs("encoded.bin", BitStream::WRITE);
+
+    Golomb codec(bs, 8); // Initialize Golomb encoder with M=4
 
     int n = -50;
     while (n != 51)
@@ -26,6 +29,9 @@ int main()
         std::cout << std::endl;
         encodedFile.close();
     }
+
+    bs.close_output();
+    bs.open_input_file("encoded.bin");
 
     n = -50;
     while (n != 51)

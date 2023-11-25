@@ -7,6 +7,8 @@
  * and displaying the image on the screen.
  */
 
+#ifndef IMAGE_H
+#define IMAGE_H
 #include <iostream>
 
 /**
@@ -152,3 +154,4 @@ public:
      */
     void ThresholdSegmentation(int threshold);
 };
+#endif // IMAGE_H

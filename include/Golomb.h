@@ -2,8 +2,10 @@
  * @file Golomb.h
  * @brief Header file for the Golomb class
  */
-
+#ifndef GOLOMB_H
+#define GOLOMB_H
 #include <fstream>
+#include "opencv2/opencv.hpp"
 
 class BitStream;
 
@@ -16,7 +18,7 @@ class Golomb
 {
 private:
     int M;         /**< The divisor used for Golomb encoding/decoding */
-    BitStream *bs; /**< A pointer to the BitStream object used for input/output */
+    BitStream &bs; /**< A pointer to the BitStream object used for input/output */
     u_char b;      /**< The number of bits used for encoding the remainder */
 
 public:
@@ -25,11 +27,10 @@ public:
      *
      * The constructor initializes a new BitStream object with the specified input and output file names.
      *
-     * @param M The divisor used for Golomb encoding/decoding
-     * @param InputFileName The name of the input file
-     * @param OutputFileName The name of the output file
+     * @param M The divisor used for Golomb encoding/decoding (default is 3)
+     * @param bs A reference to the BitStream object used for input/output
      */
-    Golomb(const char *InputFileName, const char *OutputFileName, int M = 3);
+    Golomb(BitStream &bs, int M = 3);
 
     /**
      * @brief Destroys the Golomb encoder/decoder and closes the input/output file
@@ -96,4 +97,16 @@ public:
      * @return int
      */
     int getM();
+
+    /**
+     * @brief
+     *
+     * Calculates the optimal value of M for the current frame.
+     *
+     * @param frame
+     *
+     * @return int
+     */
+    int optimal_m(cv::Mat &frame);
 };
+#endif // GOLOMB_H

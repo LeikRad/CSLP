@@ -5,9 +5,8 @@
 #include <fstream>
 #include <cmath>
 
-Golomb::Golomb(const char *InputFileName, const char *OutputFileName, int M) : M(M)
+Golomb::Golomb(BitStream &bs, int M) : bs(bs), M(M)
 {
-    this->bs = new BitStream(InputFileName, OutputFileName);
     this->b = ceil(log2(M));
 }
 
@@ -18,8 +17,7 @@ Golomb::~Golomb()
 
 void Golomb::Close()
 {
-    bs->Flush();
-    delete bs;
+    bs.Flush();
 }
 
 void Golomb::Encode(int num)
@@ -30,18 +28,15 @@ void Golomb::Encode(int num)
 
     for (int i = 0; i < q; i++)
     {
-        std::cout << "1";
-        bs->WriteBit(1);
+        bs.WriteBit(1);
     }
-    std::cout << "0";
-    bs->WriteBit(0);
+    bs.WriteBit(0);
 
     if (r < pow(2, b + 1))
     {
         for (int i = b - 1; i >= 0; i--)
         {
-            std::cout << (r >> i) % 2;
-            bs->WriteBit((r >> i) % 2);
+            bs.WriteBit((r >> i) % 2);
         }
     }
     else
@@ -49,8 +44,7 @@ void Golomb::Encode(int num)
         r += pow(2, b + 1) - M;
         for (int i = b; i >= 0; i--)
         {
-            std::cout << (r >> i) % 2;
-            bs->WriteBit((r >> i) % 2);
+            bs.WriteBit((r >> i) % 2);
         }
     }
 };
@@ -60,7 +54,7 @@ int Golomb::Decode()
     int q = 0;
 
     // Read quotient bits
-    while (bs->ReadBit() == 1)
+    while (bs.ReadBit() == 1)
     {
         q++;
     }
@@ -71,7 +65,7 @@ int Golomb::Decode()
     // Read the rest of the bits as remainder
     for (int i = b - 1; i >= 0; i--)
     {
-        r = (r << 1) | bs->ReadBit();
+        r = (r << 1) | bs.ReadBit();
     }
     // Combine quotient and remainder to decode the number
     int num = (q * M) + r;
@@ -119,4 +113,20 @@ void Golomb::setM(int M)
 int Golomb::getM()
 {
     return M;
+}
+
+int Golomb::optimal_m(cv::Mat &frame)
+{
+    double u = 0;
+    cv::Scalar mean_values = mean(abs(frame));
+
+    for (int n = 0; n < frame.channels(); n++)
+        u += mean_values[n];
+    u /= frame.channels();
+    if (u < 0.01)
+        return 2;
+    int s = ceil(log2(u) - 0.05 + 0.6 / u);
+
+    s = (0 > s) ? 0 : s;
+    return pow(2, s);
 }
