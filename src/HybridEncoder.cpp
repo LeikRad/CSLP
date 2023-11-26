@@ -44,56 +44,49 @@ HybridEncoder::HybridEncoder(string input_file, int predictor, int period, int b
     // open the video file
     video = VideoCapture(input_file);
 
-    width = video.get(CAP_PROP_FRAME_WIDTH);
-    height = video.get(CAP_PROP_FRAME_HEIGHT);
-    n_frames = video.get(CAP_PROP_FRAME_COUNT);
+    video_width = video.get(CAP_PROP_FRAME_WIDTH);
+    video_height = video.get(CAP_PROP_FRAME_HEIGHT);
+    video_n_frames = video.get(CAP_PROP_FRAME_COUNT);
 }
 
 void HybridEncoder::encode(string output_file)
 {
-    Converter converter;
+    Converter conv;
     GolombEncoder enc(output_file);
 
     IntraEncoder intra_enc(enc, shift);
     InterEncoder inter_enc(enc, block_size, block_range, shift);
 
-    Mat new_frame;
+    Mat curr_frame;
     Mat old_frame;
-
-    cout << "Encoding file " << output_file << endl;
-    cout << "format: " << format << endl;
-    cout << "predictor: " << predictor << endl;
-    cout << "shift: " << shift << endl;
-    cout << "block_range: " << block_range << endl;
-    cout << "period: " << period << endl;
-    cout << "n_frames: " << n_frames << endl;
 
     enc.encode(format);
     enc.encode(predictor);
-    enc.encode(shift);
     enc.encode(block_range);
+    enc.encode(shift);
     enc.encode(period);
-    enc.encode(n_frames);
+    enc.encode(video_n_frames);
 
-    int old_cost = 0, new_cost = 1, frame_n = 0;
-
+    int old_frame_cost = 0;
+    int curr_frame_cost = 1;
+    int count = 0;
     switch (format)
     {
     case 0:
     {
         while (true)
         {
-            video >> new_frame;
-            if (new_frame.empty())
+            video >> curr_frame;
+            if (curr_frame.empty())
             {
                 break;
             };
-            new_frame = converter.rgb_to_yuv444(new_frame);
+            curr_frame = conv.rgb_to_yuv444(curr_frame);
 
-            if (frame_n == 0)
+            if (count == 0)
             {
-                int a = new_frame.cols;
-                int b = new_frame.rows;
+                int a = curr_frame.cols;
+                int b = curr_frame.rows;
                 if (a != b)
                 {
                     int gcd = -1;
@@ -120,21 +113,21 @@ void HybridEncoder::encode(string output_file)
                     enc.encode(16);
                 }
 
-                enc.encode(new_frame.cols);
-                enc.encode(new_frame.rows);
+                enc.encode(curr_frame.cols);
+                enc.encode(curr_frame.rows);
             }
 
-            if (new_cost > old_cost || frame_n % 20 == 0)
+            if (curr_frame_cost > old_frame_cost || count % period == 0)
             {
-                new_frame.copyTo(old_frame);
-                new_cost = intra_enc.encode(new_frame, predictors[predictor]);
-                old_cost = new_cost;
+                curr_frame.copyTo(old_frame);
+                curr_frame_cost = intra_enc.encode(curr_frame, predictors[predictor]);
+                old_frame_cost = curr_frame_cost;
             }
             else
             {
-                new_cost = inter_enc.encode(old_frame, new_frame);
+                curr_frame_cost = inter_enc.encode(old_frame, curr_frame);
             }
-            break;
+            cout << "Encoded frame " << count++ << endl;
         }
         break;
     }
@@ -142,17 +135,17 @@ void HybridEncoder::encode(string output_file)
     {
         while (true)
         {
-            video >> new_frame;
-            if (new_frame.empty())
+            video >> curr_frame;
+            if (curr_frame.empty())
             {
                 break;
             };
-            new_frame = converter.rgb_to_yuv422(new_frame);
+            curr_frame = conv.rgb_to_yuv422(curr_frame);
 
-            if (frame_n == 0)
+            if (count == 0)
             {
-                int a = new_frame.cols;
-                int b = new_frame.rows;
+                int a = curr_frame.cols;
+                int b = curr_frame.rows;
                 if (a != b)
                 {
                     int gcd = -1;
@@ -179,21 +172,21 @@ void HybridEncoder::encode(string output_file)
                     enc.encode(16);
                 }
 
-                enc.encode(new_frame.cols);
-                enc.encode(new_frame.rows);
+                enc.encode(curr_frame.cols);
+                enc.encode(curr_frame.rows);
             }
 
-            if (new_cost > old_cost || frame_n % 20 == 0)
+            if (curr_frame_cost > old_frame_cost || count % period == 0)
             {
-                new_frame.copyTo(old_frame);
-                new_cost = intra_enc.encode(new_frame, predictors[predictor]);
-                old_cost = new_cost;
+                curr_frame.copyTo(old_frame);
+                curr_frame_cost = intra_enc.encode(curr_frame, predictors[predictor]);
+                old_frame_cost = curr_frame_cost;
             }
             else
             {
-                new_cost = inter_enc.encode(old_frame, new_frame);
+                curr_frame_cost = inter_enc.encode(old_frame, curr_frame);
             }
-            cout << "Encoded frame " << frame_n++ << endl;
+            cout << "Encoded frame " << count++ << endl;
         }
         break;
     }
@@ -201,18 +194,17 @@ void HybridEncoder::encode(string output_file)
     {
         while (true)
         {
-            video >> new_frame;
-            if (new_frame.empty())
+            video >> curr_frame;
+            if (curr_frame.empty())
             {
                 break;
             };
-            new_frame = converter.rgb_to_yuv420(new_frame);
-            cout << "converted frame " << frame_n << endl;
+            curr_frame = conv.rgb_to_yuv420(curr_frame);
 
-            if (frame_n == 0)
+            if (count == 0)
             {
-                int a = new_frame.cols;
-                int b = new_frame.rows;
+                int a = curr_frame.cols;
+                int b = curr_frame.rows;
                 if (a != b)
                 {
                     int gcd = -1;
@@ -239,21 +231,21 @@ void HybridEncoder::encode(string output_file)
                     enc.encode(16);
                 }
 
-                enc.encode(new_frame.cols);
-                enc.encode(new_frame.rows);
+                enc.encode(curr_frame.cols);
+                enc.encode(curr_frame.rows);
             }
 
-            if (new_cost > old_cost || frame_n % 20 == 0)
+            if (curr_frame_cost > old_frame_cost || count % period == 0)
             {
-                new_frame.copyTo(old_frame);
-                new_cost = intra_enc.encode(new_frame, predictors[predictor]);
-                old_cost = new_cost;
+                curr_frame.copyTo(old_frame);
+                curr_frame_cost = intra_enc.encode(curr_frame, predictors[predictor]);
+                old_frame_cost = curr_frame_cost;
             }
             else
             {
-                new_cost = inter_enc.encode(old_frame, new_frame);
+                curr_frame_cost = inter_enc.encode(old_frame, curr_frame);
             }
-            cout << "Encoded frame " << frame_n++ << endl;
+            cout << "Encoded frame " << count++ << endl;
         }
         break;
     }

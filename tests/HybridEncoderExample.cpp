@@ -25,17 +25,9 @@ int main(int argc, char const *argv[])
 
     cin >> predictor;
 
-    cout << "Enter the block range to use (0-7): ";
+    int block_range = 5;
 
-    int block_range;
-
-    cin >> block_range;
-
-    cout << "Enter the shift to use (0-7): ";
-
-    int shift;
-
-    cin >> shift;
+    int shift = 0;
 
     HybridEncoder encoder(input, predictor, 20, block_range, shift);
 

@@ -6,115 +6,122 @@ HybridDecoder::HybridDecoder(string input_file)
     predictors = getPredictors();
 }
 
-void HybridDecoder::decode(string output_file)
+void HybridDecoder::decode()
 {
     Converter conv;
     GolombDecoder dec(input_file);
 
     int format = dec.decode();
     int predictor = dec.decode();
-    int shift = dec.decode();
     int block_range = dec.decode();
+    int shift = dec.decode();
     int period = dec.decode();
     int n_frames = dec.decode();
     int block_size = dec.decode();
     int width = dec.decode();
     int height = dec.decode();
 
-    cout << "Format: " << format << endl;
+    cout << endl;
+    cout << "Parameter m: " << dec.get_m() << endl;
+    cout << "format: " << format << endl;
     cout << "Predictor: " << predictor << endl;
-    cout << "Shift: " << shift << endl;
     cout << "Block Range: " << block_range << endl;
+    cout << "Shift: " << shift << endl;
     cout << "Period: " << period << endl;
     cout << "Number of Frames: " << n_frames << endl;
     cout << "Block Size: " << block_size << endl;
     cout << "Width: " << width << endl;
     cout << "Height: " << height << endl;
 
+    cout << endl;
+
     IntraDecoder intra_dec(dec, shift);
     InterDecoder inter_dec(dec, block_size, block_range, shift);
 
-    Mat new_frame;
+    Mat curr_frame;
     Mat old_frame;
 
-    int old_cost = 0, new_cost = 1;
-    int frame_count = 0;
-
+    int old_frame_cost = 0;
+    int curr_frame_cost = 1;
+    int count = 0;
     switch (format)
     {
     case 0:
     {
-        while (frame_count < n_frames)
+        while (count < n_frames)
         {
-            new_frame = Mat::zeros(height, width, CV_8UC3);
+            curr_frame = Mat::zeros(height, width, CV_8UC3);
 
-            if (new_cost > old_cost || frame_count % period == 0)
+            if (curr_frame_cost > old_frame_cost || count % period == 0)
             {
-                new_cost = intra_dec.decode(new_frame, predictors[predictor]);
-                old_cost = new_cost;
-                new_frame.copyTo(old_frame);
+                curr_frame_cost = intra_dec.decode(curr_frame, predictors[predictor]);
+                old_frame_cost = curr_frame_cost;
+                curr_frame.copyTo(old_frame);
             }
             else
             {
-                new_cost = inter_dec.decode(old_frame, new_frame);
+                curr_frame_cost = inter_dec.decode(old_frame, curr_frame);
             }
 
-            imshow("Image", conv.yuv444_to_rgb(new_frame));
+            imshow("Image", conv.yuv444_to_rgb(curr_frame));
             if (waitKey(10) == 27)
             {
                 destroyAllWindows();
             }; // Wait for a keystroke in the window
-            cout << "Frame " << frame_count++ << " decoded." << endl;
+            cout << "Frame " << count++ << " decoded." << endl;
         }
     }
     case 1:
     {
-        while (frame_count < n_frames)
+        while (count < n_frames)
         {
-            new_frame = Mat::zeros(height, width, CV_8UC1);
+            curr_frame = Mat::zeros(height, width, CV_8UC1);
 
-            if (new_cost > old_cost || frame_count % period == 0)
+            if (curr_frame_cost > old_frame_cost || count % period == 0)
             {
-                new_cost = intra_dec.decode(new_frame, predictors[predictor]);
-                old_cost = new_cost;
-                new_frame.copyTo(old_frame);
+                curr_frame_cost = intra_dec.decode(curr_frame, predictors[predictor]);
+                old_frame_cost = curr_frame_cost;
+                curr_frame.copyTo(old_frame);
             }
             else
             {
-                new_cost = inter_dec.decode(old_frame, new_frame);
+                curr_frame_cost = inter_dec.decode(old_frame, curr_frame);
             }
 
-            imshow("Image", conv.yuv422_to_rgb(new_frame));
+            imshow("Image", conv.yuv422_to_rgb(curr_frame));
             if (waitKey(10) == 27)
             {
                 destroyAllWindows();
             }; // Wait for a keystroke in the window
-            cout << "Frame " << frame_count++ << " decoded." << endl;
+            cout << "Frame " << count++ << " decoded." << endl;
         }
     }
     case 2:
     {
-        while (frame_count < n_frames)
+        cout << count << endl;
+        cout << n_frames << endl;
+        while (count < n_frames)
         {
-            new_frame = Mat::zeros(height, width, CV_8UC1);
+            curr_frame = Mat::zeros(height, width, CV_8UC1);
+            cout << "here" << endl;
 
-            if (new_cost > old_cost || frame_count % period == 0)
+            if (curr_frame_cost > old_frame_cost || count % period == 0)
             {
-                new_cost = intra_dec.decode(new_frame, predictors[predictor]);
-                old_cost = new_cost;
-                new_frame.copyTo(old_frame);
+                curr_frame_cost = intra_dec.decode(curr_frame, predictors[predictor]);
+                old_frame_cost = curr_frame_cost;
+                curr_frame.copyTo(old_frame);
             }
             else
             {
-                new_cost = inter_dec.decode(old_frame, new_frame);
+                curr_frame_cost = inter_dec.decode(old_frame, curr_frame);
             }
 
-            imshow("Image", conv.yuv420_to_rgb(new_frame));
+            imshow("Image", conv.yuv420_to_rgb(curr_frame));
             if (waitKey(10) == 27)
             {
                 destroyAllWindows();
             }; // Wait for a keystroke in the window
-            cout << "Frame " << frame_count++ << " decoded." << endl;
+            cout << "Frame " << count++ << " decoded." << endl;
         }
     }
     }

@@ -73,19 +73,20 @@ int main(int argc, char const *argv[])
     }
 
     int shift = 0;
-    int predictor = 7;
+    int predictor = 0;
     GolombEncoder encoder(output);
     IntraEncoder intra_encoder(encoder, shift);
     Converter converter;
 
     Mat frame;
-    Mat yuv;
     encoder.encode(format);
     encoder.encode(predictor);
     encoder.encode(shift);
-    encoder.encode(cap.get(CAP_PROP_FRAME_COUNT));
-
-    int n_frame = 0;
+    int num_frames = cap.get(CAP_PROP_FRAME_COUNT);
+    encoder.encode(num_frames);
+    int count = 0;
+    double percentage = 0.0;
+    double average_time = 0.0;
 
     switch (format)
     {
@@ -93,22 +94,39 @@ int main(int argc, char const *argv[])
     {
         while (true)
         {
+            // percentage = (cap.get(CAP_PROP_POS_FRAMES) / num_frames) * 100;
+            // cout << "Frame %: " << fixed << setprecision(1) << percentage << "\% ETA ~ " << average_time * (100 - percentage) << "s" << endl;
+
             cap >> frame;
             if (frame.empty())
             {
+                // cout << "\033[F" << flush;
+
+                // cout << "\033[K" << flush;
                 break;
             };
             frame = conv.rgb_to_yuv444(frame);
 
-            if (n_frame == 0)
+            if (count == 0)
             {
                 encoder.encode(frame.cols);
                 encoder.encode(frame.rows);
             }
 
+            // auto start = chrono::high_resolution_clock::now(); // start timer
             intra_encoder.encode(frame, predictors[predictor]);
+            // auto end = chrono::high_resolution_clock::now();   // end timer
+            // double time_taken = chrono::duration_cast<chrono::nanoseconds>(end - start).count();
 
-            cout << "Encoded frame " << n_frame++ << endl;
+            // time_taken *= 1e-9;
+
+            // average_time *= count;
+            // average_time += time_taken;
+            // average_time /= ++count;
+            // move to start of previous line
+            // cout << "\033[F" << flush;
+            // // clear line
+            // cout << "\033[K" << flush;
         }
         break;
     }
@@ -116,22 +134,40 @@ int main(int argc, char const *argv[])
     {
         while (true)
         {
+            // percentage = (cap.get(CAP_PROP_POS_FRAMES) / num_frames) * 100;
+            // cout << "Frame %: " << fixed << setprecision(1) << percentage << "\% ETA ~ " << average_time * (100 - percentage) << "s" << endl;
+
             cap >> frame;
             if (frame.empty())
             {
+                // cout << "\033[F" << flush;
+
+                // cout << "\033[K" << flush;
                 break;
             };
             frame = conv.rgb_to_yuv422(frame);
 
-            if (n_frame == 0)
+            if (count == 0)
             {
                 encoder.encode(frame.cols);
                 encoder.encode(frame.rows);
             }
 
+            // auto start = chrono::high_resolution_clock::now(); // start timer
             intra_encoder.encode(frame, predictors[predictor]);
+            // auto end = chrono::high_resolution_clock::now(); // end timer
+            // double time_taken = chrono::duration_cast<chrono::nanoseconds>(end - start).count();
 
-            cout << "Encoded frame " << n_frame++ << endl;
+            // time_taken *= 1e-9;
+
+            // average_time *= count;
+            // average_time += time_taken;
+            // average_time /=
+            ++count;
+            // move to start of previous line
+            // cout << "\033[F" << flush;
+            // // clear line
+            // cout << "\033[K" << flush;
         }
         break;
     }
@@ -139,22 +175,40 @@ int main(int argc, char const *argv[])
     {
         while (true)
         {
+            // percentage = (cap.get(CAP_PROP_POS_FRAMES) / num_frames) * 100;
+            // cout << "Frame %: " << fixed << setprecision(1) << percentage << "\% ETA ~ " << average_time * (100 - percentage) << "s" << endl;
+
             cap >> frame;
             if (frame.empty())
             {
+                // cout << "\033[F" << flush;
+
+                // cout << "\033[K" << flush;
                 break;
             };
             frame = conv.rgb_to_yuv420(frame);
 
-            if (n_frame == 0)
+            if (count == 0)
             {
                 encoder.encode(frame.cols);
                 encoder.encode(frame.rows);
             }
 
+            // auto start = chrono::high_resolution_clock::now(); // start timer
             intra_encoder.encode(frame, predictors[predictor]);
+            // auto end = chrono::high_resolution_clock::now();   // end timer
+            // double time_taken = chrono::duration_cast<chrono::nanoseconds>(end - start).count();
 
-            cout << "Encoded frame " << n_frame++ << endl;
+            // time_taken *= 1e-9;
+
+            // average_time *= count;
+            // average_time += time_taken;
+            // average_time /=
+            ++count;
+            // move to start of previous line
+            // cout << "\033[F" << flush;
+            // clear line
+            // cout << "\033[K" << flush;
         }
         break;
     }

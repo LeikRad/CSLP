@@ -23,28 +23,18 @@ int InterDecoder::decode(Mat &old_frame, Mat &new_frame)
             old_y = golomb.decode();
 
             for (int i = curr_y; i < curr_y + block_size; i++)
-            {
                 for (int j = curr_x; j < curr_x + block_size; j++)
-                {
                     for (int ch = 0; ch < new_frame.channels(); ch++)
                     {
                         err = golomb.decode();
-
                         frame_cost += abs(err);
-
                         if (err < 0)
-                        {
                             err = -1 * (abs(err) << shift);
-                        }
                         else
-                        {
                             err <<= shift;
-                        }
 
-                        new_frame.ptr<uchar>(i, j)[ch] = old_frame.ptr<uchar>(i + old_y - curr_y, j + old_x - curr_x)[ch] + err;
+                        new_frame.ptr<uchar>(i, j)[ch] = old_frame.ptr<uchar>(old_y + i - curr_y, old_x + j - curr_x)[ch] + err;
                     }
-                }
-            }
         }
     }
 

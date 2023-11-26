@@ -15,6 +15,7 @@ int IntraEncoder::encode(Mat &frame, function<int(int, int, int)> predictor)
     Mat image, errorMat;
 
     n_ch = frame.channels();
+    size = frame.rows * frame.cols * n_ch;
 
     // these are concatenating a row of zeros to the upwards and left side of the array;
     if (n_ch == 3)
@@ -35,7 +36,6 @@ int IntraEncoder::encode(Mat &frame, function<int(int, int, int)> predictor)
         exit(1);
     }
 
-    size = frame.rows * frame.cols * n_ch;
     for (int i = 1; i < image.rows; i++)
     {
         for (int n = 1; n < image.cols; n++)

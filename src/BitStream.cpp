@@ -7,7 +7,7 @@ int BitStream::setToRead(string file)
     if (!fp.is_open())
     {
         cerr << "Couldn't open specified file for read!" << endl;
-        return -1;
+        exit(1);
     }
 
     mode = 0;
@@ -25,7 +25,7 @@ int BitStream::setToWrite(string file)
     if (!fp.is_open())
     {
         cerr << "Couldn't open specified file for write!" << endl;
-        return -1;
+        exit(1);
     }
 
     mode = 1;
@@ -40,7 +40,8 @@ void BitStream::writeBit(int bit)
     if (!fp.is_open())
     {
         cerr << "No output file is currently open." << endl;
-        return;
+        // exit program
+        exit(1);
     }
     buff |= bit << (7 - bitCount);
     bitCount++;
@@ -58,14 +59,14 @@ void BitStream::writeNBits(int number, int nBits)
     if (!fp.is_open())
     {
         cerr << "No input file is currently open." << endl;
-        return;
+        exit(1);
     }
     int sizeNumber = 32 - __builtin_clz(number);
 
     if (sizeNumber > nBits)
     {
         cout << "Número insuficiente de bits." << endl;
-        return;
+        exit(1);
     }
 
     for (int n = 0; n < sizeNumber; n++)
@@ -80,12 +81,12 @@ unsigned char BitStream::readBit()
     if (mode)
     {
         cerr << "Bitstream is not in read mode!" << endl;
-        return 2;
+        exit(1);
     }
     if (!fp.is_open())
     {
         cout << "No input file is currently open." << endl;
-        return 2;
+        exit(1);
     }
 
     if (bitCount == 8)
@@ -112,7 +113,7 @@ unsigned int BitStream::readNBits(int nBits)
     if (!fp.is_open())
     {
         cout << "No input file is currently open." << endl;
-        return 2;
+        exit(1);
     }
     unsigned char bit;
     unsigned int result = 0;

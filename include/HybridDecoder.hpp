@@ -18,7 +18,7 @@ private:
 
 public:
     HybridDecoder(string input_file);
-    void decode(string output_file);
+    void decode();
 };
 
 #endif // HYBRID_DECODER_HPP
