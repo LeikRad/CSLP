@@ -136,7 +136,7 @@ int main(int argc, char const *argv[])
                         break;
                     }
 
-                    frame = conv.rgb_to_yuv444(frame);
+                    frame_yuv = conv.rgb_to_yuv444(frame);
                     if (count == 0)
                     {
                         encoder.encode(frame.cols);
@@ -175,7 +175,7 @@ int main(int argc, char const *argv[])
                         break;
                     }
 
-                    frame = conv.rgb_to_yuv422(frame);
+                    frame_yuv = conv.rgb_to_yuv422(frame);
                     if (count == 0)
                     {
                         encoder.encode(frame.cols);
@@ -214,7 +214,7 @@ int main(int argc, char const *argv[])
                         break;
                     }
 
-                    frame = conv.rgb_to_yuv420(frame);
+                    frame_yuv = conv.rgb_to_yuv420(frame);
                     if (count == 0)
                     {
                         encoder.encode(frame.cols);
