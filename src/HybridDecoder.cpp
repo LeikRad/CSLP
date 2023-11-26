@@ -6,7 +6,7 @@ HybridDecoder::HybridDecoder(string input_file)
     predictors = getPredictors();
 }
 
-void HybridDecoder::decode()
+void HybridDecoder::decode(string output_file)
 {
     Converter conv;
     GolombDecoder dec(input_file);
