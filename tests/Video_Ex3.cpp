@@ -317,7 +317,7 @@ int main()
 
     if (!cap.isOpened())
     {
-        std::cerr << "Error: Could not open video file." << std::endl;
+        cerr << "Error: Could not open video file." << endl;
         return -1;
     }
 

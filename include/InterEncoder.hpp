@@ -2,8 +2,10 @@
 #define INTERENCODER_H
 #include <iostream>
 #include "opencv2/opencv.hpp"
-#include "Golomb.h"
+#include "Golomb.hpp"
 
+using namespace cv;
+using namespace std;
 /**
  *
  * @brief    Class for inter encoder.
@@ -17,11 +19,11 @@ private:
     int block_size;
     int block_range;
     int shift;
-    Golomb &golomb;
-    BitStream &bs;
+    GolombEncoder &golomb;
 
 public:
-    InterEncoder(Golomb &golomb, BitStream &bs, int block_size, int block_range, int shift = 0);
+    InterEncoder(GolombEncoder &golomb, int block_size, int block_range, int shift = 0);
+
     InterEncoder() = default;
 
     int getBlockSize() const;
@@ -32,6 +34,6 @@ public:
 
     float cost(Mat block);
 
-    int encode(cv::Mat &old_frame, cv::Mat &new_frame);
+    int encode(Mat &old_frame, Mat &new_frame);
 };
 #endif // INTERENCODER_H

@@ -1,6 +1,6 @@
 // write main
-#include "Golomb.h"
-#include "BitStream.h"
+#include "Golomb.hpp"
+#include "BitStream.hpp"
 #include <iostream>
 
 int main()
@@ -17,16 +17,16 @@ int main()
     }
 
     // Print the encoded values in binary
-    std::ifstream encodedFile("encoded.bin", std::ios::binary);
+    ifstream encodedFile("encoded.bin", ios::binary);
     if (encodedFile.is_open())
     {
         char bit;
-        std::cout << "Encoded values in binary: ";
+        cout << "Encoded values in binary: ";
         while (encodedFile.get(bit))
         {
-            std::cout << bit;
+            cout << bit;
         }
-        std::cout << std::endl;
+        cout << endl;
         encodedFile.close();
     }
 
@@ -36,7 +36,7 @@ int main()
     n = -50;
     while (n != 51)
     {
-        std::cout << "Decode: " << codec.Decode() << std::endl;
+        cout << "Decode: " << codec.Decode() << endl;
         n++;
     }
 

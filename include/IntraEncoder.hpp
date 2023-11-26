@@ -2,7 +2,10 @@
 #define INTRAENCODER_H
 #include <iostream>
 #include "opencv2/opencv.hpp"
-#include "Golomb.h"
+#include "Golomb.hpp"
+
+using namespace cv;
+using namespace std;
 
 /**
  *
@@ -15,14 +18,13 @@ class IntraEncoder
 {
 private:
     int shift;
-    Golomb &golomb;
-    BitStream &bs;
+    GolombEncoder &golomb;
 
 public:
-    IntraEncoder(Golomb &golomb, BitStream &bs, int shift = 0);
+    IntraEncoder(GolombEncoder &golomb, int shift = 0);
 
     ~IntraEncoder();
 
-    int encode(cv::Mat &frame, std::function<int(int, int, int)> predictor);
+    int encode(Mat &frame, function<int(int, int, int)> predictor);
 };
 #endif // INTRAENCODER_H

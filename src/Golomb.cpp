@@ -1,124 +1,33 @@
+#include "Golomb.hpp"
+#include "opencv2/opencv.hpp"
 
-#include "Golomb.h"
-#include "BitStream.h"
-#include <iostream>
-#include <fstream>
-#include <cmath>
+using namespace cv;
 
-Golomb::Golomb(BitStream &bs, int M) : bs(bs), M(M)
+GolombEncoder::GolombEncoder(string file_path)
 {
-    this->b = ceil(log2(M));
+    bitStream.setToWrite(file_path);
+    this->set_m(3);
 }
 
-Golomb::~Golomb()
+void GolombEncoder::set_m(int m)
 {
-    Close();
-}
-
-void Golomb::Close()
-{
-    bs.Flush();
-}
-
-void Golomb::Encode(int num)
-{
-    num = map(num);
-    u_char q = num / M;
-    u_char r = num % M;
-
-    for (int i = 0; i < q; i++)
-    {
-        bs.WriteBit(1);
-    }
-    bs.WriteBit(0);
-
-    if (r < pow(2, b + 1))
-    {
-        for (int i = b - 1; i >= 0; i--)
-        {
-            bs.WriteBit((r >> i) % 2);
-        }
-    }
-    else
-    {
-        r += pow(2, b + 1) - M;
-        for (int i = b; i >= 0; i--)
-        {
-            bs.WriteBit((r >> i) % 2);
-        }
-    }
-};
-
-int Golomb::Decode()
-{
-    int q = 0;
-
-    // Read quotient bits
-    while (bs.ReadBit() == 1)
-    {
-        q++;
-    }
-
-    u_char b = log2(M);
-
-    int r = 0;
-    // Read the rest of the bits as remainder
-    for (int i = b - 1; i >= 0; i--)
-    {
-        r = (r << 1) | bs.ReadBit();
-    }
-    // Combine quotient and remainder to decode the number
-    int num = (q * M) + r;
-
-    // Adjust for negative numbers
-    num = reverse_map(num);
-
-    return num;
-}
-
-int Golomb::map(int num)
-{
-    if (num >= 0)
-    {
-        return 2 * num;
-    }
-    else
-    {
-        return -2 * num - 1;
-    }
-}
-
-int Golomb::reverse_map(int num)
-{
-    if (num % 2 == 0)
-    {
-        return num / 2;
-    }
-    else
-    {
-        return -(num + 1) / 2;
-    }
-}
-
-void Golomb::setM(int M)
-{
-    if (M <= 0)
+    if (m == 0)
     {
         return;
     }
-    this->M = M;
-    this->b = ceil(log2(M));
+    this->mEnc = m;
+    this->b = ceil(log2(m));
 }
 
-int Golomb::getM()
+int GolombEncoder::get_m()
 {
-    return M;
+    return mEnc;
 }
 
-int Golomb::optimal_m(cv::Mat &frame)
+int GolombEncoder::optimal_m(Mat &frame)
 {
     double u = 0;
-    cv::Scalar mean_values = mean(abs(frame));
+    Scalar mean_values = mean(abs(frame));
 
     for (int n = 0; n < frame.channels(); n++)
         u += mean_values[n];
@@ -129,4 +38,106 @@ int Golomb::optimal_m(cv::Mat &frame)
 
     s = (0 > s) ? 0 : s;
     return pow(2, s);
+}
+
+void GolombEncoder::encode(int num)
+{
+    int q, r;
+
+    if (num < 0)
+        bitStream.writeBit(1);
+    else
+        bitStream.writeBit(0);
+
+    num = abs(num);
+
+    q = num / mEnc;
+    // cout << "q = " << num << " / " << m << " = " << q << "\n";
+    r = num % mEnc;
+    // cout << "r = " << num << " % " << m << " = " << r << "\n";
+
+    for (int i = 0; i < q; i++)
+        bitStream.writeBit(1);
+
+    bitStream.writeBit(0);
+
+    if (mEnc % 2 == 0)
+        bitStream.writeNBits(r, b);
+    else if (r < pow(2, b + 1) - mEnc)
+        bitStream.writeNBits(r, b);
+    else
+        bitStream.writeNBits(r + pow(2, b + 1) - mEnc, b + 1);
+}
+
+void GolombEncoder::finishEncoding()
+{
+    bitStream.close();
+}
+
+GolombDecoder::GolombDecoder(string file_path)
+{
+    bitStream.setToRead(file_path);
+    this->set_m(3);
+}
+
+void GolombDecoder::set_m(int m)
+{
+    if (m == 0)
+    {
+        return;
+    }
+    this->mEnc = m;
+    this->b = ceil(log2(m));
+}
+
+int GolombDecoder::get_m()
+{
+    return mEnc;
+}
+
+int GolombDecoder::decode()
+{
+    unsigned int r;
+    signed int num;
+    int q, signal;
+
+    unsigned char bit;
+
+    q = 0;
+
+    if (bitStream.getEOF())
+        return NULL;
+
+    signal = bitStream.readBit() & 1;
+
+    while (true)
+    {
+        if ((bitStream.readBit() & 1) == 0)
+            break;
+        q++;
+    }
+
+    r = bitStream.readNBits(b);
+    num = q * mEnc + r;
+
+    if (mEnc % 2 == 0)
+        if (!signal)
+            return num;
+        else
+            return -1 * num;
+    else if (r < pow(2, b + 1) - mEnc)
+    {
+        if (!signal)
+            return num;
+        else
+            return -1 * num;
+    }
+    else
+    {
+        num = q * mEnc + (2 * r + (bitStream.readBit() & 1)) - pow(2, b + 1) + mEnc;
+        if (!signal)
+            return num;
+        else
+            return -1 * num;
+    }
 }

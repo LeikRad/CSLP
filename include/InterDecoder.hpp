@@ -2,8 +2,10 @@
 #define INTERDECODER_H
 #include <iostream>
 #include "opencv2/opencv.hpp"
-#include "Golomb.h"
+#include "Golomb.hpp"
 
+using namespace cv;
+using namespace std;
 /**
  *
  * @brief    Class for inter decoder.
@@ -16,12 +18,11 @@ private:
     int block_size;
     int block_range;
     int shift;
-    Golomb &golomb;
-    BitStream &bs;
+    GolombDecoder &golomb;
 
 public:
-    InterDecoder(Golomb &golomb, BitStream &bs, int block_size, int block_range, int shift = 0);
+    InterDecoder(GolombDecoder &golomb, int block_size, int block_range, int shift = 0);
     InterDecoder() = default;
-    int decode(cv::Mat &old_frame, cv::Mat &new_frame);
-}
+    int decode(Mat &old_frame, Mat &new_frame);
+};
 #endif // INTERDECODER_H

@@ -1,6 +1,7 @@
 #include <iostream>
 #include <map>
 #include <functional>
+#include "Predictors.hpp"
 
 int JPEG_Predictor_1(int a, int b, int c)
 {
@@ -41,8 +42,8 @@ int JPEG_LS(int a, int b, int c)
 {
     int pred = a + b - c;
 
-    int mini = std::min(a, b);
-    int maxi = std::max(a, b);
+    int mini = min(a, b);
+    int maxi = max(a, b);
 
     if (c >= maxi)
     {
@@ -54,26 +55,9 @@ int JPEG_LS(int a, int b, int c)
     return pred;
 }
 
-// debug only
-std::map<std::string, std::function<int(int, int, int)>> getFuncNames_Predictors()
+vector<function<int(int, int, int)>> getPredictors()
 {
-    std::map<std::string, std::function<int(int, int, int)>> predictors;
-
-    predictors["JPEG_Predictor_1"] = JPEG_Predictor_1;
-    predictors["JPEG_Predictor_2"] = JPEG_Predictor_2;
-    predictors["JPEG_Predictor_3"] = JPEG_Predictor_3;
-    predictors["JPEG_Predictor_4"] = JPEG_Predictor_4;
-    predictors["JPEG_Predictor_5"] = JPEG_Predictor_5;
-    predictors["JPEG_Predictor_6"] = JPEG_Predictor_6;
-    predictors["JPEG_Predictor_7"] = JPEG_Predictor_7;
-    predictors["JPEG_LS"] = JPEG_LS;
-
-    return predictors;
-}
-
-std::vector<std::function<int(int, int, int)>> getPredictors()
-{
-    std::vector<std::function<int(int, int, int)>> predictors;
+    vector<function<int(int, int, int)>> predictors;
 
     predictors.push_back(JPEG_Predictor_1);
     predictors.push_back(JPEG_Predictor_2);

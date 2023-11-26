@@ -1,161 +1,151 @@
+#include "BitStream.hpp"
 
-#include "BitStream.h"
-#include <iostream>
-#include <fstream>
-#include <filesystem>
-
-BitStream::BitStream(const char *FileName, const char *OutputFileName) : BitStream()
+int BitStream::setToRead(string file)
 {
-    open_input_file(FileName);
-    open_output_file(OutputFileName);
-};
-
-BitStream::BitStream(const char *FileName, BitStream::Mode mode) : BitStream()
-{
-    if (mode == BitStream::WRITE)
+    fp.close();
+    fp.open(file, fstream::binary | fstream::in);
+    if (!fp.is_open())
     {
-        open_output_file(FileName);
+        cerr << "Couldn't open specified file for read!" << endl;
+        return -1;
     }
-    else
-    {
-        open_input_file(FileName);
-    }
-};
 
-BitStream::BitStream() : read_pos(-1), read_buffer(0), write_pos(7), write_buffer(0), in(std::ifstream()), out(std::ofstream())
-{
+    mode = 0;
+    buff = 0;
+    bitCount = 8;
+    eof = false;
+
+    return 0;
 }
 
-BitStream::~BitStream()
+int BitStream::setToWrite(string file)
 {
-    in.close();
-    out.close();
-};
+    fp.close();
+    fp.open(file, fstream::binary | fstream::out | fstream::app);
+    if (!fp.is_open())
+    {
+        cerr << "Couldn't open specified file for write!" << endl;
+        return -1;
+    }
 
-bool BitStream::open_input_file(const char *FileName)
-{
-    if (in.is_open())
-    {
-        in.close();
-    }
-    in.open(FileName, std::ios::binary);
-    if (!in)
-    {
-        std::cerr << "BitStream::open_input_file: failed to open file: " << FileName << std::endl;
-        return false;
-    }
-    return true;
-};
+    mode = 1;
+    buff = 0;
+    bitCount = 0;
 
-bool BitStream::open_output_file(const char *OutputFileName)
-{
-    if (out.is_open())
-    {
-        out.close();
-    }
-    out.open(OutputFileName, std::ios::binary);
-    if (!out)
-    {
-        std::cerr << "BitStream::open_output_file: failed to open file: " << OutputFileName << std::endl;
-        return false;
-    }
-    return true;
+    return 0;
 }
 
-bool BitStream::can_write()
+void BitStream::writeBit(int bit)
 {
-    return out.is_open();
-};
+    if (!fp.is_open())
+    {
+        cerr << "No output file is currently open." << endl;
+        return;
+    }
+    buff |= bit << (7 - bitCount);
+    bitCount++;
 
-bool BitStream::eof()
-{
-    return in.eof();
-};
-
-bool BitStream::can_read()
-{
-    return in.is_open() && !in.eof();
-};
-
-void BitStream::close_input()
-{
-    if (in.is_open())
-        in.close();
+    if (bitCount == 8)
+    {
+        fp.write(reinterpret_cast<char *>(&buff), sizeof(unsigned char));
+        bitCount = 0;
+        buff = 0;
+    }
 }
 
-void BitStream::close_output()
+void BitStream::writeNBits(int number, int nBits)
 {
-    if (out.is_open())
-        out.close();
-}
-
-int BitStream::ReadBit()
-{
-    if (read_pos < 0)
+    if (!fp.is_open())
     {
-        in.read((char *)&read_buffer, sizeof(u_char));
-        if (in.eof())
-        {
-            return -1;
-        }
-        read_pos = 7;
+        cerr << "No input file is currently open." << endl;
+        return;
     }
-    return (read_buffer >> read_pos--) % 2;
-};
+    int sizeNumber = 32 - __builtin_clz(number);
 
-WriteBitReturn BitStream::ReadBits(int n_bits)
-{
-    int *bits = new int[n_bits];
-    for (int i = 0; i < n_bits; i++)
+    if (sizeNumber > nBits)
     {
-        int bit = ReadBit();
-        if (bit == -1)
-        {
-            int *new_bits = new int[i];
-            for (int j = 0; j < i; j++)
-            {
-                new_bits[j] = bits[j];
-            }
-            return {new_bits, i};
-        }
-        bits[i] = bit;
-    }
-    return {bits, n_bits};
-};
-
-void BitStream::WriteBit(int bit)
-{
-    if (bit != 0 && bit != 1)
-    {
-        std::cerr << "BitStream::WriteBit: bit must be 0 or 1, input will be ignored: " << bit << std::endl;
+        cout << "Número insuficiente de bits." << endl;
         return;
     }
 
-    write_buffer |= bit << write_pos--;
-    if (write_pos < 0)
-    {
-        out.write((char *)&write_buffer, sizeof(u_char));
-        out.flush();
-        write_pos = 7;
-        write_buffer = 0;
-    }
-};
+    for (int n = 0; n < sizeNumber; n++)
+        writeBit((number >> n) & 1);
 
-void BitStream::WriteBits(int *bits, int size)
-{
-    for (int i = 0; i < size; i++)
-    {
-        WriteBit(bits[i]);
-    }
-};
+    for (int n = 0; n < nBits - sizeNumber; n++)
+        writeBit(0);
+}
 
-void BitStream::Flush()
+unsigned char BitStream::readBit()
 {
-    if (write_pos < 7)
+    if (mode)
     {
-        out.write((char *)&write_buffer, sizeof(u_char));
-        out.flush();
-        write_pos = 7;
-        write_buffer = 0;
+        cerr << "Bitstream is not in read mode!" << endl;
+        return 2;
     }
-};
+    if (!fp.is_open())
+    {
+        cout << "No input file is currently open." << endl;
+        return 2;
+    }
+
+    if (bitCount == 8)
+    {
+        fp.read(reinterpret_cast<char *>(&buff), sizeof(char));
+
+        if (!fp)
+        {
+            eof = true;
+            cout << "End of File." << endl;
+            return 2;
+        }
+        bitCount = 0;
+    }
+
+    unsigned char bit = 1 & (buff >> (7 - bitCount));
+    bitCount++;
+
+    return bit;
+}
+
+unsigned int BitStream::readNBits(int nBits)
+{
+    if (!fp.is_open())
+    {
+        cout << "No input file is currently open." << endl;
+        return 2;
+    }
+    unsigned char bit;
+    unsigned int result = 0;
+
+    for (int i = 0; i < nBits; i++)
+    {
+        bit = readBit();
+
+        if (bit == 2)
+            return -1;
+
+        result |= bit << i;
+    }
+
+    return result;
+}
+
+void BitStream::close()
+{
+    if (mode && bitCount != 0)
+    {
+        while (bitCount)
+            writeBit(0);
+    }
+    fp.close();
+}
+
+bool BitStream::inputFileIsOpen()
+{
+    return mode == 0 && fp.is_open();
+}
+
+bool BitStream::getEOF()
+{
+    return eof;
+}

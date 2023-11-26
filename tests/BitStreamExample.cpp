@@ -1,4 +1,4 @@
-#include "BitStream.h"
+#include "BitStream.hpp"
 #include <iostream>
 
 int main(int argc, char *argv[])
@@ -8,7 +8,7 @@ int main(int argc, char *argv[])
     int bit;
     while ((bit = bs->ReadBit()) != -1)
     {
-        std::cout << bit;
+        cout << bit;
         bs->WriteBit(bit);
     }
 
@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
 
     int *bits;
 
-    std::cout << std::endl;
+    cout << endl;
     int control = 0;
     while (control == 0)
     {
@@ -31,7 +31,7 @@ int main(int argc, char *argv[])
         }
         for (int i = 0; i < size; i++)
         {
-            std::cout << bits[i];
+            cout << bits[i];
         }
         bs->WriteBits(bits, size);
     }

@@ -11,6 +11,8 @@
 #define IMAGE_H
 #include <iostream>
 
+using namespace std;
+
 /**
  * @struct Pixel
  * @brief A struct representing a pixel in an image

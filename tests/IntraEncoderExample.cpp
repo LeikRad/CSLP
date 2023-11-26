@@ -1,179 +1,165 @@
 #include <iostream>
 #include "opencv2/opencv.hpp"
-#include "BitStream.h"
-#include "IntraEncoder.h"
-#include "Predictors.h"
-#include <bitset>
+#include "BitStream.hpp"
+#include "IntraEncoder.hpp"
+#include "Predictors.hpp"
 #include <chrono>
 #include <iomanip>
+#include <iterator>
+#include "Converter.hpp"
 
 int main(int argc, char const *argv[])
 {
-    std::cout << "Enter the name of the file to save to (absolute path): ";
+    Converter conv;
+    vector<function<int(int, int, int)>> predictors = getPredictors();
+    cout
+        << "Enter the name of the file to save to (absolute path): ";
 
-    std::string input;
+    string output;
 
-    std::cin >> input;
+    cin >> output;
 
-    // convert string to char
+    cout << "Enter the name of the file to read from (absolute path): ";
 
-    char input_char[input.length() + 1];
+    string input;
 
-    strcpy(input_char, input.c_str());
+    cin >> input;
 
-    BitStream bs(input_char, BitStream::WRITE);
+    // read file header
 
-    std::cout << "Enter the name of the file to read from (absolute path): ";
+    ifstream file(input, ios::binary);
 
-    std::cin >> input;
+    // Read the file header
 
-    cv::VideoCapture cap(input);
+    string file_header;
+
+    getline(file, file_header);
+
+    // split the file header into tokens
+
+    istringstream iss(file_header);
+
+    vector<string> tokens{istream_iterator<string>{iss},
+                          istream_iterator<string>{}};
+
+    // write the tokens to the console
+    int format;
+    if (tokens.size() > 6)
+    {
+        if (tokens[6].compare("C444") == 0)
+        {
+            format = 0;
+        }
+        else if (tokens[6].compare("C422") == 0)
+        {
+            format = 1;
+        }
+    }
+    else
+    {
+        format = 2;
+    }
+
+    // print the format
+
+    cout << "Format: " << format << endl;
+
+    VideoCapture cap(input);
 
     if (!cap.isOpened())
     {
-        std::cout << "Error opening video stream or file" << std::endl;
+        cout << "Error opening video stream or file" << endl;
         return -1;
     }
 
-    char format[3] = {'y', 'u', 'v'};
-
-    std::bitset<8> binary_eight;
-    std::bitset<16> binary_sixteen;
-    for (int i = 0; i < 3; i++)
-    { // convert char to bitset
-        binary_eight = std::bitset<8>(format[i]);
-        for (int j = 0; j < 8; j++)
-        {
-            bs.WriteBit(binary_eight[j]);
-        }
-    }
-
-    int width = cap.get(cv::CAP_PROP_FRAME_WIDTH);
-    int height = cap.get(cv::CAP_PROP_FRAME_HEIGHT);
-
-    // get number of frames
-
-    int num_frames = cap.get(cv::CAP_PROP_FRAME_COUNT);
-    int fps = cap.get(cv::CAP_PROP_FPS);
-    std::cout
-        << "num_frames: " << num_frames << std::endl;
-
-    std::cout
-        << "fps: " << fps << std::endl;
-
-    // encode fps, num, frames, width and height
-    // convert width to bitset
-
-    binary_eight = std::bitset<8>(fps);
-    std::cout << "fps: " << binary_eight << std::endl;
-
-    for (int i = 0; i < 8; i++)
-    {
-        bs.WriteBit(binary_eight[i]);
-    }
-
-    binary_sixteen = std::bitset<16>(num_frames);
-    std::cout << "num_frames: " << binary_sixteen << std::endl;
-
-    for (int i = 0; i < 16; i++)
-    {
-        bs.WriteBit(binary_sixteen[i]);
-    }
-
-    binary_sixteen = std::bitset<16>(width);
-    std::cout << "width: " << binary_sixteen << std::endl;
-
-    for (int i = 0; i < 16; i++)
-    {
-        bs.WriteBit(binary_sixteen[i]);
-    }
-
-    // convert height to bitset
-
-    binary_sixteen = std::bitset<16>(height);
-    std::cout << "height: " << binary_sixteen << std::endl;
-
-    for (int i = 0; i < 16; i++)
-    {
-        bs.WriteBit(binary_sixteen[i]);
-    }
-
-    // convert m to bitset
-
-    int m = 8;
-    binary_eight = std::bitset<8>(m);
-
-    std::cout << "m: " << binary_eight << std::endl;
-
-    for (int i = 0; i < 8; i++)
-    {
-        bs.WriteBit(binary_eight[i]);
-    }
-
-    // write shift to bitstream
-
     int shift = 0;
-    binary_eight = std::bitset<8>(shift);
-    std::cout << "shift: " << binary_eight << std::endl;
-
-    for (int i = 0; i < 8; i++)
-    {
-        bs.WriteBit(binary_eight[i]);
-    }
-
-    // get predictor list
-
-    std::vector<std::function<int(int, int, int)>> predictors = getPredictors();
-
     int predictor = 7;
+    GolombEncoder encoder(output);
+    IntraEncoder intra_encoder(encoder, shift);
+    Converter converter;
 
-    // write predictor used to bitstream
+    Mat frame;
+    Mat yuv;
+    encoder.encode(format);
+    encoder.encode(predictor);
+    encoder.encode(shift);
+    encoder.encode(cap.get(CAP_PROP_FRAME_COUNT));
 
-    binary_eight = std::bitset<8>(predictor);
+    int n_frame = 0;
 
-    for (int i = 0; i < 8; i++)
+    switch (format)
     {
-        bs.WriteBit(binary_eight[i]);
-    }
-
-    // go through every frame and encode it
-
-    cv::Mat frame;
-    cv::Mat frame_yuv;
-
-    Golomb golomb(bs, m);
-
-    IntraEncoder intra_encoder(golomb, bs, shift);
-
-    double percentage = 0.0;
-    double average_time = 0.0;
-    int count = 0;
-    while (1)
+    case 0:
     {
-        percentage = (cap.get(cv::CAP_PROP_POS_FRAMES) / num_frames) * 100;
-        std::cout << "Frame %: " << std::fixed << std::setprecision(1) << percentage << "\% ETA ~ " << std::fixed << std::setprecision(1) << average_time * (100 - percentage) << "s" << std::endl;
-        cap >> frame;
-
-        if (frame.empty())
+        while (true)
         {
-            break;
+            cap >> frame;
+            if (frame.empty())
+            {
+                break;
+            };
+            frame = conv.rgb_to_yuv444(frame);
+
+            if (n_frame == 0)
+            {
+                encoder.encode(frame.cols);
+                encoder.encode(frame.rows);
+            }
+
+            intra_encoder.encode(frame, predictors[predictor]);
+
+            cout << "Encoded frame " << n_frame++ << endl;
         }
-
-        cv::cvtColor(frame, frame_yuv, cv::COLOR_BGR2YUV);
-        auto start = std::chrono::high_resolution_clock::now(); // start timer
-
-        intra_encoder.encode(frame_yuv, predictors[predictor]);
-        auto end = std::chrono::high_resolution_clock::now(); // end timer
-        double time_taken = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count();
-
-        time_taken *= 1e-9;
-
-        average_time *= count;
-        average_time += time_taken;
-        average_time /= ++count;
-        // move to start of previous line
-        std::cout << "\033[F" << std::flush;
-        // clear line
-        std::cout << "\033[K" << std::flush;
+        break;
     }
+    case 1:
+    {
+        while (true)
+        {
+            cap >> frame;
+            if (frame.empty())
+            {
+                break;
+            };
+            frame = conv.rgb_to_yuv422(frame);
+
+            if (n_frame == 0)
+            {
+                encoder.encode(frame.cols);
+                encoder.encode(frame.rows);
+            }
+
+            intra_encoder.encode(frame, predictors[predictor]);
+
+            cout << "Encoded frame " << n_frame++ << endl;
+        }
+        break;
+    }
+    case 2:
+    {
+        while (true)
+        {
+            cap >> frame;
+            if (frame.empty())
+            {
+                break;
+            };
+            frame = conv.rgb_to_yuv420(frame);
+
+            if (n_frame == 0)
+            {
+                encoder.encode(frame.cols);
+                encoder.encode(frame.rows);
+            }
+
+            intra_encoder.encode(frame, predictors[predictor]);
+
+            cout << "Encoded frame " << n_frame++ << endl;
+        }
+        break;
+    }
+    }
+
+    encoder.finishEncoding();
+    return 0;
 }

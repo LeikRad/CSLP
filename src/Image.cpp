@@ -1,6 +1,6 @@
 
 
-#include "Image.h"
+#include "Image.hpp"
 #include <fstream>
 #include <iostream>
 #include <opencv2/opencv.hpp>
@@ -14,7 +14,7 @@ Image::Image(const char *FileName)
 
     if (!pFile)
     {
-        throw std::runtime_error("Failed to open the file.");
+        throw runtime_error("Failed to open the file.");
     }
 
     // check if file is ppm
@@ -22,7 +22,7 @@ Image::Image(const char *FileName)
     fgets(buffer, 3, pFile);
     if (buffer[0] != 'P' || buffer[1] != '6')
     {
-        throw std::runtime_error("File is not a ppm file");
+        throw runtime_error("File is not a ppm file");
     }
 
     int width, height, maxVal;
@@ -55,7 +55,7 @@ Pixel *Image::PixelData()
 
 void Image::WriteImage(const char *FileName)
 {
-    std::ofstream out(FileName);
+    ofstream out(FileName);
     out << "P6\n"
         << width << " " << height << "\n"
         << maxVal << "\n";
@@ -117,9 +117,9 @@ void Image::YUVtoRGB()
         double b = y + 2.03211 * u;
 
         // Ensure that the values are within the valid range
-        r = std::max(0.0, std::min(1.0, r));
-        g = std::max(0.0, std::min(1.0, g));
-        b = std::max(0.0, std::min(1.0, b));
+        r = max(0.0, min(1.0, r));
+        g = max(0.0, min(1.0, g));
+        b = max(0.0, min(1.0, b));
 
         pixels[i].r = (u_char)(r * 255);
         pixels[i].g = (u_char)(g * 255);
@@ -132,12 +132,12 @@ void Image::WriteImageWaterMark(Image &watermarkImage)
     // Verifique se a imagem da marca d'água é menor que a imagem original
     if (watermarkImage.width > width || watermarkImage.height > height)
     {
-        throw std::runtime_error("Watermark image dimensions are larger than the original image.");
+        throw runtime_error("Watermark image dimensions are larger than the original image.");
     }
 
     // Crie uma cópia da matriz de pixels original para aplicar a marca d'água
     Pixel *watermarkedPixels = new Pixel[width * height];
-    std::copy(pixels, pixels + width * height, watermarkedPixels);
+    copy(pixels, pixels + width * height, watermarkedPixels);
 
     // Sobreponha a imagem de marca d'água no canto superior esquerdo
     for (int i = 0; i < watermarkImage.height; i++)

@@ -1,128 +1,93 @@
 #include <iostream>
 #include "opencv2/opencv.hpp"
-#include "BitStream.h"
-#include "IntraDecoder.h"
-#include "Predictors.h"
-#include <bitset>
+#include "BitStream.hpp"
+#include "IntraDecoder.hpp"
+#include "Predictors.hpp"
+#include "Converter.hpp"
 
 int main(int argc, char const *argv[])
 {
-    std::cout << "Enter the name of the file to read (absolute path): ";
+    Converter conv;
+    vector<function<int(int, int, int)>> predictors = getPredictors();
 
-    std::string input;
+    cout << "Enter the name of the file to read (absolute path): ";
 
-    std::cin >> input;
+    string input;
 
-    // turn string to char
+    cin >> input;
 
-    char *input_char = new char[input.length() + 1];
+    GolombDecoder decoder(input);
 
-    strcpy(input_char, input.c_str());
+    int format = decoder.decode();
+    int predictor = decoder.decode();
+    int shift = decoder.decode();
+    int n_frames = decoder.decode();
+    int width = decoder.decode();
+    int height = decoder.decode();
 
-    BitStream bs(input_char, BitStream::READ);
+    cout << "Format: " << format << endl;
+    cout << "Predictor: " << predictor << endl;
+    cout << "Shift: " << shift << endl;
+    cout << "Number of frames: " << n_frames << endl;
+    cout << "Width: " << width << endl;
+    cout << "Height: " << height << endl;
 
-    // decode format (yuv), width, height, frames, M, shift, predictor (0-7)
+    Mat frame;
 
-    std::bitset<8> binary_eight;
-    std::string format = "";
-    for (int i = 0; i < 3; i++)
+    IntraDecoder intra_decoder(decoder, shift);
+
+    switch (format)
     {
-        for (int j = 0; j < 8; j++)
+    case 0:
+    {
+        while (n_frames > 0)
         {
-            binary_eight[j] = bs.ReadBit();
+            frame = Mat::zeros(height, width, CV_8UC3);
+            intra_decoder.decode(frame, predictors[predictor]);
+
+            imshow("Image", conv.yuv444_to_rgb(frame));
+            if (waitKey(10) == 27)
+            {
+                destroyAllWindows();
+            }; // Wait for a keystroke in the window
+
+            cout << "Decoded frame " << n_frames-- << endl;
         }
-        format += char(binary_eight.to_ulong());
+        break;
     }
-
-    std::cout << "Format: " << format << std::endl;
-
-    // decode n_frames, width, height
-
-    int fps = 0;
-    int num_frames = 0;
-    int width = 0;
-    int height = 0;
-
-    for (int i = 0; i < 8; i++)
+    case 1:
     {
-        fps += bs.ReadBit() * pow(2, i);
+        while (n_frames > 0)
+        {
+            frame = Mat::zeros(height, width, CV_8UC1);
+            intra_decoder.decode(frame, predictors[predictor]);
+
+            imshow("Image", conv.yuv422_to_rgb(frame));
+            if (waitKey(10) == 27)
+            {
+                destroyAllWindows();
+            }; // Wait for a keystroke in the window
+
+            cout << "Decoded frame " << n_frames-- << endl;
+        }
+        break;
     }
-
-    for (int i = 0; i < 16; i++)
+    case 2:
     {
-        num_frames += bs.ReadBit() * pow(2, i);
+        while (n_frames > 0)
+        {
+            frame = Mat::zeros(height, width, CV_8UC1);
+            intra_decoder.decode(frame, predictors[predictor]);
+
+            imshow("Image", conv.yuv420_to_rgb(frame));
+            if (waitKey(10) == 27)
+            {
+                destroyAllWindows();
+            }; // Wait for a keystroke in the window
+
+            cout << "Decoded frame " << n_frames-- << endl;
+        }
+        break;
     }
-
-    for (int i = 0; i < 16; i++)
-    {
-        width += bs.ReadBit() * pow(2, i);
-    }
-
-    for (int i = 0; i < 16; i++)
-    {
-        height += bs.ReadBit() * pow(2, i);
-    }
-
-    std::cout << "fps: " << fps << std::endl;
-    std::cout << "num_frames: " << num_frames << std::endl;
-    std::cout << "width: " << width << std::endl;
-    std::cout << "height: " << height << std::endl;
-
-    // decode M, shift, predictor (0-7)
-
-    int M = 0;
-    int shift = 0;
-    int predictor = 0;
-
-    for (int i = 0; i < 8; i++)
-    {
-        M += bs.ReadBit() * pow(2, i);
-    }
-
-    for (int i = 0; i < 8; i++)
-    {
-        shift += bs.ReadBit() * pow(2, i);
-    }
-
-    for (int i = 0; i < 8; i++)
-    {
-        predictor += bs.ReadBit() * pow(2, i);
-    }
-
-    std::cout << "M: " << M << std::endl;
-    std::cout << "shift: " << shift << std::endl;
-    std::cout << "predictor: " << predictor << std::endl;
-
-    // get predictor function
-
-    std::vector<std::function<int(int, int, int)>> func_vec = getPredictors();
-
-    std::function<int(int, int, int)> func = func_vec[predictor];
-
-    Golomb golomb(bs, M);
-
-    IntraDecoder decoder(golomb, bs, shift);
-
-    // array to store frames
-
-    cv::Mat *frames = new cv::Mat[num_frames];
-
-    // decode frames
-    cv::VideoWriter writer = cv::VideoWriter("output.avi", cv::VideoWriter::fourcc('M', 'J', 'P', 'G'), fps, cv::Size(width, height));
-    for (int i = 0; i < num_frames; i++)
-    {
-        frames[i] = cv::Mat(height, width, CV_8UC3);
-        std::cout << decoder.decode(frames[i], func) << std::endl;
-        cv::cvtColor(frames[i], frames[i], cv::COLOR_YUV2BGR);
-
-        writer.write(frames[i]);
-    }
-
-    // show video
-
-    for (int i = 0; i < num_frames; i++)
-    {
-        cv::imshow("frame", frames[i]);
-        cv::waitKey(30);
     }
 }
