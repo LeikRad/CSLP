@@ -1,3 +1,10 @@
+/**
+ * @file Converter.hpp
+ * @brief Class used to convert frames between RGB, YUV444, YUV422, and YUV420 formats
+ *
+ * This file contains the declaration of the Converter class used for converting frames between different formats.
+ */
+
 #ifndef FORMATCONVERTER_H
 #define FORMATCONVERTER_H
 
