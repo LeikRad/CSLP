@@ -1,0 +1,53 @@
+\doxysection{Intra\+Encoder.\+hpp}
+\hypertarget{IntraEncoder_8hpp_source}{}\label{IntraEncoder_8hpp_source}\index{include/IntraEncoder.hpp@{include/IntraEncoder.hpp}}
+\mbox{\hyperlink{IntraEncoder_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+
+
+
+
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#ifndef\ INTRAENCODER\_H}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ INTRAENCODER\_H}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}opencv2/opencv.hpp"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Golomb_8hpp}{Golomb.hpp}}"{}}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{using\ namespace\ }cv;}
+\DoxyCodeLine{00015\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00016\ }
+
+
+
+
+
+
+\DoxyCodeLine{00024\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classIntraEncoder}{IntraEncoder}}}
+\DoxyCodeLine{00025\ \{}
+\DoxyCodeLine{00026\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{int}\ shift;\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{classGolombEncoder}{GolombEncoder}}\ \&golomb;\ }
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{public}:}
+
+
+
+
+
+\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{classIntraEncoder}{IntraEncoder}}(\mbox{\hyperlink{classGolombEncoder}{GolombEncoder}}\ \&golomb,\ \textcolor{keywordtype}{int}\ shift\ =\ 0);}
+\DoxyCodeLine{00038\ }
+
+
+\DoxyCodeLine{00042\ \ \ \ \ \mbox{\hyperlink{classIntraEncoder_a23bbfa750a99b76ee45eace988af7484}{\string~IntraEncoder}}();}
+\DoxyCodeLine{00043\ }
+
+
+
+
+
+
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classIntraEncoder_a482f50926a2fca1db910dd47175d1ca2}{encode}}(Mat\ \&frame,\ function<\textcolor{keywordtype}{int}(\textcolor{keywordtype}{int},\ \textcolor{keywordtype}{int},\ \textcolor{keywordtype}{int})>\ predictor);}
+\DoxyCodeLine{00052\ \};}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ INTRAENCODER\_H}}
+
+\end{DoxyCode}

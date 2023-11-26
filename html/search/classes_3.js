@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['pixel_0',['Pixel',['../structPixel.html',1,'']]]
+  ['hybriddecoder_0',['HybridDecoder',['../classHybridDecoder.html',1,'']]],
+  ['hybridencoder_1',['HybridEncoder',['../classHybridEncoder.html',1,'']]]
 ];

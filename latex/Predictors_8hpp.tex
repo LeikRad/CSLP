@@ -1,0 +1,225 @@
+\doxysection{include/\+Predictors.hpp File Reference}
+\hypertarget{Predictors_8hpp}{}\label{Predictors_8hpp}\index{include/Predictors.hpp@{include/Predictors.hpp}}
+
+
+JPEG predictors for image compression.  
+
+
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{Predictors_8hpp_af3ef0f2f480a11f410abdcc181f6be29}{JPEG\+\_\+\+Predictor\+\_\+1}} (int a, int b, int c)
+\begin{DoxyCompactList}\small\item\em JPEG Predictor 1. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{Predictors_8hpp_a5dd3cb698151e5e89d91d4934e5e9c40}{JPEG\+\_\+\+Predictor\+\_\+2}} (int a, int b, int c)
+\begin{DoxyCompactList}\small\item\em JPEG Predictor 2. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{Predictors_8hpp_ad2784b57bab0b8bc931d6813a501a43c}{JPEG\+\_\+\+Predictor\+\_\+3}} (int a, int b, int c)
+\begin{DoxyCompactList}\small\item\em JPEG Predictor 3. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{Predictors_8hpp_a1022fc7e289d9d682464f2f3baf1b564}{JPEG\+\_\+\+Predictor\+\_\+4}} (int a, int b, int c)
+\begin{DoxyCompactList}\small\item\em JPEG Predictor 4. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{Predictors_8hpp_ab75eedc545be00207c48f79fdd0e93bf}{JPEG\+\_\+\+Predictor\+\_\+5}} (int a, int b, int c)
+\begin{DoxyCompactList}\small\item\em JPEG Predictor 5. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{Predictors_8hpp_aad7a64c745662d835802692dd1b4a8b3}{JPEG\+\_\+\+Predictor\+\_\+6}} (int a, int b, int c)
+\begin{DoxyCompactList}\small\item\em JPEG Predictor 6. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{Predictors_8hpp_a50d62153856541ad3d866852e78a7cbe}{JPEG\+\_\+\+Predictor\+\_\+7}} (int a, int b, int c)
+\begin{DoxyCompactList}\small\item\em JPEG Predictor 7. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{Predictors_8hpp_a224a240b8feb06f61f07d9481ca56572}{JPEG\+\_\+\+LS}} (int a, int b, int c)
+\begin{DoxyCompactList}\small\item\em JPEG Lossless predictor. \end{DoxyCompactList}\item 
+vector$<$ function$<$ int(int, int, int)$>$ $>$ \mbox{\hyperlink{Predictors_8hpp_a58114829683b02acbd1433f9bfe94e3f}{get\+Predictors}} ()
+\begin{DoxyCompactList}\small\item\em Get all predictors. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+JPEG predictors for image compression. 
+
+This file contains the declarations of eight JPEG predictors used for image compression. 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{Predictors_8hpp_a58114829683b02acbd1433f9bfe94e3f}\label{Predictors_8hpp_a58114829683b02acbd1433f9bfe94e3f} 
+\index{Predictors.hpp@{Predictors.hpp}!getPredictors@{getPredictors}}
+\index{getPredictors@{getPredictors}!Predictors.hpp@{Predictors.hpp}}
+\doxysubsubsection{\texorpdfstring{getPredictors()}{getPredictors()}}
+{\footnotesize\ttfamily vector$<$ function$<$ int(int, int, int)$>$ $>$ get\+Predictors (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get all predictors. 
+
+\begin{DoxyReturn}{Returns}
+Vector of all predictors 
+\end{DoxyReturn}
+\Hypertarget{Predictors_8hpp_a224a240b8feb06f61f07d9481ca56572}\label{Predictors_8hpp_a224a240b8feb06f61f07d9481ca56572} 
+\index{Predictors.hpp@{Predictors.hpp}!JPEG\_LS@{JPEG\_LS}}
+\index{JPEG\_LS@{JPEG\_LS}!Predictors.hpp@{Predictors.hpp}}
+\doxysubsubsection{\texorpdfstring{JPEG\_LS()}{JPEG\_LS()}}
+{\footnotesize\ttfamily int JPEG\+\_\+\+LS (\begin{DoxyParamCaption}\item[{int}]{a,  }\item[{int}]{b,  }\item[{int}]{c }\end{DoxyParamCaption})}
+
+
+
+JPEG Lossless predictor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & Left pixel value \\
+\hline
+{\em b} & Above pixel value \\
+\hline
+{\em c} & Above-\/left pixel value \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Predicted pixel value 
+\end{DoxyReturn}
+\Hypertarget{Predictors_8hpp_af3ef0f2f480a11f410abdcc181f6be29}\label{Predictors_8hpp_af3ef0f2f480a11f410abdcc181f6be29} 
+\index{Predictors.hpp@{Predictors.hpp}!JPEG\_Predictor\_1@{JPEG\_Predictor\_1}}
+\index{JPEG\_Predictor\_1@{JPEG\_Predictor\_1}!Predictors.hpp@{Predictors.hpp}}
+\doxysubsubsection{\texorpdfstring{JPEG\_Predictor\_1()}{JPEG\_Predictor\_1()}}
+{\footnotesize\ttfamily int JPEG\+\_\+\+Predictor\+\_\+1 (\begin{DoxyParamCaption}\item[{int}]{a,  }\item[{int}]{b,  }\item[{int}]{c }\end{DoxyParamCaption})}
+
+
+
+JPEG Predictor 1. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & Left pixel value \\
+\hline
+{\em b} & Above pixel value \\
+\hline
+{\em c} & Above-\/left pixel value \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Predicted pixel value 
+\end{DoxyReturn}
+\Hypertarget{Predictors_8hpp_a5dd3cb698151e5e89d91d4934e5e9c40}\label{Predictors_8hpp_a5dd3cb698151e5e89d91d4934e5e9c40} 
+\index{Predictors.hpp@{Predictors.hpp}!JPEG\_Predictor\_2@{JPEG\_Predictor\_2}}
+\index{JPEG\_Predictor\_2@{JPEG\_Predictor\_2}!Predictors.hpp@{Predictors.hpp}}
+\doxysubsubsection{\texorpdfstring{JPEG\_Predictor\_2()}{JPEG\_Predictor\_2()}}
+{\footnotesize\ttfamily int JPEG\+\_\+\+Predictor\+\_\+2 (\begin{DoxyParamCaption}\item[{int}]{a,  }\item[{int}]{b,  }\item[{int}]{c }\end{DoxyParamCaption})}
+
+
+
+JPEG Predictor 2. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & Left pixel value \\
+\hline
+{\em b} & Above pixel value \\
+\hline
+{\em c} & Above-\/left pixel value \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Predicted pixel value 
+\end{DoxyReturn}
+\Hypertarget{Predictors_8hpp_ad2784b57bab0b8bc931d6813a501a43c}\label{Predictors_8hpp_ad2784b57bab0b8bc931d6813a501a43c} 
+\index{Predictors.hpp@{Predictors.hpp}!JPEG\_Predictor\_3@{JPEG\_Predictor\_3}}
+\index{JPEG\_Predictor\_3@{JPEG\_Predictor\_3}!Predictors.hpp@{Predictors.hpp}}
+\doxysubsubsection{\texorpdfstring{JPEG\_Predictor\_3()}{JPEG\_Predictor\_3()}}
+{\footnotesize\ttfamily int JPEG\+\_\+\+Predictor\+\_\+3 (\begin{DoxyParamCaption}\item[{int}]{a,  }\item[{int}]{b,  }\item[{int}]{c }\end{DoxyParamCaption})}
+
+
+
+JPEG Predictor 3. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & Left pixel value \\
+\hline
+{\em b} & Above pixel value \\
+\hline
+{\em c} & Above-\/left pixel value \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Predicted pixel value 
+\end{DoxyReturn}
+\Hypertarget{Predictors_8hpp_a1022fc7e289d9d682464f2f3baf1b564}\label{Predictors_8hpp_a1022fc7e289d9d682464f2f3baf1b564} 
+\index{Predictors.hpp@{Predictors.hpp}!JPEG\_Predictor\_4@{JPEG\_Predictor\_4}}
+\index{JPEG\_Predictor\_4@{JPEG\_Predictor\_4}!Predictors.hpp@{Predictors.hpp}}
+\doxysubsubsection{\texorpdfstring{JPEG\_Predictor\_4()}{JPEG\_Predictor\_4()}}
+{\footnotesize\ttfamily int JPEG\+\_\+\+Predictor\+\_\+4 (\begin{DoxyParamCaption}\item[{int}]{a,  }\item[{int}]{b,  }\item[{int}]{c }\end{DoxyParamCaption})}
+
+
+
+JPEG Predictor 4. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & Left pixel value \\
+\hline
+{\em b} & Above pixel value \\
+\hline
+{\em c} & Above-\/left pixel value \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Predicted pixel value 
+\end{DoxyReturn}
+\Hypertarget{Predictors_8hpp_ab75eedc545be00207c48f79fdd0e93bf}\label{Predictors_8hpp_ab75eedc545be00207c48f79fdd0e93bf} 
+\index{Predictors.hpp@{Predictors.hpp}!JPEG\_Predictor\_5@{JPEG\_Predictor\_5}}
+\index{JPEG\_Predictor\_5@{JPEG\_Predictor\_5}!Predictors.hpp@{Predictors.hpp}}
+\doxysubsubsection{\texorpdfstring{JPEG\_Predictor\_5()}{JPEG\_Predictor\_5()}}
+{\footnotesize\ttfamily int JPEG\+\_\+\+Predictor\+\_\+5 (\begin{DoxyParamCaption}\item[{int}]{a,  }\item[{int}]{b,  }\item[{int}]{c }\end{DoxyParamCaption})}
+
+
+
+JPEG Predictor 5. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & Left pixel value \\
+\hline
+{\em b} & Above pixel value \\
+\hline
+{\em c} & Above-\/left pixel value \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Predicted pixel value 
+\end{DoxyReturn}
+\Hypertarget{Predictors_8hpp_aad7a64c745662d835802692dd1b4a8b3}\label{Predictors_8hpp_aad7a64c745662d835802692dd1b4a8b3} 
+\index{Predictors.hpp@{Predictors.hpp}!JPEG\_Predictor\_6@{JPEG\_Predictor\_6}}
+\index{JPEG\_Predictor\_6@{JPEG\_Predictor\_6}!Predictors.hpp@{Predictors.hpp}}
+\doxysubsubsection{\texorpdfstring{JPEG\_Predictor\_6()}{JPEG\_Predictor\_6()}}
+{\footnotesize\ttfamily int JPEG\+\_\+\+Predictor\+\_\+6 (\begin{DoxyParamCaption}\item[{int}]{a,  }\item[{int}]{b,  }\item[{int}]{c }\end{DoxyParamCaption})}
+
+
+
+JPEG Predictor 6. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & Left pixel value \\
+\hline
+{\em b} & Above pixel value \\
+\hline
+{\em c} & Above-\/left pixel value \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Predicted pixel value 
+\end{DoxyReturn}
+\Hypertarget{Predictors_8hpp_a50d62153856541ad3d866852e78a7cbe}\label{Predictors_8hpp_a50d62153856541ad3d866852e78a7cbe} 
+\index{Predictors.hpp@{Predictors.hpp}!JPEG\_Predictor\_7@{JPEG\_Predictor\_7}}
+\index{JPEG\_Predictor\_7@{JPEG\_Predictor\_7}!Predictors.hpp@{Predictors.hpp}}
+\doxysubsubsection{\texorpdfstring{JPEG\_Predictor\_7()}{JPEG\_Predictor\_7()}}
+{\footnotesize\ttfamily int JPEG\+\_\+\+Predictor\+\_\+7 (\begin{DoxyParamCaption}\item[{int}]{a,  }\item[{int}]{b,  }\item[{int}]{c }\end{DoxyParamCaption})}
+
+
+
+JPEG Predictor 7. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & Left pixel value \\
+\hline
+{\em b} & Above pixel value \\
+\hline
+{\em c} & Above-\/left pixel value \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Predicted pixel value 
+\end{DoxyReturn}

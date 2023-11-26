@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['yuvtorgb_0',['YUVtoRGB',['../classImage.html#ac403389311a1302dea67b365c861f686',1,'Image']]]
+  ['optimal_5fm_0',['optimal_m',['../classGolombEncoder.html#ab136427e330d9fb8bb6eb7007f83bb54',1,'GolombEncoder']]]
 ];

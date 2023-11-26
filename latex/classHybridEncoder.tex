@@ -1,0 +1,73 @@
+\doxysection{Hybrid\+Encoder Class Reference}
+\hypertarget{classHybridEncoder}{}\label{classHybridEncoder}\index{HybridEncoder@{HybridEncoder}}
+
+
+Class for hybrid video encoding.  
+
+
+
+
+{\ttfamily \#include $<$Hybrid\+Encoder.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classHybridEncoder_a287ab2ff438bc2afe4e736dc7bba0f26}{Hybrid\+Encoder}} (string input\+\_\+file, int predictor=7, int period=20, int block\+\_\+range=4, int shift=0)
+\begin{DoxyCompactList}\small\item\em Construct a new Hybrid Encoder object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classHybridEncoder_ab45116ac903eb73eb18abae8a80750c2}{encode}} (string output\+\_\+file)
+\begin{DoxyCompactList}\small\item\em Encode the video. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class for hybrid video encoding. 
+
+This class uses both inter-\/frame and intra-\/frame encoding for video compression. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classHybridEncoder_a287ab2ff438bc2afe4e736dc7bba0f26}\label{classHybridEncoder_a287ab2ff438bc2afe4e736dc7bba0f26} 
+\index{HybridEncoder@{HybridEncoder}!HybridEncoder@{HybridEncoder}}
+\index{HybridEncoder@{HybridEncoder}!HybridEncoder@{HybridEncoder}}
+\doxysubsubsection{\texorpdfstring{HybridEncoder()}{HybridEncoder()}}
+{\footnotesize\ttfamily Hybrid\+Encoder\+::\+Hybrid\+Encoder (\begin{DoxyParamCaption}\item[{string}]{input\+\_\+file,  }\item[{int}]{predictor = {\ttfamily 7},  }\item[{int}]{period = {\ttfamily 20},  }\item[{int}]{block\+\_\+range = {\ttfamily 4},  }\item[{int}]{shift = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Construct a new Hybrid Encoder object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em input\+\_\+file} & Path to the input video file \\
+\hline
+{\em predictor} & Predictor to be used for encoding \\
+\hline
+{\em period} & Period for intra-\/frame encoding \\
+\hline
+{\em block\+\_\+range} & Range of the blocks for inter-\/frame encoding \\
+\hline
+{\em shift} & Shift for inter-\/frame encoding \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classHybridEncoder_ab45116ac903eb73eb18abae8a80750c2}\label{classHybridEncoder_ab45116ac903eb73eb18abae8a80750c2} 
+\index{HybridEncoder@{HybridEncoder}!encode@{encode}}
+\index{encode@{encode}!HybridEncoder@{HybridEncoder}}
+\doxysubsubsection{\texorpdfstring{encode()}{encode()}}
+{\footnotesize\ttfamily void Hybrid\+Encoder\+::encode (\begin{DoxyParamCaption}\item[{string}]{output\+\_\+file }\end{DoxyParamCaption})}
+
+
+
+Encode the video. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em output\+\_\+file} & Path to the output file \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{HybridEncoder_8hpp}{Hybrid\+Encoder.\+hpp}}\item 
+src/Hybrid\+Encoder.\+cpp\end{DoxyCompactItemize}

@@ -2,159 +2,171 @@
 \hypertarget{classBitStream}{}\label{classBitStream}\index{BitStream@{BitStream}}
 
 
-A class representing a binary stream of bits.  
+Class that performs operations with bits.  
 
 
 
 
-{\ttfamily \#include $<$Bit\+Stream.\+h$>$}
+{\ttfamily \#include $<$Bit\+Stream.\+hpp$>$}
 
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classBitStream_a9d842e5d476a3869e37d2201892cfc5d}{Bit\+Stream}} (const char \texorpdfstring{$\ast$}{*}File\+Name, const char \texorpdfstring{$\ast$}{*}Output\+File\+Name="{}out.\+bin"{})
-\begin{DoxyCompactList}\small\item\em Construct a new \doxylink{classBitStream}{Bit\+Stream} object from a file. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classBitStream_a63cf0f27c7519417a7984c476a32c9c9}{\texorpdfstring{$\sim$}{\string~}\+Bit\+Stream}} ()
-\begin{DoxyCompactList}\small\item\em Destroy the \doxylink{classBitStream}{Bit\+Stream} object and close the input and output files. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{classBitStream_a727b1df2e89b019f464b5c41cd6aaeae}{Read\+Bit}} ()
-\begin{DoxyCompactList}\small\item\em Read a single bit from the input file. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{structWriteBitReturn}{Write\+Bit\+Return}} \mbox{\hyperlink{classBitStream_a2adb4e58968e8c1f39e504cace020b69}{Read\+Bits}} (int n\+\_\+bits)
-\begin{DoxyCompactList}\small\item\em Read a specified number of bits from the input file. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classBitStream_aa61a8a83b4e4732ba55f83ba2357efac}{Write\+Bit}} (int bit)
-\begin{DoxyCompactList}\small\item\em Write a single bit to the output file. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classBitStream_ae732ef29b12259c0c215404d7dc4ec68}{Write\+Bits}} (int \texorpdfstring{$\ast$}{*}bits, int size)
-\begin{DoxyCompactList}\small\item\em Write an array of bits to the output file. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classBitStream_a7b2dbc9a7828a767448060818920826a}{Flush}} ()
-\begin{DoxyCompactList}\small\item\em Flush any remaining bits to the output file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+int \mbox{\hyperlink{classBitStream_a37be262d771e3e2a4e36151a264810cb}{set\+To\+Read}} (string file)
+\begin{DoxyCompactList}\small\item\em Opens a file for reading, defining mode as 0 and resets the buffer and bit\+Count. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classBitStream_a2baed728efadc3c46503d3d47d9dc286}{set\+To\+Write}} (string file)
+\begin{DoxyCompactList}\small\item\em Opens a file for writing, defining mode as 1 and resets the buffer and bit\+Count. \end{DoxyCompactList}\item 
+\Hypertarget{classBitStream_ac80e4a989da745d5ccda571d37340fe4}\label{classBitStream_ac80e4a989da745d5ccda571d37340fe4} 
+void {\bfseries close} ()
+\begin{DoxyCompactList}\small\item\em Closes the currently opened file, flushing the write buffer if needed. If the current file is opened for writting and the buffer is not yet complete, writes 0\textquotesingle{}s until the buffer is flushed, then closes the file pointer. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classBitStream_af73fe64bbdd98b6ed40c151be9cfb0f1}{input\+File\+Is\+Open}} ()
+\begin{DoxyCompactList}\small\item\em Checks whether the instace is set to read and a file is open. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classBitStream_a9bf90aa484b3119625f4bb8ea291bb49}{get\+EOF}} ()
+\begin{DoxyCompactList}\small\item\em Get method for eof variable. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classBitStream_a5e3e36adf7ca1668b20ef1a4c3bea952}{write\+Bit}} (int bit)
+\begin{DoxyCompactList}\small\item\em Write a bit to the output file Adds the bit to a buffer until a full byte has been created. Once the buffer had 8 bits, the byte is written to the output file and the buffer is reset. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classBitStream_ad14e834f5897767b5410d858f060e549}{write\+NBits}} (int number, int n\+Bits)
+\begin{DoxyCompactList}\small\item\em Method used write a number to a file using a given number of bits. Calculates the needed padding of zeros (n\+Bits minus number of bits the number actually requires), writting them to the file, then writes the number given using the remaining bits. \end{DoxyCompactList}\item 
+unsigned char \mbox{\hyperlink{classBitStream_a848b1e0967ed98dd3d131e70336ea69c}{read\+Bit}} ()
+\begin{DoxyCompactList}\small\item\em Method used to read 1 bit from the input file. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{classBitStream_ad2b3ad61d87b324175461c5c966f5913}{read\+NBits}} (int n\+Bits)
+\begin{DoxyCompactList}\small\item\em Method used to read N bits from the input file. Calls method read\+Bit \textquotesingle{}n\+Bits\textquotesingle{} times and stores data to an unsigned int. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-A class representing a binary stream of bits. 
+Class that performs operations with bits. 
 
-The {\ttfamily \doxylink{classBitStream}{Bit\+Stream}} class provides a way to read and write individual bits from a binary file. 
-
-\doxysubsection{Constructor \& Destructor Documentation}
-\Hypertarget{classBitStream_a9d842e5d476a3869e37d2201892cfc5d}\label{classBitStream_a9d842e5d476a3869e37d2201892cfc5d} 
-\index{BitStream@{BitStream}!BitStream@{BitStream}}
-\index{BitStream@{BitStream}!BitStream@{BitStream}}
-\doxysubsubsection{\texorpdfstring{BitStream()}{BitStream()}}
-{\footnotesize\ttfamily Bit\+Stream\+::\+Bit\+Stream (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{File\+Name,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{Output\+File\+Name = {\ttfamily "{}out.bin"{}} }\end{DoxyParamCaption})}
-
-
-
-Construct a new \doxylink{classBitStream}{Bit\+Stream} object from a file. 
-
-The constructor reads a binary file from disk and creates a new {\ttfamily \doxylink{classBitStream}{Bit\+Stream}} object from it. The constructor also initializes the read and write buffers and positions.
-
-
-\begin{DoxyParams}{Parameters}
-{\em File\+Name} & The name of the binary file to read \\
-\hline
-{\em Output\+File\+Name} & The name of the binary file to write (default is "{}out.\+bin"{})\\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyExceptions}{Exceptions}
-{\em std\+::runtime\+\_\+error} & if the file fails to open \\
-\hline
-\end{DoxyExceptions}
-\Hypertarget{classBitStream_a63cf0f27c7519417a7984c476a32c9c9}\label{classBitStream_a63cf0f27c7519417a7984c476a32c9c9} 
-\index{BitStream@{BitStream}!````~BitStream@{\texorpdfstring{$\sim$}{\string~}BitStream}}
-\index{````~BitStream@{\texorpdfstring{$\sim$}{\string~}BitStream}!BitStream@{BitStream}}
-\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}BitStream()}{\string~BitStream()}}
-{\footnotesize\ttfamily Bit\+Stream\+::\texorpdfstring{$\sim$}{\string~}\+Bit\+Stream (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
-
-
-
-Destroy the \doxylink{classBitStream}{Bit\+Stream} object and close the input and output files. 
-
-The destructor closes the input and output files used by the {\ttfamily \doxylink{classBitStream}{Bit\+Stream}} object. 
+A class used to read/ write bits from/ to a file. Minimum amount of data that can be accessed is 1 byte. 
 
 \doxysubsection{Member Function Documentation}
-\Hypertarget{classBitStream_a7b2dbc9a7828a767448060818920826a}\label{classBitStream_a7b2dbc9a7828a767448060818920826a} 
-\index{BitStream@{BitStream}!Flush@{Flush}}
-\index{Flush@{Flush}!BitStream@{BitStream}}
-\doxysubsubsection{\texorpdfstring{Flush()}{Flush()}}
-{\footnotesize\ttfamily void Bit\+Stream\+::\+Flush (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+\Hypertarget{classBitStream_a9bf90aa484b3119625f4bb8ea291bb49}\label{classBitStream_a9bf90aa484b3119625f4bb8ea291bb49} 
+\index{BitStream@{BitStream}!getEOF@{getEOF}}
+\index{getEOF@{getEOF}!BitStream@{BitStream}}
+\doxysubsubsection{\texorpdfstring{getEOF()}{getEOF()}}
+{\footnotesize\ttfamily Bit\+Stream\+::get\+EOF (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
 
-Flush any remaining bits to the output file. 
-
-The {\ttfamily Flush} method writes any remaining bits in the write buffer to the output file. If the write buffer is already empty, the method does nothing. \Hypertarget{classBitStream_a727b1df2e89b019f464b5c41cd6aaeae}\label{classBitStream_a727b1df2e89b019f464b5c41cd6aaeae} 
-\index{BitStream@{BitStream}!ReadBit@{ReadBit}}
-\index{ReadBit@{ReadBit}!BitStream@{BitStream}}
-\doxysubsubsection{\texorpdfstring{ReadBit()}{ReadBit()}}
-{\footnotesize\ttfamily int Bit\+Stream\+::\+Read\+Bit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
-
-
-
-Read a single bit from the input file. 
-
-The {\ttfamily Read\+Bit} method reads a single bit from the input file and returns its value. If the end of the file is reached, the method returns -\/1.
+Get method for eof variable. 
 
 \begin{DoxyReturn}{Returns}
-The value of the next bit in the input file, or -\/1 if the end of the file is reached 
+Value of eof variable 
 \end{DoxyReturn}
-\Hypertarget{classBitStream_a2adb4e58968e8c1f39e504cace020b69}\label{classBitStream_a2adb4e58968e8c1f39e504cace020b69} 
-\index{BitStream@{BitStream}!ReadBits@{ReadBits}}
-\index{ReadBits@{ReadBits}!BitStream@{BitStream}}
-\doxysubsubsection{\texorpdfstring{ReadBits()}{ReadBits()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{structWriteBitReturn}{Write\+Bit\+Return}} Bit\+Stream\+::\+Read\+Bits (\begin{DoxyParamCaption}\item[{int}]{n\+\_\+bits }\end{DoxyParamCaption})}
+\Hypertarget{classBitStream_af73fe64bbdd98b6ed40c151be9cfb0f1}\label{classBitStream_af73fe64bbdd98b6ed40c151be9cfb0f1} 
+\index{BitStream@{BitStream}!inputFileIsOpen@{inputFileIsOpen}}
+\index{inputFileIsOpen@{inputFileIsOpen}!BitStream@{BitStream}}
+\doxysubsubsection{\texorpdfstring{inputFileIsOpen()}{inputFileIsOpen()}}
+{\footnotesize\ttfamily Bit\+Stream\+::input\+File\+Is\+Open (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
 
-Read a specified number of bits from the input file. 
+Checks whether the instace is set to read and a file is open. 
 
-The {\ttfamily Read\+Bits} method reads a specified number of bits from the input file and returns them as an array of integers. If the end of the file is reached before all bits are read, the method returns the bits that were read.
+\begin{DoxyReturn}{Returns}
+True if the instance is set to read and a file is open, False otherwise 
+\end{DoxyReturn}
+\Hypertarget{classBitStream_a848b1e0967ed98dd3d131e70336ea69c}\label{classBitStream_a848b1e0967ed98dd3d131e70336ea69c} 
+\index{BitStream@{BitStream}!readBit@{readBit}}
+\index{readBit@{readBit}!BitStream@{BitStream}}
+\doxysubsubsection{\texorpdfstring{readBit()}{readBit()}}
+{\footnotesize\ttfamily Bit\+Stream\+::read\+Bit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Method used to read 1 bit from the input file. 
+
+\begin{DoxyReturn}{Returns}
+Returns 0 or 1 based on bit value, 2 if an error occurs 
+\end{DoxyReturn}
+\Hypertarget{classBitStream_ad2b3ad61d87b324175461c5c966f5913}\label{classBitStream_ad2b3ad61d87b324175461c5c966f5913} 
+\index{BitStream@{BitStream}!readNBits@{readNBits}}
+\index{readNBits@{readNBits}!BitStream@{BitStream}}
+\doxysubsubsection{\texorpdfstring{readNBits()}{readNBits()}}
+{\footnotesize\ttfamily Bit\+Stream\+::read\+NBits (\begin{DoxyParamCaption}\item[{int}]{n\+Bits }\end{DoxyParamCaption})}
+
+
+
+Method used to read N bits from the input file. Calls method read\+Bit \textquotesingle{}n\+Bits\textquotesingle{} times and stores data to an unsigned int. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em n\+\_\+bits} & The number of bits to read\\
+{\em n\+Bits} & number of bits to read \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-A {\ttfamily \doxylink{structWriteBitReturn}{Write\+Bit\+Return}} struct containing an array of integers representing the bits that were read, and the number of bits that were read 
+Returns an unsigned int corresponding to the read bits, if an error occurs returns -\/1. 
 \end{DoxyReturn}
-\Hypertarget{classBitStream_aa61a8a83b4e4732ba55f83ba2357efac}\label{classBitStream_aa61a8a83b4e4732ba55f83ba2357efac} 
-\index{BitStream@{BitStream}!WriteBit@{WriteBit}}
-\index{WriteBit@{WriteBit}!BitStream@{BitStream}}
-\doxysubsubsection{\texorpdfstring{WriteBit()}{WriteBit()}}
-{\footnotesize\ttfamily void Bit\+Stream\+::\+Write\+Bit (\begin{DoxyParamCaption}\item[{int}]{bit }\end{DoxyParamCaption})}
+\Hypertarget{classBitStream_a37be262d771e3e2a4e36151a264810cb}\label{classBitStream_a37be262d771e3e2a4e36151a264810cb} 
+\index{BitStream@{BitStream}!setToRead@{setToRead}}
+\index{setToRead@{setToRead}!BitStream@{BitStream}}
+\doxysubsubsection{\texorpdfstring{setToRead()}{setToRead()}}
+{\footnotesize\ttfamily Bit\+Stream\+::set\+To\+Read (\begin{DoxyParamCaption}\item[{string}]{file }\end{DoxyParamCaption})}
 
 
 
-Write a single bit to the output file. 
-
-The {\ttfamily Write\+Bit} method writes a single bit to the output file. If the input bit is not 0 or 1, the method prints an error message and ignores the input.
+Opens a file for reading, defining mode as 0 and resets the buffer and bit\+Count. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em bit} & The bit to write (must be 0 or 1) \\
+{\em file} & Path to the file that will be opened for reading. \\
 \hline
 \end{DoxyParams}
-\Hypertarget{classBitStream_ae732ef29b12259c0c215404d7dc4ec68}\label{classBitStream_ae732ef29b12259c0c215404d7dc4ec68} 
-\index{BitStream@{BitStream}!WriteBits@{WriteBits}}
-\index{WriteBits@{WriteBits}!BitStream@{BitStream}}
-\doxysubsubsection{\texorpdfstring{WriteBits()}{WriteBits()}}
-{\footnotesize\ttfamily void Bit\+Stream\+::\+Write\+Bits (\begin{DoxyParamCaption}\item[{int \texorpdfstring{$\ast$}{*}}]{bits,  }\item[{int}]{size }\end{DoxyParamCaption})}
+\begin{DoxyReturn}{Returns}
+0 if the file is successfully opened, -\/1 if not 
+\end{DoxyReturn}
+\Hypertarget{classBitStream_a2baed728efadc3c46503d3d47d9dc286}\label{classBitStream_a2baed728efadc3c46503d3d47d9dc286} 
+\index{BitStream@{BitStream}!setToWrite@{setToWrite}}
+\index{setToWrite@{setToWrite}!BitStream@{BitStream}}
+\doxysubsubsection{\texorpdfstring{setToWrite()}{setToWrite()}}
+{\footnotesize\ttfamily Bit\+Stream\+::set\+To\+Write (\begin{DoxyParamCaption}\item[{string}]{file }\end{DoxyParamCaption})}
 
 
 
-Write an array of bits to the output file. 
-
-The {\ttfamily Write\+Bits} method writes an array of bits to the output file. If any of the input bits are not 0 or 1, the method prints an error message and ignores the input.
+Opens a file for writing, defining mode as 1 and resets the buffer and bit\+Count. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em bits} & An array of integers representing the bits to write (must be 0 or 1) \\
+{\em file} & Path to the file that will be opened for writing. \\
 \hline
-{\em size} & The number of bits to write \\
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if the file is successfully opened, -\/1 if not 
+\end{DoxyReturn}
+\Hypertarget{classBitStream_a5e3e36adf7ca1668b20ef1a4c3bea952}\label{classBitStream_a5e3e36adf7ca1668b20ef1a4c3bea952} 
+\index{BitStream@{BitStream}!writeBit@{writeBit}}
+\index{writeBit@{writeBit}!BitStream@{BitStream}}
+\doxysubsubsection{\texorpdfstring{writeBit()}{writeBit()}}
+{\footnotesize\ttfamily Bit\+Stream\+::write\+Bit (\begin{DoxyParamCaption}\item[{int}]{bit }\end{DoxyParamCaption})}
+
+
+
+Write a bit to the output file Adds the bit to a buffer until a full byte has been created. Once the buffer had 8 bits, the byte is written to the output file and the buffer is reset. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em bit} & Bit (0 or 1) that will be written \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classBitStream_ad14e834f5897767b5410d858f060e549}\label{classBitStream_ad14e834f5897767b5410d858f060e549} 
+\index{BitStream@{BitStream}!writeNBits@{writeNBits}}
+\index{writeNBits@{writeNBits}!BitStream@{BitStream}}
+\doxysubsubsection{\texorpdfstring{writeNBits()}{writeNBits()}}
+{\footnotesize\ttfamily Bit\+Stream\+::write\+NBits (\begin{DoxyParamCaption}\item[{int}]{number,  }\item[{int}]{n\+Bits }\end{DoxyParamCaption})}
+
+
+
+Method used write a number to a file using a given number of bits. Calculates the needed padding of zeros (n\+Bits minus number of bits the number actually requires), writting them to the file, then writes the number given using the remaining bits. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em number} & Number that will be written to file \\
+\hline
+{\em n\+Bits} & Number of bits used to write the given number \\
 \hline
 \end{DoxyParams}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-include/\mbox{\hyperlink{BitStream_8h}{Bit\+Stream.\+h}}\item 
+include/\mbox{\hyperlink{BitStream_8hpp}{Bit\+Stream.\+hpp}}\item 
 src/Bit\+Stream.\+cpp\end{DoxyCompactItemize}

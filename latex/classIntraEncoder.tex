@@ -1,0 +1,75 @@
+\doxysection{Intra\+Encoder Class Reference}
+\hypertarget{classIntraEncoder}{}\label{classIntraEncoder}\index{IntraEncoder@{IntraEncoder}}
+
+
+Class for intra-\/frame encoding.  
+
+
+
+
+{\ttfamily \#include $<$Intra\+Encoder.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classIntraEncoder_ad0545765454d4993f4a3c5e30bb93e81}{Intra\+Encoder}} (\mbox{\hyperlink{classGolombEncoder}{Golomb\+Encoder}} \&golomb, int shift=0)
+\begin{DoxyCompactList}\small\item\em Construct a new Intra Encoder object. \end{DoxyCompactList}\item 
+\Hypertarget{classIntraEncoder_a23bbfa750a99b76ee45eace988af7484}\label{classIntraEncoder_a23bbfa750a99b76ee45eace988af7484} 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Intra\+Encoder} ()
+\begin{DoxyCompactList}\small\item\em Destroy the Intra Encoder object. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classIntraEncoder_a482f50926a2fca1db910dd47175d1ca2}{encode}} (Mat \&frame, function$<$ int(int, int, int)$>$ predictor)
+\begin{DoxyCompactList}\small\item\em Encode a frame. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class for intra-\/frame encoding. 
+
+This class is used for intra-\/frame encoding in video compression. Error values are calculated by the difference between the original and the predicted values and then encoded by Golomb. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classIntraEncoder_ad0545765454d4993f4a3c5e30bb93e81}\label{classIntraEncoder_ad0545765454d4993f4a3c5e30bb93e81} 
+\index{IntraEncoder@{IntraEncoder}!IntraEncoder@{IntraEncoder}}
+\index{IntraEncoder@{IntraEncoder}!IntraEncoder@{IntraEncoder}}
+\doxysubsubsection{\texorpdfstring{IntraEncoder()}{IntraEncoder()}}
+{\footnotesize\ttfamily Intra\+Encoder\+::\+Intra\+Encoder (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classGolombEncoder}{Golomb\+Encoder}} \&}]{golomb,  }\item[{int}]{shift = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Construct a new Intra Encoder object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em golomb} & Golomb encoder for encoding \\
+\hline
+{\em shift} & Shift for encoding \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classIntraEncoder_a482f50926a2fca1db910dd47175d1ca2}\label{classIntraEncoder_a482f50926a2fca1db910dd47175d1ca2} 
+\index{IntraEncoder@{IntraEncoder}!encode@{encode}}
+\index{encode@{encode}!IntraEncoder@{IntraEncoder}}
+\doxysubsubsection{\texorpdfstring{encode()}{encode()}}
+{\footnotesize\ttfamily int Intra\+Encoder\+::encode (\begin{DoxyParamCaption}\item[{Mat \&}]{frame,  }\item[{function$<$ int(int, int, int)$>$}]{predictor }\end{DoxyParamCaption})}
+
+
+
+Encode a frame. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em frame} & Frame to be encoded \\
+\hline
+{\em predictor} & Predictor to be used for encoding \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Result of the encoding 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{IntraEncoder_8hpp}{Intra\+Encoder.\+hpp}}\item 
+src/Intra\+Encoder.\+cpp\end{DoxyCompactItemize}

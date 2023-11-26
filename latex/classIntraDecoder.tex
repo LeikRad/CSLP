@@ -1,0 +1,75 @@
+\doxysection{Intra\+Decoder Class Reference}
+\hypertarget{classIntraDecoder}{}\label{classIntraDecoder}\index{IntraDecoder@{IntraDecoder}}
+
+
+Class for intra-\/frame decoding.  
+
+
+
+
+{\ttfamily \#include $<$Intra\+Decoder.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classIntraDecoder_abe37b6222665208e31f7fb737fb737b6}{Intra\+Decoder}} (\mbox{\hyperlink{classGolombDecoder}{Golomb\+Decoder}} \&golomb, int shift=0)
+\begin{DoxyCompactList}\small\item\em Construct a new Intra Decoder object. \end{DoxyCompactList}\item 
+\Hypertarget{classIntraDecoder_a35df5df502a72d8ef398b5a595938b41}\label{classIntraDecoder_a35df5df502a72d8ef398b5a595938b41} 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Intra\+Decoder} ()
+\begin{DoxyCompactList}\small\item\em Destroy the Intra Decoder object. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classIntraDecoder_a617999318d214190428dd62f941c00ad}{decode}} (Mat \&frame, function$<$ int(int, int, int)$>$ predictor)
+\begin{DoxyCompactList}\small\item\em Decode a frame. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class for intra-\/frame decoding. 
+
+This class is used for intra-\/frame decoding in video decompression. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classIntraDecoder_abe37b6222665208e31f7fb737fb737b6}\label{classIntraDecoder_abe37b6222665208e31f7fb737fb737b6} 
+\index{IntraDecoder@{IntraDecoder}!IntraDecoder@{IntraDecoder}}
+\index{IntraDecoder@{IntraDecoder}!IntraDecoder@{IntraDecoder}}
+\doxysubsubsection{\texorpdfstring{IntraDecoder()}{IntraDecoder()}}
+{\footnotesize\ttfamily Intra\+Decoder\+::\+Intra\+Decoder (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classGolombDecoder}{Golomb\+Decoder}} \&}]{golomb,  }\item[{int}]{shift = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Construct a new Intra Decoder object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em golomb} & Golomb decoder for decoding \\
+\hline
+{\em shift} & Shift for decoding \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classIntraDecoder_a617999318d214190428dd62f941c00ad}\label{classIntraDecoder_a617999318d214190428dd62f941c00ad} 
+\index{IntraDecoder@{IntraDecoder}!decode@{decode}}
+\index{decode@{decode}!IntraDecoder@{IntraDecoder}}
+\doxysubsubsection{\texorpdfstring{decode()}{decode()}}
+{\footnotesize\ttfamily int Intra\+Decoder\+::decode (\begin{DoxyParamCaption}\item[{Mat \&}]{frame,  }\item[{function$<$ int(int, int, int)$>$}]{predictor }\end{DoxyParamCaption})}
+
+
+
+Decode a frame. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em frame} & Frame to be decoded \\
+\hline
+{\em predictor} & Predictor to be used for decoding \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Result of the decoding 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{IntraDecoder_8hpp}{Intra\+Decoder.\+hpp}}\item 
+src/Intra\+Decoder.\+cpp\end{DoxyCompactItemize}

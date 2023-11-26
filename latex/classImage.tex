@@ -7,7 +7,7 @@ A class representing a digital image.
 
 
 
-{\ttfamily \#include $<$Image.\+h$>$}
+{\ttfamily \#include $<$Image.\+hpp$>$}
 
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
@@ -89,6 +89,8 @@ The destructor frees the memory used by the pixel data of the image.
 
 
 Apply histogram equalization to the V channel of the image in the HSV color space. 
+
+In this function, we first create a Mat object from the pixels array and convert it to the HSV color space using the cvt\+Color function. We then split the HSV channels into separate Mat objects and calculate the histogram of the V channel using the calc\+Hist function. We then apply histogram equalization to the V channel using the equalize\+Hist function. We then merge the channels back into the HSV image using the merge function and convert it back to the BGR color space using the cvt\+Color function. Finally, we copy the modified pixels back to the pixels array using the memcpy function and display the histogram using the imshow function.
 
 The {\ttfamily Apply\+Histogram\+Equalization} method applies histogram equalization to the V channel of the image in the HSV color space. \Hypertarget{classImage_a88a6c522d11c4e782d36e5861d1c35f5}\label{classImage_a88a6c522d11c4e782d36e5861d1c35f5} 
 \index{Image@{Image}!BlurFilter@{BlurFilter}}
@@ -244,5 +246,5 @@ The {\ttfamily YUVto\+RGB} method converts the image from YUV color space to RGB
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-include/\mbox{\hyperlink{Image_8h}{Image.\+h}}\item 
+include/\mbox{\hyperlink{Image_8hpp}{Image.\+hpp}}\item 
 src/Image.\+cpp\end{DoxyCompactItemize}

@@ -80,7 +80,7 @@ $(function() {
 <p>A class representing a digital image.  
  <a href="#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="Image_8h_source.html">Image.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="Image_8hpp_source.html">Image.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -198,6 +198,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Apply histogram equalization to the V channel of the image in the HSV color space. </p>
+<p>In this function, we first create a Mat object from the pixels array and convert it to the HSV color space using the cvtColor function. We then split the HSV channels into separate Mat objects and calculate the histogram of the V channel using the calcHist function. We then apply histogram equalization to the V channel using the equalizeHist function. We then merge the channels back into the HSV image using the merge function and convert it back to the BGR color space using the cvtColor function. Finally, we copy the modified pixels back to the pixels array using the memcpy function and display the histogram using the imshow function.</p>
 <p>The <code>ApplyHistogramEqualization</code> method applies histogram equalization to the V channel of the image in the HSV color space. </p>
 
 </div>
@@ -475,7 +476,7 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>include/<a class="el" href="Image_8h_source.html">Image.h</a></li>
+<li>include/<a class="el" href="Image_8hpp_source.html">Image.hpp</a></li>
 <li>src/<b>Image.cpp</b></li>
 </ul>
 </div><!-- contents -->

@@ -1,3 +1,9 @@
+/**
+ * @file BitStream.hpp
+ * @brief Header file for the BitStream class
+ *
+ * This file contains the definition of the BitStream class, which is used to read and write bits from and to a file.
+ */
 #ifndef BITSTREAM_H
 #define BITSTREAM_H
 

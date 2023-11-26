@@ -1,0 +1,56 @@
+\doxysection{Inter\+Decoder.\+hpp}
+\hypertarget{InterDecoder_8hpp_source}{}\label{InterDecoder_8hpp_source}\index{include/InterDecoder.hpp@{include/InterDecoder.hpp}}
+\mbox{\hyperlink{InterDecoder_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+
+
+
+
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#ifndef\ INTERDECODER\_H}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ INTERDECODER\_H}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}opencv2/opencv.hpp"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Golomb_8hpp}{Golomb.hpp}}"{}}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{using\ namespace\ }cv;}
+\DoxyCodeLine{00015\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00016\ }
+
+
+
+
+
+\DoxyCodeLine{00023\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classInterDecoder}{InterDecoder}}}
+\DoxyCodeLine{00024\ \{}
+\DoxyCodeLine{00025\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{int}\ block\_size;\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{int}\ block\_range;\ \ \ \ \ \ \ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{int}\ shift;\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{classGolombDecoder}{GolombDecoder}}\ \&golomb;\ }
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{public}:}
+
+
+
+
+
+
+
+\DoxyCodeLine{00040\ \ \ \ \ \mbox{\hyperlink{classInterDecoder_a9825fe173403eabe099087714bbf5f8b}{InterDecoder}}(\mbox{\hyperlink{classGolombDecoder}{GolombDecoder}}\ \&golomb,\ \textcolor{keywordtype}{int}\ block\_size,\ \textcolor{keywordtype}{int}\ block\_range,\ \textcolor{keywordtype}{int}\ shift\ =\ 0);}
+\DoxyCodeLine{00041\ }
+
+
+\DoxyCodeLine{00045\ \ \ \ \ \mbox{\hyperlink{classInterDecoder_a9825fe173403eabe099087714bbf5f8b}{InterDecoder}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00046\ }
+
+
+
+
+
+
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classInterDecoder_a727ad7fc489356e74b48560bad9ed8a7}{decode}}(Mat\ \&old\_frame,\ Mat\ \&new\_frame);}
+\DoxyCodeLine{00055\ \};}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ INTERDECODER\_H}}
+
+\end{DoxyCode}
