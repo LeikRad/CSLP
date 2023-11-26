@@ -1,0 +1,145 @@
+\chapter{CSLP}
+\hypertarget{index}{}\label{index}\index{CSLP@{CSLP}}
+\label{index_md_README}%
+\Hypertarget{index_md_README}%
+ \hypertarget{index_autotoc_md1}{}\doxysection{\texorpdfstring{Setup}{Setup}}\label{index_autotoc_md1}
+This project requirements are\+:
+
+
+\begin{DoxyItemize}
+\item Opencv 3.\+4.\+1
+\item Cmake 3.\+22.\+1
+\end{DoxyItemize}
+
+To install opencv, you can follow the instructions in the following link\+: \href{https://docs.opencv.org/3.4.1/d7/d9f/tutorial_linux_install.html}{\texttt{ https\+://docs.\+opencv.\+org/3.\+4.\+1/d7/d9f/tutorial\+\_\+linux\+\_\+install.\+html}}
+
+To install cmake, you can follow the instructions in the following link\+: \href{https://cmake.org/install/}{\texttt{ https\+://cmake.\+org/install/}}\hypertarget{index_autotoc_md2}{}\doxysection{\texorpdfstring{Build}{Build}}\label{index_autotoc_md2}
+To build the project, you can run the following commands in the root directory of the project\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{cmake\ .}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{make}
+
+\end{DoxyCode}
+
+
+This will generate the build folder alongside with individual folders for each deliverable. Inside each folder, you can find the executable(s) for the respective deliverable.\hypertarget{index_autotoc_md3}{}\doxysection{\texorpdfstring{Run}{Run}}\label{index_autotoc_md3}
+The way to run each deliverable varies. The instructions for each deliverable are as follows\+:\hypertarget{index_autotoc_md4}{}\doxysubsection{\texorpdfstring{Deliverable 1}{Deliverable 1}}\label{index_autotoc_md4}
+\hypertarget{index_autotoc_md5}{}\doxysubsubsection{\texorpdfstring{Image}{Image}}\label{index_autotoc_md5}
+To run 1.\+1, you can run the following command in the root directory of the project\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{cd\ build/Deliverable\_1}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{./ImageExample.out}
+
+\end{DoxyCode}
+
+
+This will generate a copy of the image that is hardcoded in the code. (If not changed, it will be the image "{}bike3.\+ppm"{}) Note\+: The Image\+Example has commented code that showcases other functions like colorspace conversion(\+YUV, Gray), histogram equalization, etc. You can uncomment them to see the results.\hypertarget{index_autotoc_md6}{}\doxysubsubsection{\texorpdfstring{Video}{Video}}\label{index_autotoc_md6}
+To run 1.\+2, you can run the following command in the root directory of the project\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{cd\ build/Deliverable\_1}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{./Video\_Ex2.out}
+
+\end{DoxyCode}
+
+
+This will open 4 windows, RGB, YUV 4\+:2\+:0, YUV 4\+:2\+:2 and YUV 4\+:4\+:4. The video that is hardcoded in the code will be shown in each window with the respective colorspace conversion.
+
+\DoxyHorRuler{0}
+
+
+To run 1.\+3, you can run the following command in the root directory of the project\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{cd\ build/Deliverable\_1}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{./Video\_Ex3.out}
+
+\end{DoxyCode}
+
+
+This will open a video player with some functionalities. The video that is hardcoded in the code will be shown in the video player.
+
+The video player has the following functionalities\+:
+
+
+\begin{DoxyItemize}
+\item Pressing w will add a watermark to the video (hardcoded);
+\item Pressing y will convert the video to YUV 4\+:4\+:4;
+\item Pressing h will show the histogram of the video;
+\item Pressing g will show the grayscale version of the video;
+\item Pressing e will apply histogram equalization to the video;
+\item Pressing b will apply a Gaussian blur filter to the video;
+\item Pressing f will apply a blur filter to the video;
+\item Pressing t will apply a threshold to the video;
+\item Pressing esc will close the video player;
+\end{DoxyItemize}
+
+The functionalities are processed in a determined order, which is the order that they are listed above. For example, it\textquotesingle{}s impossible to apply a gaussian blur filter before applying a grayscale filter.\hypertarget{index_autotoc_md8}{}\doxysubsection{\texorpdfstring{Deliverable 2}{Deliverable 2}}\label{index_autotoc_md8}
+To run the deliverable 2 example, you can run the following command in the root directory of the project\+:
+
+Requirements\+: This example requires the existance of a Test.\+txt file inside the Deliverable\+\_\+2 folder. This file should contain text. (You may change the example code to read from a different file)
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{cd\ build/Deliverable\_2}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{./BitStreamExample.out}
+
+\end{DoxyCode}
+
+
+This will read the Test.\+txt file and write the contents in binary to a new file called out.\+bin (Making use of the read\+Bit() and write\+Bit() functions). It will after read the out.\+bin file and write the contents to a new file called out2.\+bin (Making use of the read\+Bits() and write\+Bits()).\hypertarget{index_autotoc_md9}{}\doxysubsection{\texorpdfstring{Deliverable 3}{Deliverable 3}}\label{index_autotoc_md9}
+To run the deliverable 3 example, you can run the following command in the root directory of the project\+:
+
+Requirements\+: This requires the existance of an empty encoded.\+bin file inside the Deliverable\+\_\+3 folder.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{cd\ build/Deliverable\_3}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{./GolombExample.out}
+
+\end{DoxyCode}
+
+
+This will encode the numbers in the following range -\/50, 50 (inclusive) and write them to the encoded.\+bin file. After that, it will read the encoded.\+bin file and decode the numbers, writing them to the terminal. 

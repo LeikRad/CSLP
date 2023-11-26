@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['decode_0',['Decode',['../classGolomb.html#aa497145114d0133f1942ade9f2c63c1a',1,'Golomb']]],
-  ['displayimage_1',['DisplayImage',['../classImage.html#a23083e77ac0ed2250f3a071e0390b265',1,'Image']]]
+  ['applyhistogramequalization_0',['ApplyHistogramEqualization',['../classImage.html#a8c596c19c7fc336cbf08766229f58abf',1,'Image']]]
 ];

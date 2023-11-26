@@ -77,91 +77,54 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>A class representing a binary stream of bits.  
+<p>Class that performs operations with bits.  
  <a href="#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="BitStream_8h_source.html">BitStream.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="BitStream_8hpp_source.html">BitStream.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a9d842e5d476a3869e37d2201892cfc5d" id="r_a9d842e5d476a3869e37d2201892cfc5d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9d842e5d476a3869e37d2201892cfc5d">BitStream</a> (const char *FileName, const char *OutputFileName=&quot;out.bin&quot;)</td></tr>
-<tr class="memdesc:a9d842e5d476a3869e37d2201892cfc5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new <a class="el" href="classBitStream.html" title="A class representing a binary stream of bits.">BitStream</a> object from a file.  <br /></td></tr>
-<tr class="separator:a9d842e5d476a3869e37d2201892cfc5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a63cf0f27c7519417a7984c476a32c9c9" id="r_a63cf0f27c7519417a7984c476a32c9c9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a63cf0f27c7519417a7984c476a32c9c9">~BitStream</a> ()</td></tr>
-<tr class="memdesc:a63cf0f27c7519417a7984c476a32c9c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroy the <a class="el" href="classBitStream.html" title="A class representing a binary stream of bits.">BitStream</a> object and close the input and output files.  <br /></td></tr>
-<tr class="separator:a63cf0f27c7519417a7984c476a32c9c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a727b1df2e89b019f464b5c41cd6aaeae" id="r_a727b1df2e89b019f464b5c41cd6aaeae"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a727b1df2e89b019f464b5c41cd6aaeae">ReadBit</a> ()</td></tr>
-<tr class="memdesc:a727b1df2e89b019f464b5c41cd6aaeae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read a single bit from the input file.  <br /></td></tr>
-<tr class="separator:a727b1df2e89b019f464b5c41cd6aaeae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2adb4e58968e8c1f39e504cace020b69" id="r_a2adb4e58968e8c1f39e504cace020b69"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structWriteBitReturn.html">WriteBitReturn</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2adb4e58968e8c1f39e504cace020b69">ReadBits</a> (int n_bits)</td></tr>
-<tr class="memdesc:a2adb4e58968e8c1f39e504cace020b69"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read a specified number of bits from the input file.  <br /></td></tr>
-<tr class="separator:a2adb4e58968e8c1f39e504cace020b69"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa61a8a83b4e4732ba55f83ba2357efac" id="r_aa61a8a83b4e4732ba55f83ba2357efac"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa61a8a83b4e4732ba55f83ba2357efac">WriteBit</a> (int bit)</td></tr>
-<tr class="memdesc:aa61a8a83b4e4732ba55f83ba2357efac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write a single bit to the output file.  <br /></td></tr>
-<tr class="separator:aa61a8a83b4e4732ba55f83ba2357efac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae732ef29b12259c0c215404d7dc4ec68" id="r_ae732ef29b12259c0c215404d7dc4ec68"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae732ef29b12259c0c215404d7dc4ec68">WriteBits</a> (int *bits, int size)</td></tr>
-<tr class="memdesc:ae732ef29b12259c0c215404d7dc4ec68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write an array of bits to the output file.  <br /></td></tr>
-<tr class="separator:ae732ef29b12259c0c215404d7dc4ec68"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7b2dbc9a7828a767448060818920826a" id="r_a7b2dbc9a7828a767448060818920826a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7b2dbc9a7828a767448060818920826a">Flush</a> ()</td></tr>
-<tr class="memdesc:a7b2dbc9a7828a767448060818920826a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flush any remaining bits to the output file.  <br /></td></tr>
-<tr class="separator:a7b2dbc9a7828a767448060818920826a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37be262d771e3e2a4e36151a264810cb" id="r_a37be262d771e3e2a4e36151a264810cb"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a37be262d771e3e2a4e36151a264810cb">setToRead</a> (string file)</td></tr>
+<tr class="memdesc:a37be262d771e3e2a4e36151a264810cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Opens a file for reading, defining mode as 0 and resets the buffer and bitCount.  <br /></td></tr>
+<tr class="separator:a37be262d771e3e2a4e36151a264810cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2baed728efadc3c46503d3d47d9dc286" id="r_a2baed728efadc3c46503d3d47d9dc286"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2baed728efadc3c46503d3d47d9dc286">setToWrite</a> (string file)</td></tr>
+<tr class="memdesc:a2baed728efadc3c46503d3d47d9dc286"><td class="mdescLeft">&#160;</td><td class="mdescRight">Opens a file for writing, defining mode as 1 and resets the buffer and bitCount.  <br /></td></tr>
+<tr class="separator:a2baed728efadc3c46503d3d47d9dc286"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac80e4a989da745d5ccda571d37340fe4" id="r_ac80e4a989da745d5ccda571d37340fe4"><td class="memItemLeft" align="right" valign="top"><a id="ac80e4a989da745d5ccda571d37340fe4" name="ac80e4a989da745d5ccda571d37340fe4"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>close</b> ()</td></tr>
+<tr class="memdesc:ac80e4a989da745d5ccda571d37340fe4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Closes the currently opened file, flushing the write buffer if needed. If the current file is opened for writting and the buffer is not yet complete, writes 0's until the buffer is flushed, then closes the file pointer. <br /></td></tr>
+<tr class="separator:ac80e4a989da745d5ccda571d37340fe4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af73fe64bbdd98b6ed40c151be9cfb0f1" id="r_af73fe64bbdd98b6ed40c151be9cfb0f1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af73fe64bbdd98b6ed40c151be9cfb0f1">inputFileIsOpen</a> ()</td></tr>
+<tr class="memdesc:af73fe64bbdd98b6ed40c151be9cfb0f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether the instace is set to read and a file is open.  <br /></td></tr>
+<tr class="separator:af73fe64bbdd98b6ed40c151be9cfb0f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9bf90aa484b3119625f4bb8ea291bb49" id="r_a9bf90aa484b3119625f4bb8ea291bb49"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9bf90aa484b3119625f4bb8ea291bb49">getEOF</a> ()</td></tr>
+<tr class="memdesc:a9bf90aa484b3119625f4bb8ea291bb49"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get method for eof variable.  <br /></td></tr>
+<tr class="separator:a9bf90aa484b3119625f4bb8ea291bb49"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e3e36adf7ca1668b20ef1a4c3bea952" id="r_a5e3e36adf7ca1668b20ef1a4c3bea952"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5e3e36adf7ca1668b20ef1a4c3bea952">writeBit</a> (int bit)</td></tr>
+<tr class="memdesc:a5e3e36adf7ca1668b20ef1a4c3bea952"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write a bit to the output file Adds the bit to a buffer until a full byte has been created. Once the buffer had 8 bits, the byte is written to the output file and the buffer is reset.  <br /></td></tr>
+<tr class="separator:a5e3e36adf7ca1668b20ef1a4c3bea952"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad14e834f5897767b5410d858f060e549" id="r_ad14e834f5897767b5410d858f060e549"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad14e834f5897767b5410d858f060e549">writeNBits</a> (int number, int nBits)</td></tr>
+<tr class="memdesc:ad14e834f5897767b5410d858f060e549"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method used write a number to a file using a given number of bits. Calculates the needed padding of zeros (nBits minus number of bits the number actually requires), writting them to the file, then writes the number given using the remaining bits.  <br /></td></tr>
+<tr class="separator:ad14e834f5897767b5410d858f060e549"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a848b1e0967ed98dd3d131e70336ea69c" id="r_a848b1e0967ed98dd3d131e70336ea69c"><td class="memItemLeft" align="right" valign="top">unsigned char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a848b1e0967ed98dd3d131e70336ea69c">readBit</a> ()</td></tr>
+<tr class="memdesc:a848b1e0967ed98dd3d131e70336ea69c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method used to read 1 bit from the input file.  <br /></td></tr>
+<tr class="separator:a848b1e0967ed98dd3d131e70336ea69c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2b3ad61d87b324175461c5c966f5913" id="r_ad2b3ad61d87b324175461c5c966f5913"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad2b3ad61d87b324175461c5c966f5913">readNBits</a> (int nBits)</td></tr>
+<tr class="memdesc:ad2b3ad61d87b324175461c5c966f5913"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method used to read N bits from the input file. Calls method readBit 'nBits' times and stores data to an unsigned int.  <br /></td></tr>
+<tr class="separator:ad2b3ad61d87b324175461c5c966f5913"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>A class representing a binary stream of bits. </p>
-<p>The <code><a class="el" href="classBitStream.html" title="A class representing a binary stream of bits.">BitStream</a></code> class provides a way to read and write individual bits from a binary file. </p>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a9d842e5d476a3869e37d2201892cfc5d" name="a9d842e5d476a3869e37d2201892cfc5d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9d842e5d476a3869e37d2201892cfc5d">&#9670;&#160;</a></span>BitStream()</h2>
+<div class="textblock"><p>Class that performs operations with bits. </p>
+<p>A class used to read/ write bits from/ to a file. Minimum amount of data that can be accessed is 1 byte. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a9bf90aa484b3119625f4bb8ea291bb49" name="a9bf90aa484b3119625f4bb8ea291bb49"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9bf90aa484b3119625f4bb8ea291bb49">&#9670;&#160;</a></span>getEOF()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">BitStream::BitStream </td>
-          <td>(</td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>FileName</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>OutputFileName</em> = <code>&quot;out.bin&quot;</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Construct a new <a class="el" href="classBitStream.html" title="A class representing a binary stream of bits.">BitStream</a> object from a file. </p>
-<p>The constructor reads a binary file from disk and creates a new <code><a class="el" href="classBitStream.html" title="A class representing a binary stream of bits.">BitStream</a></code> object from it. The constructor also initializes the read and write buffers and positions.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">FileName</td><td>The name of the binary file to read </td></tr>
-    <tr><td class="paramname">OutputFileName</td><td>The name of the binary file to write (default is "out.bin")</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">std::runtime_error</td><td>if the file fails to open </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a63cf0f27c7519417a7984c476a32c9c9" name="a63cf0f27c7519417a7984c476a32c9c9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a63cf0f27c7519417a7984c476a32c9c9">&#9670;&#160;</a></span>~BitStream()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">BitStream::~BitStream </td>
+          <td class="memname">BitStream::getEOF </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -169,20 +132,19 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Destroy the <a class="el" href="classBitStream.html" title="A class representing a binary stream of bits.">BitStream</a> object and close the input and output files. </p>
-<p>The destructor closes the input and output files used by the <code><a class="el" href="classBitStream.html" title="A class representing a binary stream of bits.">BitStream</a></code> object. </p>
+<p>Get method for eof variable. </p>
+<dl class="section return"><dt>Returns</dt><dd>Value of eof variable </dd></dl>
 
 </div>
 </div>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a id="a7b2dbc9a7828a767448060818920826a" name="a7b2dbc9a7828a767448060818920826a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7b2dbc9a7828a767448060818920826a">&#9670;&#160;</a></span>Flush()</h2>
+<a id="af73fe64bbdd98b6ed40c151be9cfb0f1" name="af73fe64bbdd98b6ed40c151be9cfb0f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af73fe64bbdd98b6ed40c151be9cfb0f1">&#9670;&#160;</a></span>inputFileIsOpen()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void BitStream::Flush </td>
+          <td class="memname">BitStream::inputFileIsOpen </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -190,19 +152,19 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Flush any remaining bits to the output file. </p>
-<p>The <code>Flush</code> method writes any remaining bits in the write buffer to the output file. If the write buffer is already empty, the method does nothing. </p>
+<p>Checks whether the instace is set to read and a file is open. </p>
+<dl class="section return"><dt>Returns</dt><dd>True if the instance is set to read and a file is open, False otherwise </dd></dl>
 
 </div>
 </div>
-<a id="a727b1df2e89b019f464b5c41cd6aaeae" name="a727b1df2e89b019f464b5c41cd6aaeae"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a727b1df2e89b019f464b5c41cd6aaeae">&#9670;&#160;</a></span>ReadBit()</h2>
+<a id="a848b1e0967ed98dd3d131e70336ea69c" name="a848b1e0967ed98dd3d131e70336ea69c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a848b1e0967ed98dd3d131e70336ea69c">&#9670;&#160;</a></span>readBit()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int BitStream::ReadBit </td>
+          <td class="memname">BitStream::readBit </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -210,48 +172,100 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Read a single bit from the input file. </p>
-<p>The <code>ReadBit</code> method reads a single bit from the input file and returns its value. If the end of the file is reached, the method returns -1.</p>
-<dl class="section return"><dt>Returns</dt><dd>The value of the next bit in the input file, or -1 if the end of the file is reached </dd></dl>
+<p>Method used to read 1 bit from the input file. </p>
+<dl class="section return"><dt>Returns</dt><dd>Returns 0 or 1 based on bit value, 2 if an error occurs </dd></dl>
 
 </div>
 </div>
-<a id="a2adb4e58968e8c1f39e504cace020b69" name="a2adb4e58968e8c1f39e504cace020b69"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2adb4e58968e8c1f39e504cace020b69">&#9670;&#160;</a></span>ReadBits()</h2>
+<a id="ad2b3ad61d87b324175461c5c966f5913" name="ad2b3ad61d87b324175461c5c966f5913"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2b3ad61d87b324175461c5c966f5913">&#9670;&#160;</a></span>readNBits()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structWriteBitReturn.html">WriteBitReturn</a> BitStream::ReadBits </td>
+          <td class="memname">BitStream::readNBits </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>n_bits</em></td><td>)</td>
+          <td class="paramname"><em>nBits</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Read a specified number of bits from the input file. </p>
-<p>The <code>ReadBits</code> method reads a specified number of bits from the input file and returns them as an array of integers. If the end of the file is reached before all bits are read, the method returns the bits that were read.</p>
+<p>Method used to read N bits from the input file. Calls method readBit 'nBits' times and stores data to an unsigned int. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">n_bits</td><td>The number of bits to read</td></tr>
+    <tr><td class="paramname">nBits</td><td>number of bits to read </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A <code><a class="el" href="structWriteBitReturn.html" title="A struct representing the return value of the ReadBits method.">WriteBitReturn</a></code> struct containing an array of integers representing the bits that were read, and the number of bits that were read </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns an unsigned int corresponding to the read bits, if an error occurs returns -1. </dd></dl>
 
 </div>
 </div>
-<a id="aa61a8a83b4e4732ba55f83ba2357efac" name="aa61a8a83b4e4732ba55f83ba2357efac"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa61a8a83b4e4732ba55f83ba2357efac">&#9670;&#160;</a></span>WriteBit()</h2>
+<a id="a37be262d771e3e2a4e36151a264810cb" name="a37be262d771e3e2a4e36151a264810cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37be262d771e3e2a4e36151a264810cb">&#9670;&#160;</a></span>setToRead()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void BitStream::WriteBit </td>
+          <td class="memname">BitStream::setToRead </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>file</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Opens a file for reading, defining mode as 0 and resets the buffer and bitCount. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">file</td><td>Path to the file that will be opened for reading. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if the file is successfully opened, -1 if not </dd></dl>
+
+</div>
+</div>
+<a id="a2baed728efadc3c46503d3d47d9dc286" name="a2baed728efadc3c46503d3d47d9dc286"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2baed728efadc3c46503d3d47d9dc286">&#9670;&#160;</a></span>setToWrite()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">BitStream::setToWrite </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>file</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Opens a file for writing, defining mode as 1 and resets the buffer and bitCount. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">file</td><td>Path to the file that will be opened for writing. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if the file is successfully opened, -1 if not </dd></dl>
+
+</div>
+</div>
+<a id="a5e3e36adf7ca1668b20ef1a4c3bea952" name="a5e3e36adf7ca1668b20ef1a4c3bea952"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e3e36adf7ca1668b20ef1a4c3bea952">&#9670;&#160;</a></span>writeBit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">BitStream::writeBit </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>bit</em></td><td>)</td>
@@ -260,34 +274,33 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Write a single bit to the output file. </p>
-<p>The <code>WriteBit</code> method writes a single bit to the output file. If the input bit is not 0 or 1, the method prints an error message and ignores the input.</p>
+<p>Write a bit to the output file Adds the bit to a buffer until a full byte has been created. Once the buffer had 8 bits, the byte is written to the output file and the buffer is reset. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">bit</td><td>The bit to write (must be 0 or 1) </td></tr>
+    <tr><td class="paramname">bit</td><td>Bit (0 or 1) that will be written </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a id="ae732ef29b12259c0c215404d7dc4ec68" name="ae732ef29b12259c0c215404d7dc4ec68"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae732ef29b12259c0c215404d7dc4ec68">&#9670;&#160;</a></span>WriteBits()</h2>
+<a id="ad14e834f5897767b5410d858f060e549" name="ad14e834f5897767b5410d858f060e549"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad14e834f5897767b5410d858f060e549">&#9670;&#160;</a></span>writeNBits()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void BitStream::WriteBits </td>
+          <td class="memname">BitStream::writeNBits </td>
           <td>(</td>
-          <td class="paramtype">int *&#160;</td>
-          <td class="paramname"><em>bits</em>, </td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>number</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>size</em>&#160;</td>
+          <td class="paramname"><em>nBits</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -297,12 +310,11 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Write an array of bits to the output file. </p>
-<p>The <code>WriteBits</code> method writes an array of bits to the output file. If any of the input bits are not 0 or 1, the method prints an error message and ignores the input.</p>
+<p>Method used write a number to a file using a given number of bits. Calculates the needed padding of zeros (nBits minus number of bits the number actually requires), writting them to the file, then writes the number given using the remaining bits. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">bits</td><td>An array of integers representing the bits to write (must be 0 or 1) </td></tr>
-    <tr><td class="paramname">size</td><td>The number of bits to write </td></tr>
+    <tr><td class="paramname">number</td><td>Number that will be written to file </td></tr>
+    <tr><td class="paramname">nBits</td><td>Number of bits used to write the given number </td></tr>
   </table>
   </dd>
 </dl>
@@ -310,7 +322,7 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>include/<a class="el" href="BitStream_8h_source.html">BitStream.h</a></li>
+<li>include/<a class="el" href="BitStream_8hpp_source.html">BitStream.hpp</a></li>
 <li>src/<b>BitStream.cpp</b></li>
 </ul>
 </div><!-- contents -->

@@ -1,5 +1,5 @@
 /**
- * @file Image.h
+ * @file Image.hpp
  * @brief Header file for the Image class
  *
  * This header file defines the Image class, which represents a digital image.

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['thresholdsegmentation_0',['ThresholdSegmentation',['../classImage.html#a5987f1a33b2d5e0c9e1822ef8cb3e0ec',1,'Image']]]
+  ['optimal_5fm_0',['optimal_m',['../classGolombEncoder.html#ab136427e330d9fb8bb6eb7007f83bb54',1,'GolombEncoder']]]
 ];

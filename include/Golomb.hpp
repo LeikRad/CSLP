@@ -1,3 +1,9 @@
+/**
+ * @file Golomb.hpp
+ * @brief Header file for the GolombEncoder class
+ *
+ * This file contains the definition of the GolombEncoder class, which is used to encode numbers to a file using Golomb codes.
+ */
 #ifndef GOLOMB_H
 #define GOLOMB_H
 

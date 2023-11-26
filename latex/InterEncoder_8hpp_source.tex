@@ -1,0 +1,81 @@
+\doxysection{Inter\+Encoder.\+hpp}
+\hypertarget{InterEncoder_8hpp_source}{}\label{InterEncoder_8hpp_source}\index{include/InterEncoder.hpp@{include/InterEncoder.hpp}}
+\mbox{\hyperlink{InterEncoder_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+
+
+
+
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#ifndef\ INTERENCODER\_H}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ INTERENCODER\_H}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}opencv2/opencv.hpp"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Golomb_8hpp}{Golomb.hpp}}"{}}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{using\ namespace\ }cv;}
+\DoxyCodeLine{00015\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00016\ }
+
+
+
+
+
+\DoxyCodeLine{00023\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classInterEncoder}{InterEncoder}}}
+\DoxyCodeLine{00024\ \{}
+\DoxyCodeLine{00025\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{int}\ block\_size;\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{int}\ block\_range;\ \ \ \ \ \ \ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{int}\ shift;\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{classGolombEncoder}{GolombEncoder}}\ \&golomb;\ }
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{public}:}
+
+
+
+
+
+
+
+\DoxyCodeLine{00040\ \ \ \ \ \mbox{\hyperlink{classInterEncoder_a7386ff1b016c2a2155c798513ee08e28}{InterEncoder}}(\mbox{\hyperlink{classGolombEncoder}{GolombEncoder}}\ \&golomb,\ \textcolor{keywordtype}{int}\ block\_size,\ \textcolor{keywordtype}{int}\ block\_range,\ \textcolor{keywordtype}{int}\ shift\ =\ 0);}
+\DoxyCodeLine{00041\ }
+
+
+\DoxyCodeLine{00045\ \ \ \ \ \mbox{\hyperlink{classInterEncoder_a7386ff1b016c2a2155c798513ee08e28}{InterEncoder}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00046\ }
+
+
+
+
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classInterEncoder_ab4f66f41f7ad47e7de3df4fae5c6d369}{getBlockSize}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00053\ }
+
+
+
+
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classInterEncoder_a11b407a272afb1735813c70370d63540}{getBlockRange}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00060\ }
+
+
+
+
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classInterEncoder_abee0a7ed8e5a30cbf9f091a91def37d7}{setBlockSize}}(\textcolor{keywordtype}{int}\ block\_size);}
+\DoxyCodeLine{00067\ }
+
+
+
+
+
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classInterEncoder_aa9fa32d95e235d85f2087a41af4014c4}{cost}}(Mat\ block);}
+\DoxyCodeLine{00075\ }
+
+
+
+
+
+
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classInterEncoder_a09771db183808ce139feabb3ea024b78}{encode}}(Mat\ \&old\_frame,\ Mat\ \&new\_frame);}
+\DoxyCodeLine{00084\ \};}
+\DoxyCodeLine{00085\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ INTERENCODER\_H}}
+
+\end{DoxyCode}

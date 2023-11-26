@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['image_2eh_0',['Image.h',['../Image_8h.html',1,'']]]
+  ['golomb_2ehpp_0',['Golomb.hpp',['../Golomb_8hpp.html',1,'']]]
 ];

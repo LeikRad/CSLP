@@ -1,0 +1,146 @@
+\doxysection{Inter\+Encoder Class Reference}
+\hypertarget{classInterEncoder}{}\label{classInterEncoder}\index{InterEncoder@{InterEncoder}}
+
+
+Class for inter-\/frame encoding.  
+
+
+
+
+{\ttfamily \#include $<$Inter\+Encoder.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classInterEncoder_af2b1895b20b2e61a5d5e174d1fffd720}{Inter\+Encoder}} (\mbox{\hyperlink{classGolombEncoder}{Golomb\+Encoder}} \&golomb, int block\+\_\+size, int block\+\_\+range, int shift=0)
+\begin{DoxyCompactList}\small\item\em Construct a new Inter Encoder object. \end{DoxyCompactList}\item 
+\Hypertarget{classInterEncoder_a7386ff1b016c2a2155c798513ee08e28}\label{classInterEncoder_a7386ff1b016c2a2155c798513ee08e28} 
+{\bfseries Inter\+Encoder} ()=default
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classInterEncoder_ab4f66f41f7ad47e7de3df4fae5c6d369}{get\+Block\+Size}} () const
+\begin{DoxyCompactList}\small\item\em Get the block size. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classInterEncoder_a11b407a272afb1735813c70370d63540}{get\+Block\+Range}} () const
+\begin{DoxyCompactList}\small\item\em Get the block range. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classInterEncoder_abee0a7ed8e5a30cbf9f091a91def37d7}{set\+Block\+Size}} (int block\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Set the block size. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classInterEncoder_aa9fa32d95e235d85f2087a41af4014c4}{cost}} (Mat block)
+\begin{DoxyCompactList}\small\item\em Calculate the cost of encoding a block. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classInterEncoder_a09771db183808ce139feabb3ea024b78}{encode}} (Mat \&old\+\_\+frame, Mat \&new\+\_\+frame)
+\begin{DoxyCompactList}\small\item\em Encode a frame. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class for inter-\/frame encoding. 
+
+This class is used for inter-\/frame encoding in video compression. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classInterEncoder_af2b1895b20b2e61a5d5e174d1fffd720}\label{classInterEncoder_af2b1895b20b2e61a5d5e174d1fffd720} 
+\index{InterEncoder@{InterEncoder}!InterEncoder@{InterEncoder}}
+\index{InterEncoder@{InterEncoder}!InterEncoder@{InterEncoder}}
+\doxysubsubsection{\texorpdfstring{InterEncoder()}{InterEncoder()}}
+{\footnotesize\ttfamily Inter\+Encoder\+::\+Inter\+Encoder (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classGolombEncoder}{Golomb\+Encoder}} \&}]{golomb,  }\item[{int}]{block\+\_\+size,  }\item[{int}]{block\+\_\+range,  }\item[{int}]{shift = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Construct a new Inter Encoder object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em golomb} & Golomb encoder for encoding \\
+\hline
+{\em block\+\_\+size} & Size of the blocks for encoding \\
+\hline
+{\em block\+\_\+range} & Range of the blocks for encoding \\
+\hline
+{\em shift} & Shift for encoding \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classInterEncoder_aa9fa32d95e235d85f2087a41af4014c4}\label{classInterEncoder_aa9fa32d95e235d85f2087a41af4014c4} 
+\index{InterEncoder@{InterEncoder}!cost@{cost}}
+\index{cost@{cost}!InterEncoder@{InterEncoder}}
+\doxysubsubsection{\texorpdfstring{cost()}{cost()}}
+{\footnotesize\ttfamily float Inter\+Encoder\+::cost (\begin{DoxyParamCaption}\item[{Mat}]{block }\end{DoxyParamCaption})}
+
+
+
+Calculate the cost of encoding a block. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em block} & Block to be encoded \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Cost of encoding the block 
+\end{DoxyReturn}
+\Hypertarget{classInterEncoder_a09771db183808ce139feabb3ea024b78}\label{classInterEncoder_a09771db183808ce139feabb3ea024b78} 
+\index{InterEncoder@{InterEncoder}!encode@{encode}}
+\index{encode@{encode}!InterEncoder@{InterEncoder}}
+\doxysubsubsection{\texorpdfstring{encode()}{encode()}}
+{\footnotesize\ttfamily int Inter\+Encoder\+::encode (\begin{DoxyParamCaption}\item[{Mat \&}]{old\+\_\+frame,  }\item[{Mat \&}]{new\+\_\+frame }\end{DoxyParamCaption})}
+
+
+
+Encode a frame. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em old\+\_\+frame} & Previous frame \\
+\hline
+{\em new\+\_\+frame} & Current frame \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Result of the encoding 
+\end{DoxyReturn}
+\Hypertarget{classInterEncoder_a11b407a272afb1735813c70370d63540}\label{classInterEncoder_a11b407a272afb1735813c70370d63540} 
+\index{InterEncoder@{InterEncoder}!getBlockRange@{getBlockRange}}
+\index{getBlockRange@{getBlockRange}!InterEncoder@{InterEncoder}}
+\doxysubsubsection{\texorpdfstring{getBlockRange()}{getBlockRange()}}
+{\footnotesize\ttfamily int Inter\+Encoder\+::get\+Block\+Range (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Get the block range. 
+
+\begin{DoxyReturn}{Returns}
+Block range 
+\end{DoxyReturn}
+\Hypertarget{classInterEncoder_ab4f66f41f7ad47e7de3df4fae5c6d369}\label{classInterEncoder_ab4f66f41f7ad47e7de3df4fae5c6d369} 
+\index{InterEncoder@{InterEncoder}!getBlockSize@{getBlockSize}}
+\index{getBlockSize@{getBlockSize}!InterEncoder@{InterEncoder}}
+\doxysubsubsection{\texorpdfstring{getBlockSize()}{getBlockSize()}}
+{\footnotesize\ttfamily int Inter\+Encoder\+::get\+Block\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Get the block size. 
+
+\begin{DoxyReturn}{Returns}
+Block size 
+\end{DoxyReturn}
+\Hypertarget{classInterEncoder_abee0a7ed8e5a30cbf9f091a91def37d7}\label{classInterEncoder_abee0a7ed8e5a30cbf9f091a91def37d7} 
+\index{InterEncoder@{InterEncoder}!setBlockSize@{setBlockSize}}
+\index{setBlockSize@{setBlockSize}!InterEncoder@{InterEncoder}}
+\doxysubsubsection{\texorpdfstring{setBlockSize()}{setBlockSize()}}
+{\footnotesize\ttfamily void Inter\+Encoder\+::set\+Block\+Size (\begin{DoxyParamCaption}\item[{int}]{block\+\_\+size }\end{DoxyParamCaption})}
+
+
+
+Set the block size. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em block\+\_\+size} & New block size \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{InterEncoder_8hpp}{Inter\+Encoder.\+hpp}}\item 
+src/Inter\+Encoder.\+cpp\end{DoxyCompactItemize}

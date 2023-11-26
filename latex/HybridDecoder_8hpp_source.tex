@@ -1,0 +1,49 @@
+\doxysection{Hybrid\+Decoder.\+hpp}
+\hypertarget{HybridDecoder_8hpp_source}{}\label{HybridDecoder_8hpp_source}\index{include/HybridDecoder.hpp@{include/HybridDecoder.hpp}}
+\mbox{\hyperlink{HybridDecoder_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+
+
+
+
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#ifndef\ HYBRID\_DECODER\_HPP}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ HYBRID\_DECODER\_HPP}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Converter_8hpp}{Converter.hpp}}"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Golomb_8hpp}{Golomb.hpp}}"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{InterDecoder_8hpp}{InterDecoder.hpp}}"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{IntraDecoder_8hpp}{IntraDecoder.hpp}}"{}}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Predictors_8hpp}{Predictors.hpp}}"{}}}
+\DoxyCodeLine{00017\ \textcolor{keyword}{using\ namespace\ }cv;}
+\DoxyCodeLine{00018\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00019\ }
+
+
+
+
+
+\DoxyCodeLine{00026\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classHybridDecoder}{HybridDecoder}}}
+\DoxyCodeLine{00027\ \{}
+\DoxyCodeLine{00028\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{string}\ input\_file;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00030\ \ \ \ \ vector<function<int(\textcolor{keywordtype}{int},\ \textcolor{keywordtype}{int},\ \textcolor{keywordtype}{int})>>\ predictors;\ }
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{public}:}
+
+
+
+
+\DoxyCodeLine{00038\ \ \ \ \ \mbox{\hyperlink{classHybridDecoder}{HybridDecoder}}(\textcolor{keywordtype}{string}\ input\_file);}
+\DoxyCodeLine{00039\ }
+
+
+
+
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classHybridDecoder_ab65c25cdee39eb7df7ad398eb520bffc}{decode}}(\textcolor{keywordtype}{string}\ output\_file);}
+\DoxyCodeLine{00046\ \};}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ HYBRID\_DECODER\_HPP}}
+
+\end{DoxyCode}
