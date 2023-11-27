@@ -122,3 +122,9 @@ cd build/Deliverable_3
 ```
 
 This will encode the numbers in the following range -50, 50 (inclusive) and write them to the encoded.bin file. After that, it will read the encoded.bin file and decode the numbers, writing them to the terminal.
+
+### Deliverable 4 and 5 Results
+
+The results can be found in the results.txt for the intra-encoder and the results-hybrid for the hybrid-encoder.
+
+If you wish to reproduce these files run IntraEncodeBatch.out HybridEncoderBatch.out.

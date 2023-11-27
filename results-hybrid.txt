@@ -1,0 +1,9 @@
+Encoding park_joy_420_720p50.y4m with block range 3
+Time Taken          Original File Size (MB)                 Encoded File Size (MB)                  
+238.215             691.203                                 561.408                                 
+Encoding park_joy_420_720p50.y4m with block range 4
+Time Taken          Original File Size (MB)                 Encoded File Size (MB)                  
+579.905             691.203                                 560.696                                 
+Encoding park_joy_420_720p50.y4m with block range 5
+Time Taken          Original File Size (MB)                 Encoded File Size (MB)                  
+1054.35             691.203                                 559.491                                 

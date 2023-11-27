@@ -24,7 +24,6 @@ int IntraDecoder::decode(Mat &frame, function<int(int, int, int)> predictor)
         vconcat(Mat::zeros(1, frame.cols, CV_8UC1), frame, frame);
     }
     int optimalM = golomb.decode();
-    cout << "optimalM: " << optimalM << endl;
 
     if (optimalM != 0)
         golomb.set_m(optimalM);

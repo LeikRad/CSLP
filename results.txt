@@ -1,0 +1,199 @@
+Encoding ducks_take_off_420_720p50.y4m with JPEG_Predictor_1
+Time Taken          Original File Size (MB)                 Encoded File Size (MB)                  
+96.8509             691.203                                 474.872                                 
+Encoding ducks_take_off_420_720p50.y4m with JPEG_Predictor_2
+Time Taken          Original File Size (MB)                 Encoded File Size (MB)                  
+97.4701             691.203                                 598.955                                 
+Encoding ducks_take_off_420_720p50.y4m with JPEG_Predictor_3
+Time Taken          Original File Size (MB)                 Encoded File Size (MB)                  
+95.3317             691.203                                 603.751                                 
+Encoding ducks_take_off_420_720p50.y4m with JPEG_Predictor_4
+Time Taken          Original File Size (MB)                 Encoded File Size (MB)                  
+96.5932             691.203                                 509.032                                 
+Encoding ducks_take_off_420_720p50.y4m with JPEG_Predictor_5
+Time Taken          Original File Size (MB)                 Encoded File Size (MB)                  
+94.4864             691.203                                 479.016                                 
+Encoding ducks_take_off_420_720p50.y4m with JPEG_Predictor_6
+Time Taken          Original File Size (MB)                 Encoded File Size (MB)                  
+95.248              691.203                                 543.193                                 
+Encoding ducks_take_off_420_720p50.y4m with JPEG_Predictor_7
+Time Taken          Original File Size (MB)                 Encoded File Size (MB)                  
+94.0186             691.203                                 531.111                                 
+Encoding ducks_take_off_420_720p50.y4m with JPEG_LS
+Time Taken          Original File Size (MB)                 Encoded File Size (MB)                  
+102.684             691.203                                 483.122                                 
+Format: 2
+Encoding in_to_tree_420_720p50.y4m with JPEG_Predictor_1
+Time Taken          Original File Size (MB)                 Encoded File Size (MB)                  
+95.5005             691.203                                 465.971                                 
+Encoding in_to_tree_420_720p50.y4m with JPEG_Predictor_2
+Time Taken          Original File Size (MB)                 Encoded File Size (MB)                  
+94.3557             691.203                                 478.275                                 
+Encoding in_to_tree_420_720p50.y4m with JPEG_Predictor_3
+Time Taken          Original File Size (MB)                 Encoded File Size (MB)                  
+96.2679             691.203                                 502.916                                 
+Encoding in_to_tree_420_720p50.y4m with JPEG_Predictor_4
+Time Taken          Original File Size (MB)                 Encoded File Size (MB)                  
+94.9547             691.203                                 472.666                                 
+Encoding in_to_tree_420_720p50.y4m with JPEG_Predictor_5
+Time Taken          Original File Size (MB)                 Encoded File Size (MB)                  
+97.6822             691.203                                 460.558                                 
+Encoding in_to_tree_420_720p50.y4m with JPEG_Predictor_6
+Time Taken          Original File Size (MB)                 Encoded File Size (MB)                  
+95.331              691.203                                 463.04                                  
+Encoding in_to_tree_420_720p50.y4m with JPEG_Predictor_7
+Time Taken          Original File Size (MB)                 Encoded File Size (MB)                  
+93.6814             691.203                                 457.764                                 
+Encoding in_to_tree_420_720p50.y4m with JPEG_LS
+Time Taken          Original File Size (MB)                 Encoded File Size (MB)                  
+101.598             691.203                                 457.675                                 
+Format: 2
+Encoding old_town_cross_420_720p50.y4m with JPEG_Predictor_1
+Time Taken          Original File Size (MB)                 Encoded File Size (MB)                  
+92.9026             691.203                                 460.89                                  
+Encoding old_town_cross_420_720p50.y4m with JPEG_Predictor_2
+Time Taken          Original File Size (MB)                 Encoded File Size (MB)                  
+92.5539             691.203                                 473.137                                 
+Encoding old_town_cross_420_720p50.y4m with JPEG_Predictor_3
+Time Taken          Original File Size (MB)                 Encoded File Size (MB)                  
+94.8371             691.203                                 508.396                                 
+Encoding old_town_cross_420_720p50.y4m with JPEG_Predictor_4
+Time Taken          Original File Size (MB)                 Encoded File Size (MB)                  
+92.2998             691.203                                 459.16                                  
+Encoding old_town_cross_420_720p50.y4m with JPEG_Predictor_5
+Time Taken          Original File Size (MB)                 Encoded File Size (MB)                  
+92.31               691.203                                 453.965                                 
+Encoding old_town_cross_420_720p50.y4m with JPEG_Predictor_6
+Time Taken          Original File Size (MB)                 Encoded File Size (MB)                  
+94.8076             691.203                                 458.387                                 
+Encoding old_town_cross_420_720p50.y4m with JPEG_Predictor_7
+Time Taken          Original File Size (MB)                 Encoded File Size (MB)                  
+94.0328             691.203                                 457.263                                 
+Encoding old_town_cross_420_720p50.y4m with JPEG_LS
+Time Taken          Original File Size (MB)                 Encoded File Size (MB)                  
+101.944             691.203                                 450.164                                 
+Format: 2
+Encoding park_joy_420_720p50.y4m with JPEG_Predictor_1
+Time Taken          Original File Size (MB)                 Encoded File Size (MB)                  
+98.8923             691.203                                 551.894                                 
+Encoding park_joy_420_720p50.y4m with JPEG_Predictor_2
+Time Taken          Original File Size (MB)                 Encoded File Size (MB)                  
+98.4224             691.203                                 559.788                                 
+Encoding park_joy_420_720p50.y4m with JPEG_Predictor_3
+Time Taken          Original File Size (MB)                 Encoded File Size (MB)                  
+101.203             691.203                                 599.628                                 
+Encoding park_joy_420_720p50.y4m with JPEG_Predictor_4
+Time Taken          Original File Size (MB)                 Encoded File Size (MB)                  
+100.516             691.203                                 556.633                                 
+Encoding park_joy_420_720p50.y4m with JPEG_Predictor_5
+Time Taken          Original File Size (MB)                 Encoded File Size (MB)                  
+99.0466             691.203                                 546.508                                 
+Encoding park_joy_420_720p50.y4m with JPEG_Predictor_6
+Time Taken          Original File Size (MB)                 Encoded File Size (MB)                  
+99.7828             691.203                                 548.781                                 
+Encoding park_joy_420_720p50.y4m with JPEG_Predictor_7
+Time Taken          Original File Size (MB)                 Encoded File Size (MB)                  
+99.5117             691.203                                 544.06                                  
+Encoding park_joy_420_720p50.y4m with JPEG_LS
+Time Taken          Original File Size (MB)                 Encoded File Size (MB)                  
+109.228             691.203                                 544.445                                 
+Format: 1
+Encoding ducks_take_off_422_720p50.y4m with JPEG_Predictor_1
+Time Taken          Original File Size (MB)                 Encoded File Size (MB)                  
+125.544             921.603                                 623.131                                 
+Encoding ducks_take_off_422_720p50.y4m with JPEG_Predictor_2
+Time Taken          Original File Size (MB)                 Encoded File Size (MB)                  
+129.43              921.603                                 748.308                                 
+Encoding ducks_take_off_422_720p50.y4m with JPEG_Predictor_3
+Time Taken          Original File Size (MB)                 Encoded File Size (MB)                  
+131.318             921.603                                 750.141                                 
+Encoding ducks_take_off_422_720p50.y4m with JPEG_Predictor_4
+Time Taken          Original File Size (MB)                 Encoded File Size (MB)                  
+128.295             921.603                                 678.532                                 
+Encoding ducks_take_off_422_720p50.y4m with JPEG_Predictor_5
+Time Taken          Original File Size (MB)                 Encoded File Size (MB)                  
+126.043             921.603                                 630.302                                 
+Encoding ducks_take_off_422_720p50.y4m with JPEG_Predictor_6
+Time Taken          Original File Size (MB)                 Encoded File Size (MB)                  
+126.409             921.603                                 706.205                                 
+Encoding ducks_take_off_422_720p50.y4m with JPEG_Predictor_7
+Time Taken          Original File Size (MB)                 Encoded File Size (MB)                  
+126.038             921.603                                 696.051                                 
+Encoding ducks_take_off_422_720p50.y4m with JPEG_LS
+Time Taken          Original File Size (MB)                 Encoded File Size (MB)                  
+136.768             921.603                                 632.706                                 
+Format: 1
+Encoding in_to_tree_422_720p50.y4m with JPEG_Predictor_1
+Time Taken          Original File Size (MB)                 Encoded File Size (MB)                  
+123.716             921.603                                 615.684                                 
+Encoding in_to_tree_422_720p50.y4m with JPEG_Predictor_2
+Time Taken          Original File Size (MB)                 Encoded File Size (MB)                  
+123.44              921.603                                 621.73                                  
+Encoding in_to_tree_422_720p50.y4m with JPEG_Predictor_3
+Time Taken          Original File Size (MB)                 Encoded File Size (MB)                  
+124.814             921.603                                 641.991                                 
+Encoding in_to_tree_422_720p50.y4m with JPEG_Predictor_4
+Time Taken          Original File Size (MB)                 Encoded File Size (MB)                  
+124.287             921.603                                 622.886                                 
+Encoding in_to_tree_422_720p50.y4m with JPEG_Predictor_5
+Time Taken          Original File Size (MB)                 Encoded File Size (MB)                  
+122.656             921.603                                 610.465                                 
+Encoding in_to_tree_422_720p50.y4m with JPEG_Predictor_6
+Time Taken          Original File Size (MB)                 Encoded File Size (MB)                  
+123.162             921.603                                 612.457                                 
+Encoding in_to_tree_422_720p50.y4m with JPEG_Predictor_7
+Time Taken          Original File Size (MB)                 Encoded File Size (MB)                  
+122.193             921.603                                 605.193                                 
+Encoding in_to_tree_422_720p50.y4m with JPEG_LS
+Time Taken          Original File Size (MB)                 Encoded File Size (MB)                  
+133.533             921.603                                 606.677                                 
+Format: 1
+Encoding old_town_cross_422_720p50.y4m with JPEG_Predictor_1
+Time Taken          Original File Size (MB)                 Encoded File Size (MB)                  
+119.892             921.603                                 609.083                                 
+Encoding old_town_cross_422_720p50.y4m with JPEG_Predictor_2
+Time Taken          Original File Size (MB)                 Encoded File Size (MB)                  
+120                 921.603                                 620.807                                 
+Encoding old_town_cross_422_720p50.y4m with JPEG_Predictor_3
+Time Taken          Original File Size (MB)                 Encoded File Size (MB)                  
+121.479             921.603                                 634.852                                 
+Encoding old_town_cross_422_720p50.y4m with JPEG_Predictor_4
+Time Taken          Original File Size (MB)                 Encoded File Size (MB)                  
+120.473             921.603                                 611.383                                 
+Encoding old_town_cross_422_720p50.y4m with JPEG_Predictor_5
+Time Taken          Original File Size (MB)                 Encoded File Size (MB)                  
+118.961             921.603                                 602.711                                 
+Encoding old_town_cross_422_720p50.y4m with JPEG_Predictor_6
+Time Taken          Original File Size (MB)                 Encoded File Size (MB)                  
+119.546             921.603                                 606.896                                 
+Encoding old_town_cross_422_720p50.y4m with JPEG_Predictor_7
+Time Taken          Original File Size (MB)                 Encoded File Size (MB)                  
+119.05              921.603                                 603.726                                 
+Encoding old_town_cross_422_720p50.y4m with JPEG_LS
+Time Taken          Original File Size (MB)                 Encoded File Size (MB)                  
+129.671             921.603                                 597.885                                 
+Format: 1
+Encoding park_joy_422_720p50.y4m with JPEG_Predictor_1
+Time Taken          Original File Size (MB)                 Encoded File Size (MB)                  
+125.678             921.603                                 726.264                                 
+Encoding park_joy_422_720p50.y4m with JPEG_Predictor_2
+Time Taken          Original File Size (MB)                 Encoded File Size (MB)                  
+125.75              921.603                                 733.409                                 
+Encoding park_joy_422_720p50.y4m with JPEG_Predictor_3
+Time Taken          Original File Size (MB)                 Encoded File Size (MB)                  
+128.082             921.603                                 749.272                                 
+Encoding park_joy_422_720p50.y4m with JPEG_Predictor_4
+Time Taken          Original File Size (MB)                 Encoded File Size (MB)                  
+127.109             921.603                                 733.31                                  
+Encoding park_joy_422_720p50.y4m with JPEG_Predictor_5
+Time Taken          Original File Size (MB)                 Encoded File Size (MB)                  
+125.851             921.603                                 720.012                                 
+Encoding park_joy_422_720p50.y4m with JPEG_Predictor_6
+Time Taken          Original File Size (MB)                 Encoded File Size (MB)                  
+126.574             921.603                                 723.177                                 
+Encoding park_joy_422_720p50.y4m with JPEG_Predictor_7
+Time Taken          Original File Size (MB)                 Encoded File Size (MB)                  
+125.101             921.603                                 708.554                                 
+Encoding park_joy_422_720p50.y4m with JPEG_LS
+Time Taken          Original File Size (MB)                 Encoded File Size (MB)                  
+136.809             921.603                                 714.873                                 

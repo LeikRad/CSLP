@@ -6,8 +6,7 @@
 
 int main(int argc, char const *argv[])
 {
-    cout
-        << "Enter the name of the file to save to (absolute path): ";
+    cout << "Enter the name of the file to save to (absolute path): ";
 
     string output;
 

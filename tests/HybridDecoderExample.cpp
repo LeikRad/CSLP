@@ -18,7 +18,7 @@ int main(int argc, char const *argv[])
 
     auto start = chrono::high_resolution_clock::now();
 
-    decoder.decode();
+    decoder.decode(output);
 
     auto end = chrono::high_resolution_clock::now();
 

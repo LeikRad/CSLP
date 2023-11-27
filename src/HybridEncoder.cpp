@@ -128,6 +128,7 @@ void HybridEncoder::encode(string output_file)
                 curr_frame_cost = inter_enc.encode(old_frame, curr_frame);
             }
             // cout << "Encoded frame " << count++ << endl;
+            count++;
         }
         break;
     }
@@ -186,7 +187,8 @@ void HybridEncoder::encode(string output_file)
             {
                 curr_frame_cost = inter_enc.encode(old_frame, curr_frame);
             }
-            // cout << "Encoded frame " << count++ << endl;
+            // cout << "Encoded frame " << count << endl;
+            count++;
         }
         break;
     }
@@ -245,7 +247,8 @@ void HybridEncoder::encode(string output_file)
             {
                 curr_frame_cost = inter_enc.encode(old_frame, curr_frame);
             }
-            // cout << "Encoded frame " << count++ << endl;
+            // cout << "Encoded frame " << count << endl;
+            count++;
         }
         break;
     }

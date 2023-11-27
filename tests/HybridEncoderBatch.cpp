@@ -12,10 +12,10 @@ int main(int argc, char const *argv[])
     vector<string> files;
     string static_videos = "static/videos/";
 
-    files.push_back("ducks_take_off_420_720p50.y4m");
+    // files.push_back("ducks_take_off_420_720p50.y4m");
     files.push_back("park_joy_420_720p50.y4m");
-    files.push_back("in_to_tree_422_720p50.y4m");
-    files.push_back("park_joy_422_720p50.y4m");
+    // files.push_back("in_to_tree_422_720p50.y4m");
+    // files.push_back("park_joy_422_720p50.y4m");
 
     string dir = "batch_output_hybrid/";
     string command = "mkdir -p " + dir;
@@ -36,7 +36,7 @@ int main(int argc, char const *argv[])
         string command = "mkdir -p " + dir + files[i];
         system(command.c_str());
         auto start_full = chrono::high_resolution_clock::now(); // start timer
-        for (int block_range = 1; block_range <= 6; block_range++)
+        for (int block_range = 3; block_range <= 5; block_range++)
         {
             cout << "Encoding " << files[i] << " with block range " << block_range << endl;
             string output = dir + files[i] + "/" + files[i] + "_block_range_" + to_string(block_range) + ".bin";

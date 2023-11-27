@@ -21,20 +21,6 @@ void HybridDecoder::decode(string output_file)
     int width = dec.decode();
     int height = dec.decode();
 
-    cout << endl;
-    cout << "Parameter m: " << dec.get_m() << endl;
-    cout << "format: " << format << endl;
-    cout << "Predictor: " << predictor << endl;
-    cout << "Block Range: " << block_range << endl;
-    cout << "Shift: " << shift << endl;
-    cout << "Period: " << period << endl;
-    cout << "Number of Frames: " << n_frames << endl;
-    cout << "Block Size: " << block_size << endl;
-    cout << "Width: " << width << endl;
-    cout << "Height: " << height << endl;
-
-    cout << endl;
-
     IntraDecoder intra_dec(dec, shift);
     InterDecoder inter_dec(dec, block_size, block_range, shift);
 
@@ -68,7 +54,8 @@ void HybridDecoder::decode(string output_file)
             {
                 destroyAllWindows();
             }; // Wait for a keystroke in the window
-            cout << "Frame " << count++ << " decoded." << endl;
+            // cout << "Frame " << count << " decoded." << endl;
+            count++;
         }
     }
     case 1:
@@ -93,7 +80,8 @@ void HybridDecoder::decode(string output_file)
             {
                 destroyAllWindows();
             }; // Wait for a keystroke in the window
-            cout << "Frame " << count++ << " decoded." << endl;
+            // cout << "Frame " << count << " decoded." << endl;
+            count++;
         }
     }
     case 2:
@@ -103,7 +91,6 @@ void HybridDecoder::decode(string output_file)
         while (count < n_frames)
         {
             curr_frame = Mat::zeros(height, width, CV_8UC1);
-            cout << "here" << endl;
 
             if (curr_frame_cost > old_frame_cost || count % period == 0)
             {
@@ -121,7 +108,8 @@ void HybridDecoder::decode(string output_file)
             {
                 destroyAllWindows();
             }; // Wait for a keystroke in the window
-            cout << "Frame " << count++ << " decoded." << endl;
+            // cout << "Frame " << count << " decoded." << endl;
+            count++;
         }
     }
     }

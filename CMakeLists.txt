@@ -59,6 +59,6 @@ add_executable( HybridDecoderExample.out tests/HybridDecoderExample.cpp src/Hybr
 target_link_libraries( HybridDecoderExample.out ${OpenCV_LIBS} )
 set_target_properties( HybridDecoderExample.out PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/Deliverable_5")
 
-# add_executable( HybridEncoderBatch.out tests/HybridEncoderBatch.cpp src/HybridEncoder.cpp src/IntraEncoder.cpp src/InterEncoder.cpp src/Golomb.cpp src/BitStream.cpp src/Predictors.cpp src/Converter.cpp )
-# target_link_libraries( HybridEncoderBatch.out ${OpenCV_LIBS} )
-# set_target_properties( HybridEncoderBatch.out PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/Deliverable_5")
+add_executable( HybridEncoderBatch.out tests/HybridEncoderBatch.cpp src/HybridEncoder.cpp src/IntraEncoder.cpp src/InterEncoder.cpp src/Golomb.cpp src/BitStream.cpp src/Predictors.cpp src/Converter.cpp )
+target_link_libraries( HybridEncoderBatch.out ${OpenCV_LIBS} )
+set_target_properties( HybridEncoderBatch.out PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/Deliverable_5")
