@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['pixel_0',['Pixel',['../structPixel.html',1,'']]],
-  ['pixeldata_1',['PixelData',['../classImage.html#a72701be7249590c9296ca56c77bb4c53',1,'Image']]],
-  ['predictors_2ehpp_2',['Predictors.hpp',['../Predictors_8hpp.html',1,'']]]
+  ['metadata_0',['Metadata',['../classImage.html#a7a2e0b96c733ce9950bb3616f2f0f2b5',1,'Image']]]
 ];

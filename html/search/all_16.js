@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['_7eimage_0',['~Image',['../classImage.html#a0294f63700543e11c0f0da85601c7ae5',1,'Image']]],
-  ['_7eintradecoder_1',['~IntraDecoder',['../classIntraDecoder.html#a35df5df502a72d8ef398b5a595938b41',1,'IntraDecoder']]],
-  ['_7eintraencoder_2',['~IntraEncoder',['../classIntraEncoder.html#a23bbfa750a99b76ee45eace988af7484',1,'IntraEncoder']]]
+  ['writebit_0',['writeBit',['../classBitStream.html#a5e3e36adf7ca1668b20ef1a4c3bea952',1,'BitStream']]],
+  ['writeimage_1',['WriteImage',['../classImage.html#ac3aed30306e37288a62a5208e20df9a3',1,'Image']]],
+  ['writeimagewatermark_2',['WriteImageWaterMark',['../classImage.html#ac07481209ed8eb57fed9113895243e62',1,'Image']]],
+  ['writenbits_3',['writeNBits',['../classBitStream.html#ad14e834f5897767b5410d858f060e549',1,'BitStream']]]
 ];

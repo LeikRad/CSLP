@@ -97,7 +97,35 @@ Encode a frame.
 \begin{DoxyReturn}{Returns}
 Result of the encoding 
 \end{DoxyReturn}
-\Hypertarget{classInterEncoder_a11b407a272afb1735813c70370d63540}\label{classInterEncoder_a11b407a272afb1735813c70370d63540} 
+Block with error values.
+
+Block with error values which minizes min\+\_\+diff.
+
+Frame that will store error values so they can later be processed and encoded.
+
+Number of frame channels.
+
+Sum of matrix that corresponds to the minimum difference between current frame\textquotesingle{}s block and previous frame\textquotesingle{}s block.
+
+Absolute value of difference between previous frame\textquotesingle{}s block a current fram\textquotesingle{}es block.
+
+Total frame cost.
+
+Parameter m used for encoding given frame.
+
+Error value (predictor -\/ real value).
+
+x coordinate of previous frame\textquotesingle{}s block which minimizes error.
+
+y coordinate of previous frame\textquotesingle{}s block which minimizes error.
+
+Max value of x which the sliding block can reach.
+
+Max value of y which the sliding block can reach.
+
+Block location vector.
+
+Current vector position.\Hypertarget{classInterEncoder_a11b407a272afb1735813c70370d63540}\label{classInterEncoder_a11b407a272afb1735813c70370d63540} 
 \index{InterEncoder@{InterEncoder}!getBlockRange@{getBlockRange}}
 \index{getBlockRange@{getBlockRange}!InterEncoder@{InterEncoder}}
 \doxysubsubsection{\texorpdfstring{getBlockRange()}{getBlockRange()}}
