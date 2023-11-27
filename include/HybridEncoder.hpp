@@ -29,36 +29,17 @@ using namespace std;
 class HybridEncoder
 {
 private:
-    /** Video to be encoded. */
-    VideoCapture video;
-
-    /** Format in which the video will be stored. */
-    int format;
-
-    /** Width of the video. */
-    int video_width;
-
-    /** Height of the video. */
-    int video_height;
-
-    /** Number of video frames. */
-    int video_n_frames;
-
-    /** Predictor used in intra-frame encoding. */
-    int predictor;
-
-    /** Period used to dedcide when to code intra */
-    int period;
-
-    /** Block size used in inter-frame encoding. */
-    int block_size;
-
-    /** Block range used in inter-frame encoding. */
-    int block_range;
-
-    /** Quantization value used for lossy coding. */
-    int shift;
-    vector<function<int(int, int, int)>> predictors;
+    VideoCapture video;                              ///< Video to be encoded
+    int format;                                      ///< Format in which the video will be stored
+    int video_width;                                 ///< Width of the video
+    int video_height;                                ///< Height of the video
+    int video_n_frames;                              ///< Number of video frames
+    int predictor;                                   ///< Predictor used in intra-frame encoding
+    int period;                                      ///< Period used to decide when to code intra
+    int block_size;                                  ///< Block size used in inter-frame encoding
+    int block_range;                                 ///< Block range used in inter-frame encoding
+    int shift;                                       ///< Quantization value used for lossy coding
+    vector<function<int(int, int, int)>> predictors; ///< List of predictors
 
 public:
     /**
