@@ -128,3 +128,8 @@ This will encode the numbers in the following range -50, 50 (inclusive) and writ
 The results can be found in the results.txt for the intra-encoder and the results-hybrid for the hybrid-encoder.
 
 If you wish to reproduce these files run IntraEncodeBatch.out HybridEncoderBatch.out.
+
+### Deliverable 6
+
+The results can be found in the report, but a shell script "ResultBatch.sh" is provided to replicate the inputs of the tests automatically.
+The requirements are the compiled versions of the updated code (CMake/make should only compile this as the previous deliverables are commented out to avoid confusion.) and the requirements of the shell script that it warns about on startup.
