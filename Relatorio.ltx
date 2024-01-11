@@ -1,0 +1,191 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+
+\begin{document}
+
+\begin{titlepage}
+	\begin{center}
+	
+	\begin{figure}[!ht]
+	\centering
+    	\includegraphics[width=10cm]{ua.png}
+	\end{figure}
+
+		\large{Departamento de Eletrónica Telecomunicações e Informática}\\ 
+        \large{Complementos Sobre Linguagens de Programação}\\ 
+		\vspace{15pt}
+        \vspace{95pt}
+        \textbf{\LARGE{Image and Video compression}}\\
+		%\title{{\large{Título}}}
+		\vspace{3,5cm}
+	\end{center}
+	
+	\begin{flushleft}
+		\begin{tabbing}
+		      Alexandre Cotorobai - 107849 \\
+            Bernardo Figueiredo - 108073 \\
+            Joaquim Rosa - 109089 \\
+                                    \\
+            
+			Professor António J. R. Neves \\
+            Professor Armando J. Pinho \\
+            Professora Lúcia Sousa
+	\end{tabbing}
+ \end{flushleft}
+	\vspace{1cm}
+	
+	\begin{center}
+		\vspace{\fill}
+			 Janeiro de 2024\\
+			\end{center}
+\end{titlepage}
+
+\section{Introduction}
+Building on the foundations of the lossless intra-frame and inter-frame encoder, the last deliverable introduces a lossy hybrid encoder. This evolution integrates both intra-frame and inter-frame coding strategies, allowing for enhanced compression efficiency. Parameters such as  block range become integral to the encoder's flexibility. Real-time estimation for intra or inter mode adds a dynamic element to the compression process. As we venture into this deliverable, the focus is on achieving optimal compression ratios and processing times while minimizing the loss of quality. This deliverable extends the compression framework to incorporate lossy coding.  This development introduces parameters for quantization shifts, providing control over the compression. The quantized values are entropy coded using Golomb codes, offering a versatile approach to lossy compression. As we implemented this extension, our attention was directed towards understanding the trade-offs between quantization and compression ratios. We aimed to achieve a good balance, offering flexibility in coding choices.
+
+
+\section{Results}
+These are the results obtained from the Hybrid Encoder and Hybrid Decoder that was developed for this project. The tests aim to evaluate the time performance and compression peformance of both by varying different parameters. The parameters that were varied are the predictor, the block range, the shift and the period. The predictor is the predictor used in the Hybrid Encoder, the numbers 3,4,5,6,7 corresponde the following predictors JPEG Predictor 4,5,6,7 and LS. The block range is the range of blocks that are used to predict the current block in the Inter Encoder. The shift is the number of bits that are shifted that enables lossy compression. The period is the timeframe between Intra encoded frames.
+
+\begin{table}[h]
+\caption{Encoding Results}
+\centering
+\resizebox{\textwidth}{!}{\begin{tabular}{|r|r|r|r|r|r|r|r|}
+    \hline
+    \textbf{Predictor} & \textbf{Block Range} & \textbf{Shift} & \textbf{Period} & \textbf{Time} & \textbf{Size of Encoded File (bytes)} & \textbf{Compression Ratio} \\ \hline
+    3 & 5 & 0 & 0 & 180310ms & 932656188 & 1.48 \\
+    \hline
+    3 & 5 & 4 & 0 & 134003ms & 655613510 & 2.10 \\
+    \hline
+    3 & 5 & 0 & 15 & 483657ms & 961805192 & 1.43 \\
+    \hline
+    3 & 5 & 4 & 15 & 581041ms & 1001048015 & 1.38 \\
+    \hline
+    3 & 10 & 0 & 15 & 1417639ms & 961275004 & 1.43 \\
+    \hline
+    3 & 10 & 4 & 15 & 1891661ms & 1000087124 & 1.38 \\
+    \hline
+    4 & 5 & 0 & 0 & 174478ms & 910777694 & 1.51 \\
+    \hline
+    4 & 5 & 4 & 0 & 144767ms & 867165632 & 1.59 \\
+    \hline
+    4 & 5 & 0 & 15 & 429734ms & 937105774 & 1.47 \\
+    \hline
+    4 & 5 & 4 & 15 & 576038ms & 1015425512 & 1.36 \\
+    \hline
+    4 & 10 & 0 & 15 & 1190152ms & 937085503 & 1.47 \\
+    \hline
+    4 & 10 & 4 & 15 & 1827465ms & 1014464620 & 1.36 \\
+    \hline
+    5 & 5 & 0 & 0 & 178905ms & 944127781 & 1.46 \\
+    \hline
+    5 & 5 & 4 & 0 & 131128ms & 539702845 & 2.56 \\
+    \hline
+    5 & 5 & 0 & 15 & 500716ms & 972825966 & 1.42 \\
+    \hline
+    5 & 5 & 4 & 15 & 577398ms & 992639545 & 1.39 \\
+    \hline
+    5 & 10 & 0 & 15 & 1450060ms & 972408594 & 1.42 \\
+    \hline
+    5 & 10 & 4 & 15 & 1884999ms & 991678653 & 1.39 \\
+    \hline
+    6 & 5 & 0 & 0 & 174864ms & 931129881 & 1.48 \\
+    \hline
+    6 & 5 & 4 & 0 & 126548ms & 579888870 & 2.38 \\
+    \hline
+    6 & 5 & 0 & 15 & 478601ms & 955838379 & 1.44 \\
+    \hline
+    6 & 5 & 4 & 15 & 579503ms & 995973252 & 1.38 \\
+    \hline
+    6 & 10 & 0 & 15 & 1390180ms & 956489285 & 1.44 \\
+    \hline
+    6 & 10 & 4 & 15 & 1861620ms & 995012361 & 1.38 \\
+    \hline
+    7 & 5 & 0 & 0 & 194050ms & 911314241 & 1.51 \\
+    \hline
+    7 & 5 & 4 & 0 & 156938ms & 877505455 & 1.57 \\
+    \hline
+    7 & 5 & 0 & 15 & 444555ms & 937793179 & 1.47 \\
+    \hline
+    7 & 5 & 4 & 15 & 592020ms & 1016805896 & 1.35 \\
+    \hline
+    7 & 10 & 0 & 15 & 1187682ms & 937771548 & 1.47 \\
+    \hline
+    7 & 10 & 4 & 15 & 1880242ms & 1015845005 & 1.36 \\
+    \hline
+\end{tabular}
+}
+\end{table}
+\begin{table}[h]
+    \centering
+    \caption{Decoding Results}
+    \resizebox{\textwidth}{!}{\begin{tabular}{|r|r|r|r|r|r|r|r|}
+        \hline
+        \textbf{Predictor} & \textbf{Block Range} & \textbf{Shift} & \textbf{Period} & \textbf{Decoding Time} \\ \hline
+        3 & 5 & 0 & 0 & 152179ms \\
+        \hline
+        3 & 5 & 4 & 0 & 122693ms \\
+        \hline
+        3 & 5 & 0 & 15 & 122032ms \\
+        \hline
+        3 & 5 & 4 & 15 & 100647ms \\
+        \hline
+        3 & 10 & 0 & 15 & 122280ms \\
+        \hline
+        3 & 10 & 4 & 15 & 100672ms \\
+        \hline
+        4 & 5 & 0 & 0 & 148173ms \\
+        \hline
+        4 & 5 & 4 & 0 & 138283ms \\
+        \hline
+        4 & 5 & 0 & 15 & 125579ms \\
+        \hline
+        4 & 5 & 4 & 15 & 101043ms \\
+        \hline
+        4 & 10 & 0 & 15 & 124776ms \\
+        \hline
+        4 & 10 & 4 & 15 & 101134ms \\
+        \hline
+        5 & 5 & 0 & 0 & 156374ms \\
+        \hline
+        5 & 5 & 4 & 0 & 118274ms \\
+        \hline
+        5 & 5 & 0 & 15 & 121721ms \\
+        \hline
+        5 & 5 & 4 & 15 & 100229ms \\
+        \hline
+        5 & 10 & 0 & 15 & 121802ms \\
+        \hline
+        5 & 10 & 4 & 15 & 100175ms \\
+        \hline
+        6 & 5 & 0 & 0 & 149995ms \\
+        \hline
+        6 & 5 & 4 & 0 & 119461ms \\
+        \hline
+        6 & 5 & 0 & 15 & 122156ms \\
+        \hline
+        6 & 5 & 4 & 15 & 100690ms \\
+        \hline
+        6 & 10 & 0 & 15 & 122241ms \\
+        \hline
+        6 & 10 & 4 & 15 & 100010ms \\
+        \hline
+        7 & 5 & 0 & 0 & 182089ms \\
+        \hline
+        7 & 5 & 4 & 0 & 150631ms \\
+        \hline
+        7 & 5 & 0 & 15 & 146162ms \\
+        \hline
+        7 & 5 & 4 & 15 & 103098ms \\
+        \hline
+        7 & 10 & 0 & 15 & 142517ms \\
+        \hline
+        7 & 10 & 4 & 15 & 102163ms \\
+        \hline
+    \end{tabular}
+    }
+    \end{table}
+
+\section{Conclusion}
+Based on the results obtained, we can conclude the most favourable paramaters are with the following inputs, Predictor=5, Block Range=5, Shift=4 and Period=0 with 31128ms (+/- 2.18 min) of Enconding Time and 539702845 bytes (+/- 539.7 MB) Encoded File Size and, Predictor=6, Block Range=5, Shift=4 e Period=0 with 126548ms (+/- 2.11 min) of Enconding Time and 579888870 bytes (+/- 579.9 MB) Encoded File size, with the original files sizes being around 1.4GB.
+\end{document}

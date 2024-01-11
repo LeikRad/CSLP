@@ -14,6 +14,7 @@
 #include "IntraDecoder.hpp"
 #include <vector>
 #include "Predictors.hpp"
+#include <iterator>
 using namespace cv;
 using namespace std;
 

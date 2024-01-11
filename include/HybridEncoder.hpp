@@ -16,7 +16,7 @@
 #include "Converter.hpp"
 #include <iterator>
 #include <vector>
-
+#include "YUVReader.hpp"
 using namespace cv;
 using namespace std;
 
@@ -29,10 +29,7 @@ using namespace std;
 class HybridEncoder
 {
 private:
-    VideoCapture video;                              ///< Video to be encoded
-    int format;                                      ///< Format in which the video will be stored
-    int video_width;                                 ///< Width of the video
-    int video_height;                                ///< Height of the video
+    YUVReader video;                              ///< Video to be encoded
     int video_n_frames;                              ///< Number of video frames
     int predictor;                                   ///< Predictor used in intra-frame encoding
     int period;                                      ///< Period used to decide when to code intra

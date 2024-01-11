@@ -2,17 +2,26 @@
 
 int main(int argc, char const *argv[])
 {
-    cout << "Enter the name of the file to read from (absolute path): ";
-
     string input;
-
-    cin >> input;
-
-    cout << "Enter the name of the file to save to (absolute path): ";
-
     string output;
+    for(int i = 1; i < argc; i++){
+        string arg(argv[i]);
+        if (arg == "-o")
+        {
+            output = argv[i + 1];
+        }
+        else if (arg == "-i")
+        {
+            input = argv[i + 1];
+        }
+    }
 
-    cin >> output;
+    // assert that all arguments are present
+    if (output.empty() || input.empty())
+    {
+        cout << "Usage: " << argv[0] << " -i <input file> -o <output file>" << endl;
+        return 1;
+    }
 
     HybridDecoder decoder(input);
 
@@ -22,9 +31,8 @@ int main(int argc, char const *argv[])
 
     auto end = chrono::high_resolution_clock::now();
 
-    cout << "Decoding took "
-         << chrono::duration_cast<chrono::milliseconds>(end - start).count()
-         << " milliseconds" << endl;
+    cout << chrono::duration_cast<chrono::milliseconds>(end - start).count()
+         << "ms" << endl;
 
     return 0;
 }
